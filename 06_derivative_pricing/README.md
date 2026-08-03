@@ -83,7 +83,6 @@ flowchart TD
 
 ### [Module 5: Monte Carlo Methods & Exotic Options](./m5)
 - **Lessons & Code**:
-  - [`m5/README.md`](./m5/README.md): Detailed Module 5 summary.
   - [`m5/L1-code.ipynb`](./m5/L1-code.ipynb): Monte Carlo path generation under Geometric Brownian Motion (GBM).
   - [`m5/L2-code.ipynb`](./m5/L2-code.ipynb): Pricing Asian options (Arithmetic vs Geometric mean strike/price).
   - [`m5/L3-code.ipynb`](./m5/L3-code.ipynb): Barrier options (Up-and-Out, Down-and-In) pricing.
@@ -93,7 +92,6 @@ flowchart TD
 
 ### [Group Work Project (GWP): Trinomial Option Valuation](./gwp)
 - **Files**:
-  - [`gwp/README.md`](./gwp/README.md): Group Work Project overview.
   - [`gwp/gwp_trinomial.ipynb`](./gwp/gwp_trinomial.ipynb): Complete Python code for American/European options using Trinomial trees.
   - [`gwp/trinomial_option_analysis.png`](./gwp/trinomial_option_analysis.png): Visual analysis plot comparing convergence rates and exercise boundaries.
   - [`gwp/GWP_Derivative_Pricing.pdf`](./gwp/GWP_Derivative_Pricing.pdf): Final technical report submission.
