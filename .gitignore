@@ -1,0 +1,27 @@
+# Ignore virtual environments
+venv/
+.venv/
+*/venv/
+*/.venv/
+**/venv/**
+**/.venv/**
+
+# Ignore everything by default
+*
+
+# Allow directories to traverse
+!*/
+
+# Allow Markdown documentation files
+!*.md
+!.gitignore
+
+# Allow image files for README visualizations
+!*.png
+!*.jpg
+!*.jpeg
+!*.svg
+
+# Exclude virtual environment images/docs
+**/.venv/**
+**/venv/**
