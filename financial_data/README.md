@@ -48,7 +48,11 @@ flowchart LR
     Group --> Close["Close = Price of Last Tick"]
     Group --> Vol["Volume = Sum of Traded Quantities"]
     
-    Open & High & Low & Close & Vol --> OHLCV["OHLCV Bar Representation"]
+    Open --> OHLCV["OHLCV Bar Representation"]
+    High --> OHLCV
+    Low --> OHLCV
+    Close --> OHLCV
+    Vol --> OHLCV
 ```
 
 ---

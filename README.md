@@ -15,7 +15,8 @@ flowchart TD
     FD --> FE["Financial Econometrics (630)\nStationarity, ARMA, GARCH, VAR, Cointegration"]
     FD --> SM["Stochastic Modelling (622)\nIto Calculus, SDEs, CIR, Heston, HMMs"]
     
-    FE & SM --> ML["Machine Learning in Finance (650)\nPurged CV, Lasso, XGBoost, Stacking"]
+    FE --> ML["Machine Learning in Finance (650)\nPurged CV, Lasso, XGBoost, Stacking"]
+    SM --> ML
     
     FE --> PM["Portfolio Management (640)\nMarkowitz MVO, CAPM, Risk Parity, CVaR"]
     ML --> PM

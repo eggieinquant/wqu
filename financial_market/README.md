@@ -29,7 +29,8 @@ flowchart TD
     V -->|"If V_T > D"| Equity_Solvent["Equity Holder Receives V_T - D (Solvent)"]
     V -->|"If V_T < D"| Default["Equity Holder Receives 0 (Default - Limited Liability)"]
     
-    Equity_Solvent & Default --> Option_Payoff["Equity E_T = max(V_T - D, 0)"]
+    Equity_Solvent --> Option_Payoff["Equity E_T = max(V_T - D, 0)"]
+    Default --> Option_Payoff
 ```
 
 ### 2. Securitization Cash Flow Waterfall Structure (Module 5)
