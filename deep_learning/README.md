@@ -18,23 +18,23 @@ This directory contains Jupyter notebooks, Python scripts, lecture materials, an
 
 ```mermaid
 flowchart LR
-    A[1D Financial Time-Series X_t] -->|Polar Transformation r, φ| B[Polar Coordinates]
-    B -->|Compute GASF / GADF Matrices| C[2D Gramian Angular Field Image]
-    C -->|Feed into 2D Convolutional Layers| D[Conv2D + MaxPool2D Feature Maps]
-    D -->|Flatten & Fully Connected Layers| E[Binary Buy/Sell Direction Classification]
+    A["1D Financial Time-Series X_t"] -->|Polar Transformation r, φ| B["Polar Coordinates"]
+    B -->|Compute GASF / GADF Matrices| C["2D Gramian Angular Field Image"]
+    C -->|Feed into 2D Convolutional Layers| D["Conv2D + MaxPool2D Feature Maps"]
+    D -->|Flatten & Fully Connected Layers| E["Binary Buy/Sell Direction Classification"]
 ```
 
 ### 2. Transformer Multi-Head Attention Mechanism (Module 4)
 
 ```mermaid
 flowchart TD
-    Input[Time-Series Feature Matrix X] --> QKV[Linear Projections: Q = X W_Q, K = X W_K, V = X W_V]
-    QKV --> MatMul[Matrix Multiplication: Q * K^T]
-    MatMul --> Scale[Scale by 1 / sqrt(d_k)]
-    Scale --> Softmax[Softmax Normalization -> Attention Matrix]
-    Softmax --> WeightedV[Multiply by Values V]
-    WeightedV --> Concat[Concatenate Multi-Head Outputs]
-    Concat --> Dense[Final Dense Output Projection]
+    Input["Time-Series Feature Matrix X"] --> QKV["Linear Projections: Q = X W_Q, K = X W_K, V = X W_V"]
+    QKV --> MatMul["Matrix Multiplication: Q * K^T"]
+    MatMul --> Scale["Scale by 1 / sqrt(d_k)"]
+    Scale --> Softmax["Softmax Normalization -> Attention Matrix"]
+    Softmax --> WeightedV["Multiply by Values V"]
+    WeightedV --> Concat["Concatenate Multi-Head Outputs"]
+    Concat --> Dense["Final Dense Output Projection"]
 ```
 
 ---

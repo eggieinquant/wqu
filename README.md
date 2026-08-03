@@ -10,20 +10,20 @@ This repository organizes code implementations, Jupyter notebooks, theoretical l
 
 ```mermaid
 flowchart TD
-    FM["Financial Markets & Instruments (610)<br/><i>Asset Classes, Payoffs, Securitization, Risk</i>"] --> FD["Financial Data & Technology (650)<br/><i>APIs, Time-Series Resampling, Web Scraping, NLP</i>"]
+    FM["Financial Markets & Instruments (610)\nAsset Classes, Payoffs, Securitization, Risk"] --> FD["Financial Data & Technology (650)\nAPIs, Time-Series Resampling, Web Scraping, NLP"]
     
-    FD --> FE["Financial Econometrics (630)<br/><i>Stationarity, ARMA, GARCH, VAR, Cointegration</i>"]
-    FD --> SM["Stochastic Modelling (622)<br/><i>Ito Calculus, SDEs, CIR, Heston, HMMs</i>"]
+    FD --> FE["Financial Econometrics (630)\nStationarity, ARMA, GARCH, VAR, Cointegration"]
+    FD --> SM["Stochastic Modelling (622)\nIto Calculus, SDEs, CIR, Heston, HMMs"]
     
-    FE & SM --> ML["Machine Learning in Finance (650)<br/><i>Purged CV, Lasso, XGBoost, Stacking</i>"]
+    FE & SM --> ML["Machine Learning in Finance (650)\nPurged CV, Lasso, XGBoost, Stacking"]
     
-    FE --> PM["Portfolio Management (640)<br/><i>Markowitz MVO, CAPM, Risk Parity, CVaR</i>"]
+    FE --> PM["Portfolio Management (640)\nMarkowitz MVO, CAPM, Risk Parity, CVaR"]
     ML --> PM
     
-    ML --> DL["Deep Learning in Finance (690)<br/><i>LSTMs, CNN-GAF, Transformers, Deep RL</i>"]
+    ML --> DL["Deep Learning in Finance (690)\nLSTMs, CNN-GAF, Transformers, Deep RL"]
     DL --> PM
     
-    SM --> DP["Derivative Pricing (610)<br/><i>Trinomial Trees, Black-Scholes PDE, Monte Carlo</i>"]
+    SM --> DP["Derivative Pricing (610)\nTrinomial Trees, Black-Scholes PDE, Monte Carlo"]
     DL --> DP
 ```
 
