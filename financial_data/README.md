@@ -18,22 +18,22 @@ This directory contains notebook implementations, lecture materials, and data pi
 
 ```mermaid
 flowchart TD
-    subgraph Data_Sources [Alternative & Market Data Sources]
-        API[RESTful APIs: Yahoo / FRED]
-        Scraper[Web Scrapers: SEC EDGAR 10-K]
-        Social[Social Feeds: Reddit / StockTwits]
+    subgraph Data_Sources ["Alternative & Market Data Sources"]
+        API["RESTful APIs: Yahoo / FRED"]
+        Scraper["Web Scrapers: SEC EDGAR 10-K"]
+        Social["Social Feeds: Reddit / StockTwits"]
     end
     
-    subgraph Data_Pipeline [Cleaning & Feature Transformation]
-        Data_Sources --> Clean[Data Cleaning & Split Adjustment]
-        Clean --> Resample[OHLCV Bar Resampling & Technical Indicators]
-        Social --> NLP[NLP Tokenization & VADER Sentiment Scoring]
+    subgraph Data_Pipeline ["Cleaning & Feature Transformation"]
+        Data_Sources --> Clean["Data Cleaning & Split Adjustment"]
+        Clean --> Resample["OHLCV Bar Resampling & Technical Indicators"]
+        Social --> NLP["NLP Tokenization & VADER Sentiment Scoring"]
     end
     
-    subgraph Warehousing [Storage & Quantitative Consumption]
-        Resample --> SQL[(Relational SQLite / Postgres DB)]
+    subgraph Warehousing ["Storage & Quantitative Consumption"]
+        Resample --> SQL["Relational SQLite / Postgres DB"]
         NLP --> SQL
-        SQL --> ML[Feature Inputs for ML / DL Models]
+        SQL --> ML["Feature Inputs for ML / DL Models"]
     end
 ```
 
@@ -41,14 +41,14 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    Ticks[Continuous Tick Feed: Price p_t, Volume v_t] --> Group[Group Ticks into Time Window Δt]
-    Group --> Open[Open = Price of First Tick]
-    Group --> High[High = Max Price in Window]
-    Group --> Low[Low = Min Price in Window]
-    Group --> Close[Close = Price of Last Tick]
-    Group --> Vol[Volume = Sum of Traded Quantities]
+    Ticks["Continuous Tick Feed: Price p_t, Volume v_t"] --> Group["Group Ticks into Time Window Δt"]
+    Group --> Open["Open = Price of First Tick"]
+    Group --> High["High = Max Price in Window"]
+    Group --> Low["Low = Min Price in Window"]
+    Group --> Close["Close = Price of Last Tick"]
+    Group --> Vol["Volume = Sum of Traded Quantities"]
     
-    Open & High & Low & Close & Vol --> OHLCV[OHLCV Bar Representation]
+    Open & High & Low & Close & Vol --> OHLCV["OHLCV Bar Representation"]
 ```
 
 ---

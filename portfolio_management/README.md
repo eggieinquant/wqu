@@ -18,19 +18,19 @@ This directory contains lecture notes, readings, and quantitative notes for **Po
 
 ```mermaid
 flowchart TD
-    subgraph Asset_Universe [Asset Universe & Covariance Matrix Σ]
-        A1[Asset 1: Equities]
-        A2[Asset 2: Bonds]
-        A3[Asset 3: Commodities]
+    subgraph Asset_Universe ["Asset Universe & Covariance Matrix Σ"]
+        A1["Asset 1: Equities"]
+        A2["Asset 2: Bonds"]
+        A3["Asset 3: Commodities"]
     end
     
-    Asset_Universe --> MVO[Markowitz Quadratic Optimizer: min w^T Σ w s.t. w^T μ = μ_0]
-    MVO --> EF[Efficient Frontier Curve]
+    Asset_Universe --> MVO["Markowitz Quadratic Optimizer: min w^T Σ w s.t. w^T μ = μ_0"]
+    MVO --> EF["Efficient Frontier Curve"]
     
-    subgraph CAL_Optimization [Tangency Portfolio & CAL]
-        Rf[Risk-Free Rate r_f] --> Tangency[Max Sharpe Ratio Tangency Portfolio]
+    subgraph CAL_Optimization ["Tangency Portfolio & CAL"]
+        Rf["Risk-Free Rate r_f"] --> Tangency["Max Sharpe Ratio Tangency Portfolio"]
         EF --> Tangency
-        Tangency --> CAL[Capital Allocation Line: E[R_p] = r_f + SR * σ_p]
+        Tangency --> CAL["Capital Allocation Line: E[R_p] = r_f + SR * σ_p"]
     end
 ```
 
@@ -38,12 +38,12 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph Traditional_60_40 [Traditional 60/40 Portfolio Capital vs Risk]
-        Cap1[Capital: 60% Equity / 40% Bonds] --> Risk1[Risk Contribution: ~90% Equity / ~10% Bonds]
+    subgraph Traditional_60_40 ["Traditional 60/40 Portfolio Capital vs Risk"]
+        Cap1["Capital: 60% Equity / 40% Bonds"] --> Risk1["Risk Contribution: ~90% Equity / ~10% Bonds"]
     end
     
-    subgraph Risk_Parity [Equal Risk Contribution / Risk Parity]
-        Cap2[Capital: Leverage Bonds / Lower Equity] --> Risk2[Equal Risk Contribution: 50% Equity / 50% Bonds]
+    subgraph Risk_Parity ["Equal Risk Contribution / Risk Parity"]
+        Cap2["Capital: Leverage Bonds / Lower Equity"] --> Risk2["Equal Risk Contribution: 50% Equity / 50% Bonds"]
     end
 ```
 
