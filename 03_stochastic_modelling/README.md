@@ -23,7 +23,7 @@ flowchart TD
     end
     
     subgraph Neutral ["Regime 2: Medium Volatility (Neutral)"]
-        R2["Moderate VIX / Balanced Returns<br/>TAA Allocation: 50% SPY / 50% Bonds (TLT)"]
+        R2["Moderate VIX / Balanced Returns<br/>TAA Allocation: 50% SPY / 50% TLT"]
     end
     
     subgraph Bear ["Regime 3: High Volatility (Bear / Panic)"]
@@ -147,7 +147,7 @@ GWP2 implements a complete quantitative strategy that classifies market volatili
 
 ## 🔗 Cross-Module Knowledge Linkages
 
-- **$\to$ [Derivative Pricing](../derivative_pricing/README.md)**: Stochastic calculus (Ito's Lemma, GBM) underpins Black-Scholes PDE and trinomial option pricing.
-- **$\to$ [Financial Econometrics](../financial_econometrics/README.md)**: SDEs represent continuous limits of discrete-time GARCH and ARMA processes.
-- **$\to$ [Machine Learning](../machine_learning/README.md)**: Unsupervised HMM state clustering connects to GMM and K-Means clustering algorithms.
-- **$\to$ [Portfolio Management](../portfolio_management/README.md)**: HMM regime state probabilities feed dynamic risk budgeting and tactical asset allocation models.
+- **$\to$ [06_derivative_pricing](../06_derivative_pricing/README.md)**: Stochastic calculus (Ito's Lemma, GBM) underpins Black-Scholes PDE and trinomial option pricing.
+- **$\to$ [04_financial_econometrics](../04_financial_econometrics/README.md)**: SDEs represent continuous limits of discrete-time GARCH and ARMA processes.
+- **$\to$ [07_machine_learning](../07_machine_learning/README.md)**: Unsupervised HMM state clustering connects to GMM and K-Means clustering algorithms.
+- **$\to$ [05_portfolio_management](../05_portfolio_management/README.md)**: HMM regime state probabilities feed dynamic risk budgeting and tactical asset allocation models.

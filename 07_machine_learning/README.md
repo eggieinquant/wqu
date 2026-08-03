@@ -142,7 +142,7 @@ GWP2 implements a production Stacking Ensemble combining Ridge, Random Forest, X
 
 ## 🔗 Cross-Module Knowledge Linkages
 
-- **$\to$ [Deep Learning](../deep_learning/README.md)**: Tabular feature engineering and purged CV methodologies feed directly into deep neural network architectures (MLPs, LSTMs, Transformers).
-- **$\to$ [Financial Econometrics](../financial_econometrics/README.md)**: Linear OLS and Lasso regression connect to ARMA/VAR econometrics; stationary return transformations are required before feeding features into ML models.
-- **$\to$ [Portfolio Management](../portfolio_management/README.md)**: Hierarchical clustering algorithms in Module 3 power Hierarchical Risk Parity (HRP) portfolio optimization.
-- **$\to$ [Financial Data](../financial_data/README.md)**: Preprocessed sentiment scores, technical indicators, and OHLCV features serve as the primary raw inputs ($X$) for all ML models.
+- **$\to$ [08_deep_learning](../08_deep_learning/README.md)**: Tabular feature engineering and purged CV methodologies feed directly into deep neural network architectures (MLPs, LSTMs, Transformers).
+- **$\to$ [04_financial_econometrics](../04_financial_econometrics/README.md)**: Linear OLS and Lasso regression connect to ARMA/VAR econometrics; stationary return transformations are required before feeding features into ML models.
+- **$\to$ [05_portfolio_management](../05_portfolio_management/README.md)**: Hierarchical clustering algorithms in Module 3 power Hierarchical Risk Parity (HRP) portfolio optimization.
+- **$\to$ [02_financial_data](../02_financial_data/README.md)**: Preprocessed sentiment scores, technical indicators, and OHLCV features serve as the primary raw inputs ($X$) for all ML models.

@@ -124,6 +124,6 @@ flowchart TD
 
 ## 🔗 Cross-Module Knowledge Linkages
 
-- **$\to$ [Derivative Pricing](../derivative_pricing/README.md)**: Option fundamentals feed directly into binomial/trinomial trees and Black-Scholes PDE derivative engines.
-- **$\to$ [Portfolio Management](../portfolio_management/README.md)**: Portfolio variance math ($\sigma_p^2 = w^T \Sigma w$) forms the foundation of Markowitz MVO and CAPM.
-- **$\to$ [Stochastic Modelling](../stochastic_modelling/README.md)**: Merton's structural default model relies on Geometric Brownian Motion and jump processes.
+- **$\to$ [06_derivative_pricing](../06_derivative_pricing/README.md)**: Option fundamentals feed directly into binomial/trinomial trees and Black-Scholes PDE derivative engines.
+- **$\to$ [05_portfolio_management](../05_portfolio_management/README.md)**: Portfolio variance math ($\sigma_p^2 = w^T \Sigma w$) forms the foundation of Markowitz MVO and CAPM.
+- **$\to$ [03_stochastic_modelling](../03_stochastic_modelling/README.md)**: Merton's structural default model relies on Geometric Brownian Motion and jump processes.

@@ -115,6 +115,6 @@ flowchart TD
 
 ## 🔗 Cross-Module Knowledge Linkages
 
-- **$\to$ [Stochastic Modelling](../stochastic_modelling/README.md)**: Ito's Lemma and Geometric Brownian Motion form the SDE foundation for Black-Scholes.
-- **$\to$ [Financial Markets](../financial_market/README.md)**: Options payoff mechanics and credit default options (Merton model).
-- **$\to$ [Deep Learning](../deep_learning/README.md)**: Deep BSDE solvers and neural networks for high-dimensional option pricing.
+- **$\to$ [03_stochastic_modelling](../03_stochastic_modelling/README.md)**: Ito's Lemma and Geometric Brownian Motion form the SDE foundation for Black-Scholes.
+- **$\to$ [01_financial_market](../01_financial_market/README.md)**: Options payoff mechanics and credit default options (Merton model).
+- **$\to$ [08_deep_learning](../08_deep_learning/README.md)**: Deep BSDE solvers and neural networks for high-dimensional option pricing.

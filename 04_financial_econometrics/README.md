@@ -115,6 +115,6 @@ flowchart LR
 
 ## 🔗 Cross-Module Knowledge Linkages
 
-- **$\to$ [Stochastic Modelling](../stochastic_modelling/README.md)**: GARCH volatility models connect to continuous-time stochastic volatility models (Heston SDE).
-- **$\to$ [Machine Learning](../machine_learning/README.md)**: Econometric ARIMA/VAR models provide baseline benchmarks for time-series forecasting.
-- **$\to$ [Portfolio Management](../portfolio_management/README.md)**: Multivariate GARCH models supply dynamic conditional covariance matrices $\mathbf{\Sigma}_t$ for portfolio optimization.
+- **$\to$ [03_stochastic_modelling](../03_stochastic_modelling/README.md)**: GARCH volatility models connect to continuous-time stochastic volatility models (Heston SDE).
+- **$\to$ [07_machine_learning](../07_machine_learning/README.md)**: Econometric ARIMA/VAR models provide baseline benchmarks for time-series forecasting.
+- **$\to$ [05_portfolio_management](../05_portfolio_management/README.md)**: Multivariate GARCH models supply dynamic conditional covariance matrices $\mathbf{\Sigma}_t$ for portfolio optimization.

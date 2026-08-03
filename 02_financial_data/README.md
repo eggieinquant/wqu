@@ -120,6 +120,6 @@ flowchart LR
 
 ## 🔗 Cross-Module Knowledge Linkages
 
-- **$\to$ [Machine Learning](../machine_learning/README.md)**: Cleaned OHLCV features and NLP sentiment scores serve as primary feature inputs ($X$) for ML models.
-- **$\to$ [Deep Learning](../deep_learning/README.md)**: Textual comments and intraday resampled time-series feed directly into LSTMs, CNNs, and Transformers.
-- **$\to$ [Financial Econometrics](../financial_econometrics/README.md)**: Return series processed in Module 2 form input datasets for ARMA-GARCH modeling.
+- **$\to$ [07_machine_learning](../07_machine_learning/README.md)**: Cleaned OHLCV features and NLP sentiment scores serve as primary feature inputs ($X$) for ML models.
+- **$\to$ [08_deep_learning](../08_deep_learning/README.md)**: Textual comments and intraday resampled time-series feed directly into LSTMs, CNNs, and Transformers.
+- **$\to$ [04_financial_econometrics](../04_financial_econometrics/README.md)**: Return series processed in Module 2 form input datasets for ARMA-GARCH modeling.

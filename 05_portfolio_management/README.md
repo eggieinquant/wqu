@@ -89,7 +89,7 @@ flowchart LR
 
 ## 🔗 Cross-Module Knowledge Linkages
 
-- **$\to$ [Machine Learning](../machine_learning/README.md)**: Hierarchical Risk Parity (HRP) uses unsupervised clustering to solve Markowitz covariance instability.
-- **$\to$ [Deep Learning](../deep_learning/README.md)**: Deep Reinforcement Learning (DDPG, PPO) optimizes dynamic asset allocation subject to drawdown constraints.
-- **$\to$ [Financial Econometrics](../financial_econometrics/README.md)**: Multivariate GARCH and VAR models supply dynamic, time-varying covariance matrices $\mathbf{\Sigma}_t$.
-- **$\to$ [Financial Markets](../financial_market/README.md)**: Asset class characteristics dictate return and variance inputs for portfolio construction.
+- **$\to$ [07_machine_learning](../07_machine_learning/README.md)**: Hierarchical Risk Parity (HRP) uses unsupervised clustering to solve Markowitz covariance instability.
+- **$\to$ [08_deep_learning](../08_deep_learning/README.md)**: Deep Reinforcement Learning (DDPG, PPO) optimizes dynamic asset allocation subject to drawdown constraints.
+- **$\to$ [04_financial_econometrics](../04_financial_econometrics/README.md)**: Multivariate GARCH and VAR models supply dynamic, time-varying covariance matrices $\mathbf{\Sigma}_t$.
+- **$\to$ [01_financial_market](../01_financial_market/README.md)**: Asset class characteristics dictate return and variance inputs for portfolio construction.
