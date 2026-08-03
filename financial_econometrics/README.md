@@ -19,16 +19,16 @@ This directory contains analytical code, datasets, and lecture notes for **Finan
 ```mermaid
 flowchart TD
     Raw["Raw Asset Prices P_t"] --> Test["Stationarity Test: ADF / KPSS"]
-    Test -->|Non-Stationary I(1)| Diff["Difference Series d Times: r_t = (1-B)^d P_t"]
-    Test -->|Stationary I(0)| ACF["Compute ACF & PACF Plots"]
+    Test -->|"Non-Stationary I(1)"| Diff["Difference Series d Times: r_t = (1-B)^d P_t"]
+    Test -->|"Stationary I(0)"| ACF["Compute ACF & PACF Plots"]
     Diff --> ACF
     
     ACF --> Identify["Identify AR(p) & MA(q) Cuts/Decays"]
     Identify --> Estimate["Estimate ARIMA(p,d,q) Coefficients via Maximum Likelihood"]
     Estimate --> Diag["Residual Diagnostics: Ljung-Box White Noise Test"]
     
-    Diag -->|Residuals are White Noise| Forecast["Generate Out-of-Sample Forecasts"]
-    Diag -->|Residual Heteroskedasticity| GARCH["Pass Residuals to GARCH Volatility Model"]
+    Diag -->|"Residuals are White Noise"| Forecast["Generate Out-of-Sample Forecasts"]
+    Diag -->|"Residual Heteroskedasticity"| GARCH["Pass Residuals to GARCH Volatility Model"]
 ```
 
 ### 2. Cointegration & VECM Pairs Trading Pipeline (Module 5)
@@ -36,12 +36,12 @@ flowchart TD
 ```mermaid
 flowchart LR
     A["Asset Series X_t & Y_t ~ I(1)"] --> B["Engle-Granger / Johansen Test"]
-    B -->|Check Cointegration Rank r > 0| C["Construct Stationary Spread S_t = Y_t - β X_t ~ I(0)"]
+    B -->|"Check Cointegration Rank r > 0"| C["Construct Stationary Spread S_t = Y_t - β X_t ~ I(0)"]
     C --> D["Fit Vector Error Correction Model VECM"]
     D --> E["Compute Normalized Z-Score of Spread S_t"]
-    E -->|Z > +2.0| Short["Short Spread: Short Y / Long X"]
-    E -->|Z < -2.0| Long["Long Spread: Long Y / Short X"]
-    E -->|Z -> 0| Close["Close Position at Mean Reversion"]
+    E -->|"Z > +2.0"| Short["Short Spread: Short Y / Long X"]
+    E -->|"Z < -2.0"| Long["Long Spread: Long Y / Short X"]
+    E -->|"Z -> 0"| Close["Close Position at Mean Reversion"]
 ```
 
 ---

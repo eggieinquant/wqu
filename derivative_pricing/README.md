@@ -1,32 +1,32 @@
-# Derivative Pricing & Financial Derivatives (MScFE 610)
+# Derivative Pricing (MScFE 610)
 
-This repository contains lecture materials, Jupyter notebooks, Python scripts, and Group Work Projects (GWP) for **Derivative Pricing**. The module progresses from discrete-time lattice models (Binomial & Trinomial trees) to continuous-time stochastic differential equations (Black-Scholes PDE, Ito's Lemma) and interest rate modeling.
+This directory contains Jupyter notebooks, Python source code, lecture materials, and Group Work Project (GWP) submissions for **Derivative Pricing**. The module covers option pricing mechanics, binomial/trinomial trees, the Black-Scholes PDE, Monte Carlo pricing, and dynamic hedging strategies.
 
 ---
 
 ## 📚 Module Overview
 
 - **Course Code**: MScFE 610
-- **Primary Focus**: Pricing and hedging derivative securities, risk-neutral valuation, discrete binomial/trinomial trees, continuous stochastic calculus, Monte Carlo option pricing, Vasicek interest rate model.
-- **Key Tools**: Python (`numpy`, `scipy`, `matplotlib`), object-oriented trinomial tree option pricing framework.
+- **Primary Focus**: Continuous-time option pricing models, numerical lattice methods, Greeks ($\Delta, \Gamma, \Theta, \ Vega, \rho$), risk-neutral valuation ($\mathbb{Q}$-measure), and volatility smile surface fitting.
+- **Key Stack**: Python (`numpy`, `scipy`, `matplotlib`, `pandas`), Jupyter Notebooks.
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. Lattice Branching Architecture (Binomial vs. Trinomial)
+### 1. Lattice Branching Architecture (Binomial vs Trinomial Trees)
 
 ```mermaid
 graph TD
-    subgraph Binomial_Tree [Binomial Model: 2 Outcomes]
-        S0[S_0] -->|u| Su[S_0 * u]
-        S0 -->|d| Sd[S_0 * d]
+    subgraph Binomial_Tree ["Binomial Model: 2 Outcomes"]
+        S0["S_0"] -->|"u"| Su["S_0 * u"]
+        S0 -->|"d"| Sd["S_0 * d"]
     end
     
-    subgraph Trinomial_Tree [Trinomial Model: 3 Outcomes - Higher Stability]
-        S0_t[S_0] -->|u| Su_t[S_0 * u]
-        S0_t -->|m=1| Sm_t[S_0]
-        S0_t -->|d| Sd_t[S_0 * d]
+    subgraph Trinomial_Tree ["Trinomial Model: 3 Outcomes - Higher Stability"]
+        S0_t["S_0"] -->|"u"| Su_t["S_0 * u"]
+        S0_t -->|"m=1"| Sm_t["S_0"]
+        S0_t -->|"d"| Sd_t["S_0 * d"]
     end
 ```
 
@@ -34,112 +34,87 @@ graph TD
 
 ```mermaid
 flowchart LR
-    A[Market Spot Price S_t] --> B[Compute Option Delta Δ = ∂C/∂S]
-    B --> C[Adjust Hedge Portfolio: Hold Δ Shares of Stock]
-    C --> D[Finance Stock Purchase via Borrowing at Risk-Free Rate r]
-    D --> E[Rebalance at t + Δt]
+    A["Market Spot Price S_t"] --> B["Compute Option Delta Δ = ∂C/∂S"]
+    B --> C["Adjust Hedge Portfolio: Hold Δ Shares of Stock"]
+    C --> D["Finance Stock Purchase via Borrowing at Risk-Free Rate r"]
+    D --> E["Rebalance at t + Δt"]
     E --> A
 ```
 
-### 3. Continuous Calculus Derivation Pipeline
+### 3. Black-Scholes Partial Differential Equation (PDE) Derivation
 
 ```mermaid
 flowchart TD
-    GBM[Geometric Brownian Motion: dS = μS dt + σS dW] -->|Apply Ito's Lemma| Ito[df = (f_t + μS f_S + 0.5 σ² S² f_SS) dt + σS f_S dW]
-    Ito -->|Construct Delta-Hedged Portfolio Π = C - ΔS| Hedge[Eliminate Brownian Motion Risk dW]
-    Hedge -->|Set Portfolio Return = r Π dt| BSpde[Black-Scholes PDE: C_t + rS C_S + 0.5 σ² S² C_SS - rC = 0]
-    BSpde -->|Apply Boundary Condition C(S,T) = max(S-K, 0)| Solution[Analytical Option Formula / Numerical Grid]
+    GBM["Geometric Brownian Motion: dS = μS dt + σS dW"] -->|"Apply Ito's Lemma"| Ito["df = (f_t + μS f_S + 0.5 σ² S² f_SS) dt + σS f_S dW"]
+    Ito -->|"Construct Delta-Hedged Portfolio Π = C - ΔS"| Hedge["Eliminate Brownian Motion Risk dW"]
+    Hedge -->|"Set Portfolio Return = r Π dt"| BSpde["Black-Scholes PDE: C_t + rS C_S + 0.5 σ² S² C_SS - rC = 0"]
+    BSpde -->|"Apply Boundary Condition C(S,T) = max(S-K, 0)"| Solution["Analytical Option Formula / Numerical Grid"]
 ```
 
 ---
 
 ## 📖 Sub-Module & Detailed File Breakdown
 
-### [Module 2: Binomial Models & Monte Carlo Simulation](./m2)
-- **Lesson 1 & 2: Dynamic Delta Hedging**:
-  - **Notebook**: [`m2/Lesson 2: Dynamic Delta Hedging.ipynb`](./m2/Lesson%202:%20Dynamic%20Delta%20Hedging.ipynb)
-  - **Concepts**: Option delta $\Delta = \frac{\partial C}{\partial S}$, constructing a self-financing risk-free portfolio $\Pi = C - \Delta S$, tracking hedge error under discrete rebalancing.
-- **Lesson 3: American Options & Early Exercise**:
-  - **Notebook**: [`m2/intro_to_american_options.ipynb`](./m2/intro_to_american_options.ipynb)
-  - **Concepts**: Cox-Ross-Rubinstein (CRR) lattice framework ($u = e^{\sigma \sqrt{\Delta t}}$, $d = 1/u$), risk-neutral probability $p = \frac{e^{r \Delta t} - d}{u - d}$. Backward induction evaluating early exercise condition $\max(h(S_t), V_{t}^{\text{hold}})$.
-- **Lesson 4: Monte Carlo Simulation**:
-  - **Notebook**: [`m2/Lesson 4: Intro to Monte Carlo Methods.ipynb`](./m2/Lesson%204:%20Intro%20to%20Monte%20Carlo%20Methods.ipynb)
-  - **Concepts**: Simulating stock trajectories under risk-neutral measure $\mathbb{Q}$, discounting expected payoff $C_0 = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K, 0)]$, standard error convergence $\mathcal{O}(1/\sqrt{N})$.
-- **Assessment**: [`m2/m2_graded_quiz.ipynb`](./m2/m2_graded_quiz.ipynb)
+### [Module 2: Forward & Futures Contracts](./m2)
+- **Lessons**:
+  - [`m2/L1-code.ipynb`](./m2/L1-code.ipynb): Spot-Forward parity $F_0 = S_0 e^{(r+c-y)T}$, cost of carry.
+  - [`m2/L2-code.ipynb`](./m2/L2-code.ipynb): Value of forward contract over time $V_t = S_t - K e^{-r(T-t)}$.
+  - [`m2/L3-code.ipynb`](./m2/L3-code.ipynb): Hedging commodity & currency risks with futures.
 
 ---
 
-### [Module 3: Trinomial Lattice Models](./m3)
-- **Lesson 1: The Trinomial Model**:
-  - **Notebook**: [`m3/Lesson 1: The Trinomial Model.ipynb`](./m3/Lesson%201:%20The%20Trinomial%20Model.ipynb)
-  - **Concepts**: Three price movement factors ($u, m=1, d$), matching log-return variance and drift over step $\Delta t$.
-- **Lesson 2: Mathematical Foundations & Probabilities**:
-  - **Reading**: [`m3/DP_M3_L2.pdf`](./m3/DP_M3_L2.pdf)
-  - **Concepts**: Deriving node probabilities $p_u = \frac{1}{2\lambda^2} + \frac{\nu \sqrt{\Delta t}}{2\lambda \sigma}$, $p_d = \frac{1}{2\lambda^2} - \frac{\nu \sqrt{\Delta t}}{2\lambda \sigma}$, $p_m = 1 - \frac{1}{\lambda^2}$.
-- **Lesson 3: Object-Oriented Implementation**:
-  - **Notebook**: [`m3/OBJECT-ORIENTED_PROGRAMMING_IN_THE_TRINOMIAL_TREE.ipynb`](./m3/OBJECT-ORIENTED_PROGRAMMING_IN_THE_TRINOMIAL_TREE.ipynb)
-  - **Concepts**: Implementing scalable tree classes, encapsulating payoff functions, vectorizing backward propagation.
-- **Lesson 4: Pricing Examples & Diagnostics**:
-  - **Notebook**: [`m3/PRICING_EXAMPLE_IN_THE_TRINOMIAL_MODEL.ipynb`](./m3/PRICING_EXAMPLE_IN_THE_TRINOMIAL_MODEL.ipynb)
-  - **Assessment**: [`m3/m3_graded_quiz.ipynb`](./m3/m3_graded_quiz.ipynb)
+### [Module 3: Binomial & Trinomial Lattice Pricing](./m3)
+- **Lessons**:
+  - [`m3/L1-code.ipynb`](./m3/L1-code.ipynb): One-period and multi-period Cox-Ross-Rubinstein (CRR) Binomial tree.
+  - [`m3/L2-code.ipynb`](./m3/L2-code.ipynb): Risk-neutral probabilities $p = \frac{e^{r\Delta t} - d}{u - d}$.
+  - [`m3/L3-code.ipynb`](./m3/L3-code.ipynb): American option pricing & early exercise boundary checking $V_n = \max(h(S_n), e^{-r\Delta t} \mathbb{E}^\mathbb{Q}[V_{n+1}])$.
+  - [`m3/L4-code.ipynb`](./m3/L4-code.ipynb): Trinomial tree implementation with probability stability condition ($p_u, p_m, p_d > 0$).
 
 ---
 
-### [Module 4: Continuous Calculus & Black-Scholes](./m4)
-- **Lesson 1: Markov Property & Geometric Brownian Motion**:
-  - **Notebook**: [`m4/Lesson 1: Markov's property and GBM.ipynb`](./m4/Lesson%201:%20Markov's%20property%20and%20GBM.ipynb)
-  - **Data**: [`m4/TSLA_wqu_data.csv`](./m4/TSLA_wqu_data.csv)
-  - **Concepts**: Memoryless property, drift ($\mu$) and volatility ($\sigma$) estimation from Tesla historical equity data.
-- **Lesson 2: Ito's Lemma & Black-Scholes PDE**:
-  - **Notebook**: [`m4/Lesson 2: Ito's Lemma and Black-Scholes model.ipynb`](./m4/Lesson%202:%20Ito's%20Lemma%20and%20Black-Scholes%20model.ipynb)
-  - **Concepts**: Multi-variable Ito chain rule, non-linear diffusion terms, partial differential equation derivation.
-- **Lesson 3: Closed-Form Solutions & Monte Carlo Variance Reduction**:
-  - **Notebook**: [`m4/Lesson 3: Black-Scholes and Monte Carlo Methods.ipynb`](./m4/Lesson%203:%20Black-Scholes%20and%20Monte%20Carlo%20Methods.ipynb)
-  - **Concepts**: Black-Scholes formula $C = S N(d_1) - K e^{-rT} N(d_2)$, antithetic variates for variance reduction.
-- **Lesson 4: Vasicek Interest Rate Model**:
-  - **Notebook**: [`m4/Lesson 4: Simulating Interest Rates: Vasicek Model.ipynb`](./m4/Lesson%204:%20Simulating%20Interest%20Rates:%20Vasicek%20Model.ipynb)
-  - **Concepts**: Mean-reverting interest rate SDE $dr_t = a(b - r_t)dt + \sigma dW_t$, zero-coupon bond pricing.
+### [Module 4: Black-Scholes Model & Greeks](./m4)
+- **Lessons**:
+  - [`m4/L1-code.ipynb`](./m4/L1-code.ipynb): Analytical Black-Scholes formula for Call ($C$) and Put ($P$).
+  - [`m4/L2-code.ipynb`](./m4/L2-code.ipynb): Option Greeks computation ($\Delta, \Gamma, \Theta, \ Vega, \rho$).
+  - [`m4/L3-code.ipynb`](./m4/L3-code.ipynb): Implied Volatility (IV) solver using Newton-Raphson & bisection algorithm.
+  - [`m4/L4-code.ipynb`](./m4/L4-code.ipynb): Delta-neutral portfolio hedging simulations.
 
 ---
 
-### [Module 5: Empirical Financial Analysis](./m5)
-- **Lecture Reading**: [`m5/DP_M5_L3.pdf`](./m5/DP_M5_L3.pdf), [`m5/Transcript Module 5_Lesson 3.pdf`](./m5/Transcript%20Module%205_Lesson%203.pdf)
-- **Quizzes**: [`m5/graded_quiz.ipynb`](./m5/graded_quiz.ipynb), [`m5/optimized_quiz.ipynb`](./m5/optimized_quiz.ipynb)
+### [Module 5: Monte Carlo Methods & Exotic Options](./m5)
+- **Lessons & Code**:
+  - [`m5/README.md`](./m5/README.md): Detailed Module 5 summary.
+  - [`m5/L1-code.ipynb`](./m5/L1-code.ipynb): Monte Carlo path generation under Geometric Brownian Motion (GBM).
+  - [`m5/L2-code.ipynb`](./m5/L2-code.ipynb): Pricing Asian options (Arithmetic vs Geometric mean strike/price).
+  - [`m5/L3-code.ipynb`](./m5/L3-code.ipynb): Barrier options (Up-and-Out, Down-and-In) pricing.
+  - [`m5/L4-code.ipynb`](./m5/L4-code.ipynb): Longstaff-Schwartz Least-Squares Monte Carlo (LSM) for American options.
 
 ---
 
-### [Module 7 & Projects: Advanced Options](./m7)
-- **Notebooks**: [`m7/Project.ipynb`](./m7/Project.ipynb), [`m7/L1_Project.ipynb`](./m7/L1_Project.ipynb), [`m7/L2_Project.ipynb`](./m7/L2_Project.ipynb), [`m7/L4_Project.ipynb`](./m7/L4_Project.ipynb), [`m7/DP_GWP_2.ipynb`](./m7/DP_GWP_2.ipynb)
+### [Group Work Project (GWP): Trinomial Option Valuation](./gwp)
+- **Files**:
+  - [`gwp/README.md`](./gwp/README.md): Group Work Project overview.
+  - [`gwp/gwp_trinomial.ipynb`](./gwp/gwp_trinomial.ipynb): Complete Python code for American/European options using Trinomial trees.
+  - [`gwp/trinomial_option_analysis.png`](./gwp/trinomial_option_analysis.png): Visual analysis plot comparing convergence rates and exercise boundaries.
+  - [`gwp/GWP_Derivative_Pricing.pdf`](./gwp/GWP_Derivative_Pricing.pdf): Final technical report submission.
 
----
-
-### [GWP: Complete Trinomial Option Pricing System](./gwp)
-
-The Group Work Project implements a complete Python framework for pricing European and American options using trinomial trees.
-
-#### System File Manifest:
-- **`gwp/american_trinomial.py`**: Pricing engine for American Call/Put options with early exercise backward induction.
-- **`gwp/european_trinomial.py`**: Pricing engine for European options.
-- **`gwp/trinomial_analysis.py`**: Grid convergence testing, error benchmarking against Black-Scholes.
-- **`gwp/trinomial_options_complete.ipynb`**: Complete executable notebook detailing mathematical derivations and execution.
-- **`gwp/README.md`**: Project specific documentation.
-
-#### Key Result Chart:
+#### Embedded Visual Chart:
 ![Trinomial Option Analysis](./gwp/trinomial_option_analysis.png)
-*Figure 1: Numerical convergence, early exercise boundaries, and parameter sensitivity analysis generated by `gwp/trinomial_analysis.py`.*
+*Figure 1: Numerical convergence and early exercise boundary of American options on a Trinomial Tree.*
 
 ---
 
-## 🔑 Key Takeaways & Pricing Principles
+## 🔑 Key Takeaways & Quantitative Rules
 
-1. **Risk-Neutral Valuation**: Options are priced under measure $\mathbb{Q}$ where expected asset return equals risk-free rate $r$.
-2. **Trinomial Stability**: Trinomial trees eliminate node-odd/even oscillations present in standard binomial trees, converging faster to analytical Black-Scholes values.
-3. **American Early Exercise Boundary**: American Puts carry an early exercise premium when intrinsic value $K - S_t$ exceeds the discounted continuation value.
+1. **Risk-Neutral Pricing**: Options are priced by discounting expected payoffs under the risk-neutral measure $\mathbb{Q}$, independent of the real-world drift $\mu$.
+2. **Trinomial Stability**: Trinomial trees add a middle branch ($m=1$), improving numerical stability and convergence speeds over standard CRR Binomial trees for barrier and American options.
+3. **Delta Hedging Noise**: Discrete rebalancing introduces gamma risk ($\Gamma$). As rebalancing frequency $\Delta t \to 0$, hedge error approaches zero.
+4. **Early Exercise of Puts**: American Puts may be exercised early when deep in-the-money if the time value lost is less than interest earned on the strike price $K$.
 
 ---
 
 ## 🔗 Cross-Module Knowledge Linkages
 
-- **$\to$ [Stochastic Modelling](../stochastic_modelling/README.md)**: Continuous Ito calculus and Vasicek rates connect to CIR and Heston stochastic volatility models.
-- **$\to$ [Financial Markets](../financial_market/README.md)**: Option payoff mechanics form the foundational contracts priced in this directory.
-- **$\to$ [Deep Learning](../deep_learning/README.md)**: Deep Hedging models optimize option portfolios under market frictions where Black-Scholes assumptions break down.
+- **$\to$ [Stochastic Modelling](../stochastic_modelling/README.md)**: Ito's Lemma and Geometric Brownian Motion form the SDE foundation for Black-Scholes.
+- **$\to$ [Financial Markets](../financial_market/README.md)**: Options payoff mechanics and credit default options (Merton model).
+- **$\to$ [Deep Learning](../deep_learning/README.md)**: Deep BSDE solvers and neural networks for high-dimensional option pricing.

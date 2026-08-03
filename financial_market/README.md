@@ -18,30 +18,30 @@ This directory contains learning materials, lecture notes, and quantitative fram
 
 ```mermaid
 flowchart TD
-    subgraph Firm_Assets [Firm Total Asset Value V_t]
-        V[Underlying Firm Value V_t]
+    subgraph Firm_Assets ["Firm Total Asset Value V_t"]
+        V["Underlying Firm Value V_t"]
     end
     
-    subgraph Debt_Liability [Nominal Debt Face Value D]
-        D_val[Debt Obligation D]
+    subgraph Debt_Liability ["Nominal Debt Face Value D"]
+        D_val["Debt Obligation D"]
     end
     
-    V -->|If V_T > D| Equity_Solvent[Equity Holder Receives V_T - D (Solvent)]
-    V -->|If V_T < D| Default[Equity Holder Receives 0 (Default - Limited Liability)]
+    V -->|"If V_T > D"| Equity_Solvent["Equity Holder Receives V_T - D (Solvent)"]
+    V -->|"If V_T < D"| Default["Equity Holder Receives 0 (Default - Limited Liability)"]
     
-    Equity_Solvent & Default --> Option_Payoff[Equity E_T = max(V_T - D, 0)]
+    Equity_Solvent & Default --> Option_Payoff["Equity E_T = max(V_T - D, 0)"]
 ```
 
 ### 2. Securitization Cash Flow Waterfall Structure (Module 5)
 
 ```mermaid
 flowchart TD
-    Borrowers[Homeowners Mortgage Payments] --> SPV[Special Purpose Vehicle SPV Pool]
+    Borrowers["Homeowners Mortgage Payments"] --> SPV["Special Purpose Vehicle SPV Pool"]
     
-    subgraph Cash_Flow_Waterfall [Securitization Tranches]
-        SPV -->|1st Priority Cash Flows| Senior[Senior Tranche AAA: Low Yield / Lowest Risk]
-        SPV -->|2nd Priority Cash Flows| Mezzanine[Mezzanine Tranche BBB: Medium Yield / Moderate Risk]
-        SPV -->|Residual / Absorbs 1st Loss| Equity_Tranche[Equity / Subordinated Tranche: High Yield / Highest Risk]
+    subgraph Cash_Flow_Waterfall ["Securitization Tranches"]
+        SPV -->|"1st Priority Cash Flows"| Senior["Senior Tranche AAA: Low Yield / Lowest Risk"]
+        SPV -->|"2nd Priority Cash Flows"| Mezzanine["Mezzanine Tranche BBB: Medium Yield / Moderate Risk"]
+        SPV -->|"Residual / Absorbs 1st Loss"| Equity_Tranche["Equity / Subordinated Tranche: High Yield / Highest Risk"]
     end
 ```
 
