@@ -17,29 +17,24 @@ This directory contains Jupyter notebooks, Python source code, lecture notes, da
 ### 1. Gaussian HMM 3-State Regime Transitions (GWP2 Strategy)
 
 ```mermaid
-stateDiagram-v2
-    [*] --> Regime1_Bull
+flowchart TD
+    subgraph Bull ["Regime 1: Low Volatility (Bull Market)"]
+        R1["Low VIX / High Risk-Asset Returns<br/>TAA Allocation: 100% Equities (SPY)"]
+    end
     
-    state "Regime 1: Low Volatility (Bull Market)" as Regime1_Bull {
-        Regime1_Bull : Low VIX / High Risk-Asset Returns
-        Regime1_Bull : TAA Allocation: 100% Equities (SPY)
-    }
+    subgraph Neutral ["Regime 2: Medium Volatility (Neutral)"]
+        R2["Moderate VIX / Balanced Returns<br/>TAA Allocation: 50% SPY / 50% Bonds (TLT)"]
+    end
     
-    state "Regime 2: Medium Volatility (Neutral)" as Regime2_Neutral {
-        Regime2_Neutral : Moderate VIX / Balanced Returns
-        Regime2_Neutral : TAA Allocation: 50% SPY / 50% Bonds (TLT)
-    }
+    subgraph Bear ["Regime 3: High Volatility (Bear / Panic)"]
+        R3["Spiking VIX / Negative Equity Returns<br/>TAA Allocation: 100% Safe Haven (TLT / Cash)"]
+    end
     
-    state "Regime 3: High Volatility (Bear/Panic)" as Regime3_Bear {
-        Regime3_Bear : Spiking VIX / Negative Equity Returns
-        Regime3_Bear : TAA Allocation: 100% Safe Haven (TLT / Cash)
-    }
-    
-    Regime1_Bull --> Regime2_Neutral: Increasing VIX Variance
-    Regime2_Neutral --> Regime3_Bear: Market Stress / Shock
-    Regime3_Bear --> Regime2_Neutral: VIX Mean Reversion
-    Regime2_Neutral --> Regime1_Bull: Market Stabilization
-    Regime1_Bull --> Regime3_Bear: Extreme Flash Crash
+    R1 -->|"Increasing VIX Variance"| R2
+    R2 -->|"Market Stress / Shock"| R3
+    R3 -->|"VIX Mean Reversion"| R2
+    R2 -->|"Market Stabilization"| R1
+    R1 -->|"Extreme Flash Crash"| R3
 ```
 
 ---

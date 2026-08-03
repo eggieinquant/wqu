@@ -34,22 +34,25 @@ gantt
 
 ```mermaid
 flowchart TD
-    Data[Financial Feature Matrix X] --> CV[Purged K-Fold CV Split]
+    Data["Financial Feature Matrix X"] --> CV["Purged K-Fold CV Split"]
     
-    subgraph Level0 [Level-0 Base Learners]
-        CV --> Ridge[Ridge Regression L2]
-        CV --> RF[Random Forest Ensemble]
-        CV --> XGB[XGBoost Gradient Boosting]
-        CV --> LGBM[LightGBM Fast Boosting]
+    subgraph Level0 ["Level-0 Base Learners"]
+        CV --> Ridge["Ridge Regression L2"]
+        CV --> RF["Random Forest Ensemble"]
+        CV --> XGB["XGBoost Gradient Boosting"]
+        CV --> LGBM["LightGBM Fast Boosting"]
     end
     
-    Level0 --> OOF[Out-of-Fold (OOF) Prediction Matrix P_oof]
+    Ridge --> OOF["Out-of-Fold (OOF) Prediction Matrix P_oof"]
+    RF --> OOF
+    XGB --> OOF
+    LGBM --> OOF
     
-    subgraph Level1 [Level-1 Meta-Learner]
-        OOF --> Meta[Ridge / Logistic Meta-Learner]
+    subgraph Level1 ["Level-1 Meta-Learner"]
+        OOF --> Meta["Ridge / Logistic Meta-Learner"]
     end
     
-    Meta --> Final[Final Combined Class Prediction / Signal]
+    Meta --> Final["Final Combined Class Prediction / Signal"]
 ```
 
 ---
