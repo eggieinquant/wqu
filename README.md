@@ -18,7 +18,7 @@ flowchart TD
     FE --> ML["07. Machine Learning in Finance (650)\nPurged CV, Lasso, XGBoost, Stacking"]
     SM --> ML
     
-    FE --> PM["05. Portfolio Management (640)\nMarkowitz MVO, CAPM, Risk Parity, CVaR"]
+    FE --> PM["05. Portfolio Management (640)\nMarkowitz MVO, Black-Litterman, CLA, Behavioral BPT"]
     ML --> PM
     
     ML --> DL["08. Deep Learning in Finance (690)\nLSTMs, CNN-GAF, Transformers, Deep RL"]
@@ -40,7 +40,7 @@ Below is the complete WQU MScFE module index organized in official course sequen
 | **[02_financial_data](./02_financial_data/README.md)** | MScFE 650 / 610 | Financial REST APIs, OHLCV tick resampling diagram, SEC 10-K web scraping, alternative text sentiment NLP (Reddit, Twitter), SQL ETL pipeline. |
 | **[03_stochastic_modelling](./03_stochastic_modelling/README.md)** | MScFE 622 | Brownian Motion, Ito Calculus, CIR, Heston/Bates option charts, HMM 3-state regime transition diagram & TAA backtest charts, Financial Networks. |
 | **[04_financial_econometrics](./04_financial_econometrics/README.md)** | MScFE 630 | Stationarity (ADF), Box-Jenkins ARIMA workflow diagram, GARCH volatility, VAR, Johansen Cointegration VECM pairs trading pipeline. |
-| **[05_portfolio_management](./05_portfolio_management/README.md)** | MScFE 640 | Markowitz Efficient Frontier & CAL diagram, CAPM, Fama-French 3/5 factor models, Risk Parity vs 60/40 diagram, VaR & CVaR coherence. |
+| **[05_portfolio_management](./05_portfolio_management/README.md)** | MScFE 640 | Markowitz Frontier & CAL diagram, Black-Litterman Bayesian flow, Prospect Theory S-curve, Behavioral BPT pyramid, BMAA matrix, CLA corner portfolios. |
 | **[06_derivative_pricing](./06_derivative_pricing/README.md)** | MScFE 610 | Lattice branching diagram (Binomial vs Trinomial), Dynamic Delta Hedging loop, Black-Scholes PDE derivation, embedded Trinomial GWP analysis chart. |
 | **[07_machine_learning](./07_machine_learning/README.md)** | MScFE 650 | Purged & Embargoed K-Fold CV Gantt chart, Regularization (Lasso/Ridge), XGBoost, Credit Scoring (WoE/IV/SHAP), Multi-Model Stacking Ensemble diagram (GWP2). |
 | **[08_deep_learning](./08_deep_learning/README.md)** | MScFE 690 | MLPs, LSTMs/GRUs, 2D CNN-GAF visual image pipeline diagram, Transformer Multi-Head Attention diagram, DRL (DQN/PPO), embedded GWP equity curve charts. |
@@ -86,7 +86,7 @@ wqu/
 ├── 02_financial_data/          # MScFE 650/610: Ingestion, Resampling, Web Scraping, Social NLP
 ├── 03_stochastic_modelling/    # MScFE 622: Ito Calculus, SDEs, CIR, Heston, HMM Regimes (GWP2)
 ├── 04_financial_econometrics/  # MScFE 630: Stationarity, ARIMA, GARCH, VAR, Cointegration, VECM
-├── 05_portfolio_management/    # MScFE 640: Mean-Variance, CAPM, Factor Models, Risk Parity, VaR/CVaR
+├── 05_portfolio_management/    # MScFE 640: Mean-Variance, Black-Litterman, CLA, Prospect Theory, BPT
 ├── 06_derivative_pricing/      # MScFE 610: Binomial/Trinomial Trees, Black-Scholes, Monte Carlo
 ├── 07_machine_learning/        # MScFE 650: Supervised ML, Tree Ensembles, Purged CV, Stacking (GWP2)
 ├── 08_deep_learning/           # MScFE 690: Deep Neural Networks, CNN-GAF, Transformers, Deep RL
