@@ -14,13 +14,17 @@ This directory contains Jupyter notebooks, Python scripts, lecture notes, datase
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown (purged K-fold CV data leakage prevention, Lasso vs Ridge math, XGBoost 2nd-order Taylor optimization, HRP matrix-free allocation, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - ⚠️ **[Purged & Embargoed K-Fold CV Data Leakage Prevention](./key-takeaway.md#toy-example-1-standard-k-fold-cv-data-leakage-illusion)**
+> - 🧮 **[Ridge Matrix Derivative & Lasso L1 Soft Thresholding](./key-takeaway.md#1-ridge-and-lasso-loss-function-matrix-derivatives)**
+> - ⚡ **[XGBoost 2nd-Order Taylor Expansion Gradients](./key-takeaway.md#2-xgboost-2nd-order-taylor-objective-gradient-derivation)**
+> - 🌲 **[Hierarchical Risk Parity (HRP) Allocation Math](./key-takeaway.md#toy-example-3-markowitz-covariance-inversion-vs-hierarchical-risk-parity)**
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. Marcos Lopez de Prado's Purged & Embargoed K-Fold CV (Module 5)
+### 1. Marcos Lopez de Prado's Purged & Embargoed K-Fold CV (Module 5) — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#toy-example-1-standard-k-fold-cv-data-leakage-illusion)
 
 ```mermaid
 gantt

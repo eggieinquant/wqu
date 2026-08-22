@@ -14,13 +14,17 @@ This directory contains analytical Jupyter notebooks, Python source code, lectur
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown (Ito calculus quadratic variation, Feller boundary conditions, Milstein convergence order, HMM regime switching, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - 📐 **[Ito Calculus vs Ordinary Calculus Derivations](./key-takeaway.md#toy-example-1-ordinary-calculus-vs-ito-calculus--quadratic-variation)**
+> - 🛑 **[Vasicek vs CIR Feller Boundary Violation Proof](./key-takeaway.md#toy-example-2-negative-rates-in-vasicek-vs-cir-feller-boundary-violation)**
+> - ⚙️ **[Milstein $\mathcal{O}(\Delta t)$ vs Euler-Maruyama Derivation](./key-takeaway.md#toy-example-3-euler-maruyama-vs-milstein-discretization-convergence)**
+> - 🧮 **[Heston Volatility & Control Variates Math](./key-takeaway.md#2-core-mathematical-formulations--calculus-derivations)**
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. SDE Numerical Discretization & Convergence Architecture
+### 1. SDE Numerical Discretization & Convergence Architecture — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#toy-example-3-euler-maruyama-vs-milstein-discretization-convergence)
 
 ```mermaid
 flowchart TD

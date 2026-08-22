@@ -14,13 +14,17 @@ This directory contains foundational lecture notes, mathematical derivations, qu
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown (Merton structural credit traps, securitization waterfall correlation failures, deleveraging margin spirals, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - 📐 **[Merton Credit Model & Asset Substitution Trap](./key-takeaway.md#toy-example-1-merton-structural-credit--equity-as-a-call-option)**
+> - 🌊 **[Securitization Subordination & Correlation Failure](./key-takeaway.md#toy-example-2-securitization-subordination--correlation-breakdown)**
+> - 📈 **[Margin Mechanics & Deleveraging Spirals](./key-takeaway.md#toy-example-3-margin-mechanics--deleveraging-spirals)**
+> - 🧮 **[Calculus Derivations & Greeks](./key-takeaway.md#2-core-mathematical-formulations--calculus-derivations)**
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. Merton Structural Credit Risk Model (Equity as a Call Option)
+### 1. Merton Structural Credit Risk Model (Equity as a Call Option) — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#toy-example-1-merton-structural-credit--equity-as-a-call-option)
 
 ```mermaid
 flowchart TD
@@ -44,7 +48,7 @@ flowchart TD
     Equity_Residual & Equity_Zero --> PayoffFormula["Merton Equity Payoff Identity:<br/>E_T = max(V_T - D, 0)  ≡  Call(V, D, T, r, σ_V)"]
 ```
 
-### 2. Structured Securitization Waterfall & Credit Subordination
+### 2. Structured Securitization Waterfall & Credit Subordination — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#toy-example-2-securitization-subordination--correlation-breakdown)
 
 ```mermaid
 flowchart TD
@@ -61,7 +65,7 @@ flowchart TD
     LossDirection -.->|"Absorbs Loss Last"| Senior
 ```
 
-### 3. Margin Mechanics & The Fire-Sale Deleveraging Spiral
+### 3. Margin Mechanics & The Fire-Sale Deleveraging Spiral — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#toy-example-3-margin-mechanics--deleveraging-spirals)
 
 ```mermaid
 flowchart TD

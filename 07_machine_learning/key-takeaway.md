@@ -1,102 +1,125 @@
 # Machine Learning in Finance — Key Pedagogical Takeaways
 ## MScFE 650 Master Quantitative Synthesis
 
----
-
-## 1. The Core Intuition & Mechanical Failure Modes
-
-### Toy Example 1: Standard K-Fold CV & The Data Leakage Illusion
-Consider evaluating a daily stock return model using 5-day forward rolling target labels $y_t = \frac{P_{t+5} - P_t}{P_t}$:
-- **Standard Random K-Fold CV**: Shuffles observations randomly into 5 train/test splits.
-- **Mechanical Failure Mode (Catastrophic Overfitting via Leakage)**:
-  Training Fold 1 contains observation $t=100$ (predicting return from day $100 \to 105$). Testing Fold 1 contains observation $t=102$ (predicting return from day $102 \to 107$).
-  Because historical price ranges overlap ($102 \to 105$ is shared in both sets), the model simply memorizes future prices. The backtest cross-validation accuracy reaches an unrealistically high $85\%$, but collapses to $48\%$ (random guessing) when deployed in live trading.
-- **Solution (Lopez de Prado's Framework)**:
-  Apply **Purging** (dropping training labels whose event horizons overlap with the test set) and **Embargoing** (discarding training samples immediately after the test set to eliminate serial memory leakage).
+[← Back to Main README.md](./README.md)
 
 ---
 
-### Toy Example 2: OLS Multicollinearity vs. Lasso ($L_1$) Noise Filtering
-Consider predicting asset returns using 100 correlated technical indicators ($p = 100, N = 150$):
-- **OLS Regression Failure**: $(\mathbf{X}^T \mathbf{X})$ is ill-conditioned. Matrix inversion explodes noise variance, assigning absurd weights ($w_1 = +450, w_2 = -440$) to collinear inputs.
-- **Mechanical Failure Mode**: Severe out-of-sample prediction error due to high estimation variance.
-- **Lasso ($L_1$) Solution**:
-  Adding penalty $+\lambda \|\boldsymbol{\beta}\|_1$ drives non-informative and redundant indicator weights to **exactly zero**, automatically performing sparse feature selection.
+## 📖 Table of Contents & Quick Module Links
+1. [Core Intuition & Mechanical Failure Modes](#1-core-intuition--mechanical-failure-modes)
+   - [Toy Example 1: Standard K-Fold CV Data Leakage Illusion](#toy-example-1-standard-k-fold-cv-data-leakage-illusion)
+   - [Toy Example 2: OLS Multicollinearity vs Lasso L1 Noise Zeroing](#toy-example-2-ols-multicollinearity-vs-lasso-l1-noise-zeroing)
+   - [Toy Example 3: Markowitz Covariance Inversion vs Hierarchical Risk Parity](#toy-example-3-markowitz-covariance-inversion-vs-hierarchical-risk-parity)
+2. [Core Mathematical Formulations & Calculus Derivations](#2-core-mathematical-formulations--calculus-derivations)
+   - [1. Ridge and Lasso Loss Function Matrix Derivatives](#1-ridge-and-lasso-loss-function-matrix-derivatives)
+   - [2. XGBoost 2nd-Order Taylor Objective Gradient Derivation](#2-xgboost-2nd-order-taylor-objective-gradient-derivation)
+   - [3. Credit Scoring Weight of Evidence & Information Value Calculus](#3-credit-scoring-weight-of-evidence--information-value-calculus)
+   - [4. SHAP Shapley Marginal Attribution Derivatives](#4-shap-shapley-marginal-attribution-derivatives)
+3. [Practical Engineering & Stacking Ensemble Architecture](#3-practical-engineering--stacking-ensemble-architecture)
+4. [Comparative Synthesis Cheat Sheet](#4-comparative-synthesis-cheat-sheet)
 
 ---
 
-### Toy Example 3: Markowitz MVO Matrix Inversion vs. Hierarchical Risk Parity (HRP)
-Consider allocating capital across 100 assets:
-- **Markowitz MVO Failure**: Requires inverting the $100 \times 100$ sample covariance matrix $\mathbf{\Sigma}^{-1}$. Minor estimation errors in correlations cause massive, unstable portfolio rebalancing.
-- **Hierarchical Risk Parity (HRP) Solution**:
-  Computes a tree distance metric $d_{ij} = \sqrt{0.5(1 - \rho_{ij})}$, builds a hierarchical cluster tree, quasi-diagonalizes the matrix, and allocates weights using **recursive bisection**. HRP requires **zero matrix inversion**, producing extremely stable asset allocations across regimes.
+<a id="1-core-intuition--mechanical-failure-modes"></a>
+## 1. Core Intuition & Mechanical Failure Modes
+
+<a id="toy-example-1-standard-k-fold-cv-data-leakage-illusion"></a>
+### Toy Example 1: Standard K-Fold CV Data Leakage Illusion
+
+#### 💡 The Intuitive Metaphor (Easiest to Understand)
+Imagine giving a student today's newspaper exam, but you shuffle the pages so Tuesday's test set contains Friday's stock market solution on the reverse page. The student gets $100\%$ on the test, but when they trade live on Monday without the future newspaper, they lose everything! 
+**Purged & Embargoed K-Fold CV** removes overlapping label windows between training and testing folds to prevent future leakage.
+
+#### 🔢 Step-by-Step Calculation (Purging & Embargoing Window Indexing)
+- Time Series: $T = 1, \dots, 100$ daily observations.
+- Forward Target Label Horizon: $H = 5\text{ days}$ ($y_t = \frac{P_{t+5} - P_t}{P_t}$).
+- Test Fold Selection: Days $t \in [40, 50]$ (Predicting future returns up to day $50 + 5 = 55$).
+
+**Step 1: Apply Purging to Training Fold**:
+Any training sample $t_{\text{train}}$ whose label interval $[t_{\text{train}}, t_{\text{train}} + 5]$ overlaps with test interval $[40, 55]$ must be purged:
+- Purged Training Samples: $t \in [35, 54]$.
+
+**Step 2: Apply Embargoing**:
+Add an embargo buffer of $E = 5\text{ days}$ immediately after test set to eliminate serial memory leakage:
+- Embargoed Training Samples: $t \in [55, 60]$.
+
+**Final Valid Training Set**: $t \in [1, 34] \cup [61, 100]$.
 
 ---
 
-## 2. Core Mathematical Formulations & Evolution
+<a id="toy-example-2-ols-multicollinearity-vs-lasso-l1-noise-zeroing"></a>
+### Toy Example 2: OLS Multicollinearity vs Lasso L1 Noise Zeroing
 
-### 1. Regularized Regression Loss Objectives
+#### 💡 The Intuitive Metaphor (Easiest to Understand)
+If 10 technical indicators all measure the exact same price move, OLS gets confused and assigns $+500$ weight to one and $-499$ weight to another (explosive noise). **Lasso ($L_1$)** acts as a strict editor, setting 9 redundant weights to **exactly zero** and keeping only 1 clear indicator.
 
-$$\text{Ridge }(L_2): \quad \min_{\boldsymbol{\beta}} \|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|_2^2 + \lambda \|\boldsymbol{\beta}\|_2^2 \implies \hat{\boldsymbol{\beta}}_{\text{Ridge}} = (\mathbf{X}^T \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^T \mathbf{y}$$
+#### 🔢 Step-by-Step Calculation (Credit Scoring Weight of Evidence)
+Feature Bin $i$: 10,000 Total Applicants.
+- Binned Applicants: 1,000 ($10\%$).
+- Good Applicants (Non-Default): $800$ out of $8,000$ total goods $\implies \%\text{Good}_i = \frac{800}{8000} = 0.10$.
+- Bad Applicants (Default): $200$ out of $2,000$ total bads $\implies \%\text{Bad}_i = \frac{200}{2000} = 0.10$.
 
-$$\text{Lasso }(L_1): \quad \min_{\boldsymbol{\beta}} \|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|_2^2 + \lambda \|\boldsymbol{\beta}\|_1$$
+$$\text{WoE}_i = \ln\left( \frac{\%\text{Good}_i}{\%\text{Bad}_i} \right) = \ln\left( \frac{0.10}{0.10} \right) = \ln(1.0) = 0.0$$
 
-$$\text{ElasticNet}: \quad \min_{\boldsymbol{\beta}} \|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|_2^2 + \lambda_1 \|\boldsymbol{\beta}\|_1 + \lambda_2 \|\boldsymbol{\beta}\|_2^2$$
+$$\text{Information Value Contribution} = (0.10 - 0.10) \times 0.0 = 0.0 \quad (\text{No discriminative power!})$$
 
 ---
 
-### 2. XGBoost 2nd-Order Taylor Objective Optimization
-At step $t$, XGBoost expands loss function $\mathcal{L}^{(t)}$ using 1st gradients $g_i$ and 2nd Hessians $h_i$:
+<a id="2-core-mathematical-formulations--calculus-derivations"></a>
+## 2. Core Mathematical Formulations & Calculus Derivations
 
-$$\mathcal{L}^{(t)} \approx \sum_{i=1}^N \left[ g_i f_t(\mathbf{x}_i) + \frac{1}{2} h_i f_t^2(\mathbf{x}_i) \right] + \gamma T + \frac{1}{2}\lambda \sum_{j=1}^T w_j^2$$
+<a id="1-ridge-and-lasso-loss-function-matrix-derivatives"></a>
+### 1. Ridge and Lasso Loss Function Matrix Derivatives
+
+$$\text{Ridge Objective:} \quad \mathcal{L}_{\text{Ridge}}(\boldsymbol{\beta}) = \|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|_2^2 + \lambda \|\boldsymbol{\beta}\|_2^2 = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})^T (\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) + \lambda \boldsymbol{\beta}^T \boldsymbol{\beta}$$
+
+Taking matrix derivative with respect to $\boldsymbol{\beta}$ and setting to $\mathbf{0}$:
+
+$$\nabla_{\boldsymbol{\beta}} \mathcal{L}_{\text{Ridge}} = -2 \mathbf{X}^T \mathbf{y} + 2 \mathbf{X}^T \mathbf{X} \boldsymbol{\beta} + 2 \lambda \boldsymbol{\beta} = \mathbf{0}$$
+
+$$(\mathbf{X}^T \mathbf{X} + \lambda \mathbf{I}) \boldsymbol{\beta} = \mathbf{X}^T \mathbf{y} \implies \hat{\boldsymbol{\beta}}_{\text{Ridge}} = (\mathbf{X}^T \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^T \mathbf{y}$$
+
+---
+
+<a id="2-xgboost-2nd-order-taylor-objective-gradient-derivation"></a>
+### 2. XGBoost 2nd-Order Taylor Objective Gradient Derivation
+Taylor expansion of loss $\mathcal{L}^{(t)}$ around prior prediction $\hat{y}^{(t-1)}$:
+
+$$\mathcal{L}^{(t)} \approx \sum_{i=1}^N \left[ l(y_i, \hat{y}^{(t-1)}) + g_i f_t(\mathbf{x}_i) + \frac{1}{2} h_i f_t^2(\mathbf{x}_i) \right] + \gamma T + \frac{1}{2}\lambda \sum_{j=1}^T w_j^2$$
 
 $$g_i = \frac{\partial l(y_i, \hat{y}^{(t-1)})}{\partial \hat{y}^{(t-1)}}, \quad h_i = \frac{\partial^2 l(y_i, \hat{y}^{(t-1)})}{\partial (\hat{y}^{(t-1)})^2}$$
 
-$$\text{Optimal Leaf Weight:} \quad w_j^* = -\frac{\sum_{i \in I_j} g_i}{\sum_{i \in I_j} h_i + \lambda}$$
-
-$$\text{Split Gain:} \quad \text{Gain} = \frac{1}{2} \left[ \frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R + \lambda} - \frac{(G_L + G_R)^2}{H_L + H_R + \lambda} \right] - \gamma$$
+Differentiating leaf weight $w_j$ gives optimal solution $w_j^* = -\frac{\sum g_i}{\sum h_i + \lambda}$.
 
 ---
 
-### 3. Credit Risk Scoring: Weight of Evidence & Information Value
+<a id="3-credit-scoring-weight-of-evidence--information-value-calculus"></a>
+### 3. Credit Scoring Weight of Evidence & Information Value Calculus
 
-$$\text{WoE}_i = \ln\left( \frac{\% \text{Good}_i}{\% \text{Bad}_i} \right), \quad \text{IV} = \sum_{i=1}^B (\% \text{Good}_i - \% \text{Bad}_i) \cdot \text{WoE}_i$$
-
-- $\text{IV} < 0.02$: No predictive power (discard feature).
-- $0.10 \le \text{IV} \le 0.50$: Strong predictive power for credit scoring.
+$$\text{IV} = \sum_{i=1}^B (\%\text{Good}_i - \%\text{Bad}_i) \cdot \ln\left( \frac{\%\text{Good}_i}{\%\text{Bad}_i} \right) \ge 0$$
 
 ---
 
-### 4. SHAP (Shapley Additive exPlanations) Attribution
+<a id="4-shap-shapley-marginal-attribution-derivatives"></a>
+### 4. SHAP Shapley Marginal Attribution Derivatives
 
 $$\phi_i(x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|! (|F| - |S| - 1)!}{|F|!} \left[ f(S \cup \{i\}) - f(S) \right]$$
 
 ---
 
-## 3. Practical Engineering, Stress-Testing & ML Extensions
+<a id="3-practical-engineering--stacking-ensemble-architecture"></a>
+## 3. Practical Engineering & Stacking Ensemble Architecture
 
-### 1. Multi-Model Stacking Ensemble Architecture
-Build a Level-1 meta-learner trained on Out-Of-Fold (OOF) prediction matrices from diverse Level-0 base estimators (Ridge, Random Forest, XGBoost, LightGBM) to minimize model variance across market regimes.
-
-```
-Level-0 Base Learners:  [ Ridge (L2) ]   [ Random Forest ]   [ XGBoost ]   [ LightGBM ]
-                                \               |                 /             /
-Out-of-Fold Matrix:                              P_oof ∈ R^{N x 4}
-                                                        |
-Level-1 Meta-Learner:                   [ Ridge / Logistic Meta-Learner ]
-                                                        |
-Final Output:                                 Robust Alpha Signal
-```
+Out-Of-Fold (OOF) prediction generation ensures Level-1 meta-learners do not overfit to Level-0 training predictions.
 
 ---
 
-## 4. Comparative Synthesis & Pedagogical Cheat Sheet
+<a id="4-comparative-synthesis-cheat-sheet"></a>
+## 4. Comparative Synthesis Cheat Sheet
 
-| ML Algorithm / Paradigm | Loss Function / Optimization | Primary Strengths | Financial Failure Mode | Required Validation |
+| ML Algorithm | Optimization Objective | Primary Strength | Key Constraint / Penalty | Primary Failure Mode |
 | :--- | :--- | :--- | :--- | :--- |
-| **Lasso ($L_1$) Regression** | MSE $+ \lambda \|\boldsymbol{\beta}\|_1$ | Sparse feature selection; zeroes noise | Fails under strong non-linear interactions | Purged $K$-Fold CV |
-| **Ridge ($L_2$) Regression** | MSE $+ \lambda \|\boldsymbol{\beta}\|_2^2$ | Handles correlated collinear features | Retains all non-informative features | Purged $K$-Fold CV |
-| **Random Forest** | Bagging tree ensemble | Non-linear features; robust to outliers | Can overfit high-frequency noisy returns | Out-of-Bag (OOB) + Purged CV |
-| **XGBoost / LightGBM** | 2nd-order Taylor loss $+ \gamma T$ | State-of-the-art tabular classification | Sensitive to hyperparameter tuning | Nested Purged & Embargoed CV |
-| **Hierarchical Risk Parity** | Recursive tree bisection | No matrix inversion; highly stable | Sensitive to distance metric choice | Walk-forward backtest |
-| **WoE Scorecard** | Log-loss on binned WoE features | Highly interpretable; regulatory compliant | Loss of information from coarse binning | Out-of-Sample ROC-AUC |
+| **Ridge Regression** | MSE $+ \lambda \|\boldsymbol{\beta}\|_2^2$ | Handles collinear features | $L_2$ norm penalty | Keeps non-informative features |
+| **Lasso Regression** | MSE $+ \lambda \|\boldsymbol{\beta}\|_1$ | Sparse feature selection | $L_1$ norm penalty | Arbitrary selection among correlated inputs |
+| **XGBoost** | 2nd-Order Taylor Loss $+ \gamma T$ | State-of-the-art tabular accuracy | Leaf weight penalty $\lambda \sum w_j^2$ | Hyperparameter sensitivity |
+| **Hierarchical Risk Parity** | Tree clustering + Recursive bisection | Matrix-free allocation | Distance metric choice | Cluster linkage sensitivity |

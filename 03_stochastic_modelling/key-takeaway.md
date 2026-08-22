@@ -1,107 +1,150 @@
 # Stochastic Modelling in Finance — Key Pedagogical Takeaways
 ## MScFE 622 Master Quantitative Synthesis
 
+[← Back to Main README.md](./README.md)
+
 ---
 
-## 1. The Core Intuition & Mechanical Failure Modes
+## 📖 Table of Contents & Quick Module Links
+1. [Core Intuition & Mechanical Failure Modes](#1-core-intuition--mechanical-failure-modes)
+   - [Toy Example 1: Ordinary Calculus vs Ito Calculus & Quadratic Variation](#toy-example-1-ordinary-calculus-vs-ito-calculus--quadratic-variation)
+   - [Toy Example 2: Negative Rates in Vasicek vs CIR Feller Boundary Violation](#toy-example-2-negative-rates-in-vasicek-vs-cir-feller-boundary-violation)
+   - [Toy Example 3: Euler-Maruyama vs Milstein Discretization Convergence](#toy-example-3-euler-maruyama-vs-milstein-discretization-convergence)
+2. [Core Mathematical Formulations & Calculus Derivations](#2-core-mathematical-formulations--calculus-derivations)
+   - [1. Multi-Dimensional Ito's Lemma Derivation](#1-multi-dimensional-itos-lemma-derivation)
+   - [2. Ito Isometry & Quadratic Variation Proof](#2-ito-isometry--quadratic-variation-proof)
+   - [3. Heston Volatility System & Feller Condition Proof](#3-heston-volatility-system--feller-condition-proof)
+   - [4. Monte Carlo Control Variate Variance Reduction Derivation](#4-monte-carlo-control-variate-variance-reduction-derivation)
+3. [Practical Engineering & Regime-Switching Systems](#3-practical-engineering--regime-switching-systems)
+4. [Comparative Synthesis Cheat Sheet](#4-comparative-synthesis-cheat-sheet)
 
-### Toy Example 1: Ordinary Calculus vs. Ito Calculus & The Quadratic Variation Bonus
-Consider integrating Brownian motion $\int_0^T W_t dW_t$.
-- **Ordinary Calculus Intuition**: If $W_t$ were a smooth differentiable function $x(t)$, $\int_0^T x dx = \frac{1}{2} x(T)^2$.
-- **Mechanical Failure Mode (Neglecting Ito's Correction)**:
-  Brownian paths are non-differentiable everywhere and have non-zero quadratic variation $[W, W]_t = t$ almost surely. In differential shorthand, $(dW_t)^2 = dt$.
-  Using left-endpoint Riemann-Stieltjes sums yields:
+---
+
+<a id="1-core-intuition--mechanical-failure-modes"></a>
+## 1. Core Intuition & Mechanical Failure Modes
+
+<a id="toy-example-1-ordinary-calculus-vs-ito-calculus--quadratic-variation"></a>
+### Toy Example 1: Ordinary Calculus vs Ito Calculus & Quadratic Variation
+
+#### 💡 The Intuitive Metaphor (Easiest to Understand)
+Standard high-school calculus assumes smooth, continuous curves (like a roller coaster track). Brownian motion is like a hyperactive drunk flea jumping infinitely many times per microsecond. Because the flea's jumps are extremely jagged, squaring its small jumps doesn't go to zero—it accumulates into a steady positive drift bonus called **Quadratic Variation** ($(dW_t)^2 = dt$).
+
+#### 🔢 Step-by-Step Numerical Calculation
+Evaluating $\int_0^T W_t dW_t$ over $T = 1.0\text{ year}$ where $W_T = +1.50$:
+- **Ordinary Calculus Attempt**: $\int_0^T x dx = \frac{1}{2} x(T)^2 = \frac{1}{2} (1.50)^2 = 0.5 \times 2.25 = +1.125$.
+- **Ito Calculus Reality**: Left-point Riemann-Stieltjes summation over $N$ discrete steps $\Delta t$:
+
+$$\int_0^T W_t dW_t = \frac{1}{2} W_T^2 - \frac{1}{2} T = \frac{1}{2} (1.50)^2 - \frac{1}{2} (1.0) = 1.125 - 0.50 = +0.625$$
+
+If you use ordinary calculus, your option valuation code will overestimate derivative prices by **$80\%$** ($1.125$ vs $0.625$) due to missing the $-\frac{1}{2}T$ quadratic drift correction!
+
+#### 📐 Calculus Derivation & Taylor Series Proof
+Expand $f(W_T) = \frac{1}{2} W_T^2$ via 2nd-order Taylor expansion:
+
+$$\Delta f = f'(W_t) \Delta W_t + \frac{1}{2} f''(W_t) (\Delta W_t)^2$$
+
+Since $f'(x) = x$ and $f''(x) = 1$:
+
+$$\Delta (\frac{1}{2} W_t^2) = W_t \Delta W_t + \frac{1}{2} (\Delta W_t)^2$$
+
+Taking expectations and taking the limit as $\Delta t \to 0$, Brownian quadratic variation $(\Delta W_t)^2 \to dt$:
+
+$$d(\frac{1}{2} W_t^2) = W_t dW_t + \frac{1}{2} dt \implies W_t dW_t = d(\frac{1}{2} W_t^2) - \frac{1}{2} dt$$
+
+Integrating both sides from $0$ to $T$ yields the exact Ito identity:
 
 $$\int_0^T W_t dW_t = \frac{1}{2} W_T^2 - \frac{1}{2} T$$
 
-  Ignoring the second-order Ito drift correction $-\frac{1}{2}T$ causes severe, systematic over-valuation of options and derivative contracts.
+---
+
+<a id="toy-example-2-negative-rates-in-vasicek-vs-cir-feller-boundary-violation"></a>
+### Toy Example 2: Negative Rates in Vasicek vs CIR Feller Boundary Violation
+
+#### 💡 The Intuitive Metaphor (Easiest to Understand)
+Vasicek interest rates are like a rubber band pulling rates toward a target average, but with random winds that can blow the rate below zero. Cox-Ingersoll-Ross (CIR) fixes this by adding a "magnetic barrier at zero": as rates get close to zero, the random wind slows down ($\sqrt{r_t} \to 0$), preventing rates from becoming negative.
+
+#### 🔢 Step-by-Step Numerical Calculation (Feller Condition Test)
+- Short rate parameters: Mean reversion rate $\kappa = 0.50$, long-term mean $\theta = 0.04$ ($4\%$), volatility $\sigma = 0.25$ ($25\%$).
+- **Compute $2\kappa\theta$**: $2 \times 0.50 \times 0.04 = 0.040$.
+- **Compute $\sigma^2$**: $0.25^2 = 0.0625$.
+- **Test Feller Condition**:
+
+$$2\kappa\theta = 0.040 < 0.0625 = \sigma^2 \quad \implies \text{FELLER CONDITION VIOLATED!}$$
+
+Because $2\kappa\theta \le \sigma^2$, the interest rate process $r_t$ will hit zero ($r_t = 0$) during Monte Carlo path generation. Standard Euler integrators will attempt to evaluate $\sqrt{-0.001}$, throwing `ValueError: domain error / NaN` crashes.
 
 ---
 
-### Toy Example 2: Negative Rates in Vasicek vs. The CIR Feller Boundary Violation
-Consider modeling short-term interest rates $r_t$:
-- **Vasicek Model**: $dr_t = \kappa(\theta - r_t) dt + \sigma dW_t$.
-  Because diffusion $\sigma$ is constant, $r_t$ is Gaussian and admits negative interest rates $r_t < 0$ with non-zero probability.
-- **Cox-Ingersoll-Ross (CIR) Model**: Adds square-root diffusion $dr_t = \kappa(\theta - r_t) dt + \sigma \sqrt{r_t} dW_t$.
-- **Mechanical Failure Mode (Feller Condition Violation)**:
-  If parameters violate the **Feller Condition** ($2\kappa\theta \le \sigma^2$), the origin $r = 0$ is an attainable boundary. Standard numerical discretization schemes attempt to evaluate $\sqrt{r_t}$ for negative values $r_t < 0$, throwing `NaN` runtime errors or causing square-root collapse in Monte Carlo path generation.
+<a id="toy-example-3-euler-maruyama-vs-milstein-discretization-convergence"></a>
+### Toy Example 3: Euler-Maruyama vs Milstein Discretization Convergence
+
+#### 💡 The Intuitive Metaphor (Easiest to Understand)
+Euler-Maruyama is like driving a car by updating your steering wheel based only on where you were at the last mile marker. **Milstein** adds a correction term that accounts for how the road's curvature is changing *while* you turn, making your trajectory far more accurate.
+
+#### 🔢 Step-by-Step Calculation
+For SDE $dX_t = \mu X_t dt + \sigma X_t dW_t$ with $X_n = 100, \mu = 0.05, \sigma = 0.30, \Delta t = 0.01, Z_n = +1.50$:
+- **Euler-Maruyama Step**:
+
+$$X_{n+1}^E = 100 + 0.05(100)(0.01) + 0.30(100)\sqrt{0.01}(1.50) = 100 + 0.05 + 4.50 = 104.55$$
+
+- **Milstein Second-Order Correction Term**:
+  Diffusion function $\sigma(X) = 0.30 X \implies \sigma'(X) = 0.30$.
+  Correction $= \frac{1}{2} \sigma(X_n) \sigma'(X_n) \left[ (\Delta W_n)^2 - \Delta t \right] = \frac{1}{2} (30)(0.30) \left[ (0.15)^2 - 0.01 \right] = 4.5 \times [0.0225 - 0.01] = +0.05625$.
+- **Milstein Step**:
+
+$$X_{n+1}^M = 104.55 + 0.05625 = 104.60625$$
 
 ---
 
-### Toy Example 3: Euler-Maruyama vs. Milstein Discretization Convergence
-Consider simulating a state-dependent SDE $dX_t = \mu(X_t) dt + \sigma(X_t) dW_t$:
-- **Euler-Maruyama Scheme**: $X_{n+1} = X_n + \mu(X_n)\Delta t + \sigma(X_n)\sqrt{\Delta t} Z_n$.
-- **Mechanical Failure Mode (Poor Strong Convergence)**:
-  Euler-Maruyama achieves a strong convergence order of only $\mathcal{O}(\sqrt{\Delta t})$ for state-dependent diffusions. For path-dependent derivatives (e.g., Barrier/Asian options), fine step sizes $\Delta t \to 0$ are computationally expensive.
-- **Milstein Solution**:
-  Adding the second-order Ito-Taylor expansion term $+\frac{1}{2}\sigma(X_n)\sigma'(X_n)[(\Delta W_n)^2 - \Delta t]$ restores strong convergence to $\mathcal{O}(\Delta t)$ without decreasing step size.
+<a id="2-core-mathematical-formulations--calculus-derivations"></a>
+## 2. Core Mathematical Formulations & Calculus Derivations
+
+<a id="1-multi-dimensional-itos-lemma-derivation"></a>
+### 1. Multi-Dimensional Ito's Lemma Derivation
+For $f(t, X_t)$ driven by $dX_t = \mu_t dt + \sigma_t dW_t$:
+
+$$df = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial X} + \frac{1}{2}\sigma_t^2 \frac{\partial^2 f}{\partial X^2} \right) dt + \sigma_t \frac{\partial f}{\partial X} dW_t$$
 
 ---
 
-## 2. Core Mathematical Formulations & Evolution
+<a id="2-ito-isometry--quadratic-variation-proof"></a>
+### 2. Ito Isometry & Quadratic Variation Proof
 
-### 1. Multi-Dimensional Ito's Lemma
-For a scalar function $f(t, X_t)$ driven by SDE $dX_t = \mu_t dt + \sigma_t dW_t$:
-
-$$df(t, X_t) = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial X} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial X^2} \right) dt + \sigma_t \frac{\partial f}{\partial X} dW_t$$
+$$\mathbb{E}\left[ \left(\int_0^T X_t dW_t\right)^2 \right] = \mathbb{E}\left[ \int_0^T X_t^2 dt \right]$$
 
 ---
 
-### 2. Ito Isometry
-For any square-integrable adapted process $X_t$:
-
-$$\mathbb{E}\left[ \left( \int_0^T X_t dW_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T X_t^2 dt \right]$$
-
-This converts complex stochastic expectations into deterministic time integrals.
+<a id="3-heston-volatility-system--feller-condition-proof"></a>
+### 3. Heston Volatility System & Feller Condition Proof
+In the variance process $dv_t = \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v$, applying Feller's boundary classification criterion proves origin $v=0$ is non-attainable if and only if $2\kappa\theta > \xi^2$.
 
 ---
 
-### 3. Heston Stochastic Volatility SDE System
+<a id="4-monte-carlo-control-variate-variance-reduction-derivation"></a>
+### 4. Monte Carlo Control Variate Variance Reduction Derivation
 
-$$dS_t = \mu S_t dt + \sqrt{v_t} S_t dW_t^S$$
+$$\hat{X}_{CV} = X - c^*(Y - \mathbb{E}[Y]), \quad c^* = \frac{\text{Cov}(X,Y)}{\text{Var}(Y)}$$
 
-$$dv_t = \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v, \quad d\langle W^S, W^v \rangle_t = \rho dt$$
-
-$$\text{Feller Condition for Positivity:} \quad 2\kappa\theta > \xi^2$$
-
----
-
-### 4. Monte Carlo Variance Reduction (Control Variates)
-To estimate $\theta = \mathbb{E}[X]$ using an analytical benchmark $Y$ with known expectation $\mathbb{E}[Y]$:
-
-$$\hat{X}_{CV} = X - c^* (Y - \mathbb{E}[Y]), \quad c^* = \frac{\text{Cov}(X, Y)}{\text{Var}(Y)}$$
-
-$$\text{Variance Reduction Ratio:} \quad \text{Var}(\hat{X}_{CV}) = \text{Var}(X) (1 - \rho_{XY}^2)$$
+$$\text{Variance Ratio} = \frac{\text{Var}(\hat{X}_{CV})}{\text{Var}(X)} = 1 - \rho_{XY}^2$$
 
 ---
 
-### 5. Eisenberg-Noe Financial Contagion Fixed Point
-Systemic clearing payment vector $\mathbf{p}^*$ across interbank liability matrix $\mathbf{\Pi}$:
+<a id="3-practical-engineering--regime-switching-systems"></a>
+## 3. Practical Engineering & Regime-Switching Systems
 
-$$\mathbf{p}^* = \min\left( \bar{\mathbf{p}}, \; \mathbf{\Pi}^T \mathbf{p}^* + \mathbf{e} \right)$$
-
----
-
-## 3. Practical Engineering, Stress-Testing & ML Extensions
-
-### 1. Regime-Switching Tactical Asset Allocation (Gaussian HMM)
-Fit a 3-State Gaussian Hidden Markov Model on VIX volatility dynamics to detect market regimes:
-- **State 1 (Low Volatility)**: Allocate $100\%$ Equities (SPY).
-- **State 2 (Medium Volatility)**: Allocate $50\%$ SPY / $50\%$ TLT.
-- **State 3 (High Volatility / Panic)**: De-risk to $100\%$ Safe Haven (TLT / Cash).
-
-### 2. Minimum Spanning Tree (MST) Correlation Filtering
-Transform financial asset correlation matrix $\mathbf{\rho}$ into a Euclidean distance metric space $d_{ij} = \sqrt{2(1 - \rho_{ij})}$ and apply Kruskal's algorithm to extract systemic market backbones.
+### Gaussian Hidden Markov Model (HMM) 3-State Filter
+- State transitions governed by transition matrix $\mathbf{P} \in \mathbb{R}^{3 \times 3}$.
+- Dynamic allocation rebalances capital to equities in low-vol state ($\sigma_1 = 12\%$) and de-risks to cash in crisis state ($\sigma_3 = 45\%$).
 
 ---
 
-## 4. Comparative Synthesis & Pedagogical Cheat Sheet
+<a id="4-comparative-synthesis-cheat-sheet"></a>
+## 4. Comparative Synthesis Cheat Sheet
 
-| Stochastic Model / Integrator | SDE / Numerical Formulation | Strong Convergence Order | Primary Advantage | Mechanical Failure Mode |
+| Stochastic Model / Scheme | Governing SDE | Strong Convergence Order | Primary Advantage | Mechanical Failure Mode |
 | :--- | :--- | :--- | :--- | :--- |
-| **Geometric Brownian Motion (GBM)** | $dS_t = \mu S_t dt + \sigma S_t dW_t$ | Exact Analytical | Exact log-normal simulation | Constant volatility; flat implied vol surface |
-| **Vasicek Short Rate** | $dr_t = \kappa(\theta - r_t) dt + \sigma dW_t$ | Exact Analytical | Mean-reverting Gaussian | Allows unrealistic negative interest rates |
-| **Cox-Ingersoll-Ross (CIR)** | $dr_t = \kappa(\theta - r_t) dt + \sigma \sqrt{r_t} dW_t$ | Exact Non-Central $\chi^2$ | Non-negative short rates | Fails if Feller condition $2\kappa\theta > \sigma^2$ is violated |
-| **Euler-Maruyama Scheme** | $X_{n+1} = X_n + \mu \Delta t + \sigma \sqrt{\Delta t} Z$ | $\mathcal{O}(\sqrt{\Delta t})$ | Simple to implement | Large discretization error for non-linear diffusions |
-| **Milstein Scheme** | $X_{n+1} = \text{Euler} + \frac{1}{2}\sigma \sigma' ((\Delta W)^2 - \Delta t)$ | $\mathcal{O}(\Delta t)$ | Upgrades strong convergence order | Requires computing derivative of diffusion $\sigma'(X)$ |
-| **Heston Stochastic Vol** | $dS = \mu S dt + \sqrt{v} S dW^S$ | Fourier Inverse / MC | Captures implied volatility skew & smiles | Complex calibration; 5 coupled parameters |
+| **Geometric Brownian Motion** | $dS = \mu S dt + \sigma S dW$ | Exact Analytical | Closed-form lognormal distribution | Constant volatility assumption |
+| **Vasicek Interest Rate** | $dr = \kappa(\theta - r) dt + \sigma dW$ | Exact Analytical | Gaussian mean-reversion | Permits unrealistic negative interest rates |
+| **Cox-Ingersoll-Ross (CIR)** | $dr = \kappa(\theta - r) dt + \sigma \sqrt{r} dW$ | Exact Non-Central $\chi^2$ | Non-negative short rates | Crashes if Feller $2\kappa\theta \le \sigma^2$ violated |
+| **Euler-Maruyama Scheme** | $X_{n+1} = X_n + \mu \Delta t + \sigma \Delta W$ | $\mathcal{O}(\sqrt{\Delta t})$ | Simple to implement | Large discretization bias for non-linear diffusions |
+| **Milstein Scheme** | $\text{Euler} + \frac{1}{2}\sigma \sigma'((\Delta W)^2 - \Delta t)$ | $\mathcal{O}(\Delta t)$ | Upgrades strong convergence order | Requires derivative $\sigma'(X)$ computation |

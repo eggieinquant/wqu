@@ -14,13 +14,17 @@ This directory contains Jupyter notebooks, Python scripts, datasets, and lecture
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown (survivorship bias pitfalls, dollar-bar resampling math, Garman-Klass volatility efficiency, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - ⚠️ **[Survivorship Bias & Phantom Sharpe Ratio Math](./key-takeaway.md#toy-example-1-survivorship-bias--phantom-sharpe-ratios)**
+> - 📊 **[Dollar-Bar Resampling vs Time-Bar Gaussian Proof](./key-takeaway.md#toy-example-2-time-bar-sampling-vs-information-based-dollar-bars)**
+> - 🧮 **[Garman-Klass Volatility $8\times$ Efficiency Derivation](./key-takeaway.md#1-garman-klass-intraday-volatility-efficiency-derivation)**
+> - 💬 **[VADER Sentiment Polarity Derivatives](./key-takeaway.md#2-vader-sentiment-polarity-normalization-function)**
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. End-to-End Quantitative ETL & Multi-Modal Feature Pipeline
+### 1. End-to-End Quantitative ETL & Multi-Modal Feature Pipeline — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#3-practical-engineering--point-in-time-database-architecture)
 
 ```mermaid
 flowchart TD

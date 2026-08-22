@@ -14,13 +14,17 @@ This directory contains Jupyter notebooks, Python source code, lecture materials
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown (risk-neutral drift independence, Gamma-Theta trade-off math, Trinomial lattice mechanics, Dupire local volatility, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - 📐 **[Risk-Neutral Drift Independence & Call Option Math](./key-takeaway.md#toy-example-1-real-world-drift-vs-risk-neutral-pricing)**
+> - ⏳ **[Gamma-Theta Convexity Trade-off Equilibrium](./key-takeaway.md#toy-example-2-black-scholes-gamma-theta-convexity-trade-off)**
+> - 🧮 **[Black-Scholes PDE Dynamic Hedging Derivation](./key-takeaway.md#1-black-scholes-dynamic-hedging-pde-derivation)**
+> - 🌊 **[Dupire Local Volatility Surface Derivations](./key-takeaway.md#4-dupire-local-volatility-partial-differential-derivation)**
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. Lattice Branching Mechanics: CRR Binomial vs. Trinomial Tree
+### 1. Lattice Branching Mechanics: CRR Binomial vs. Trinomial Tree — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#3-binomial-crr-vs-trinomial-boyle-lattice-calculus)
 
 ```mermaid
 flowchart LR

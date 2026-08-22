@@ -14,13 +14,17 @@ This directory contains lecture notes, readings, quantitative frameworks, and re
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown (Core Intuition & Mechanical Failure Modes, Mathematical Formulations, Practical Engineering & ML Extensions, and Cheat Sheet Synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - 📐 **[Markowitz Matrix Inversion & Leverage Trap Math](./key-takeaway.md#toy-example-1-the-2-asset-correlation--leverage-trap)**
+> - 📉 **[Compounding Volatility Drag & Asymmetric Recovery](./key-takeaway.md#toy-example-2-compounding-drag--asymmetric-loss-recovery)**
+> - 🧠 **[Prospect Theory Value Function Calculus](./key-takeaway.md#3-kahneman-tversky-prospect-theory-value-function-calculus)**
+> - 🧮 **[Lagrangian Optimization & Huber Robust Regression](./key-takeaway.md#2-core-mathematical-formulations--calculus-derivations)**
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. Markowitz Efficient Frontier & Capital Allocation Line (CAL)
+### 1. Markowitz Efficient Frontier & Capital Allocation Line (CAL) — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#1-markowitz-lagrangian-matrix-optimization-derivation)
 
 ```mermaid
 flowchart TD

@@ -14,13 +14,17 @@ This directory contains analytical Jupyter notebooks, datasets, R scripts, lectu
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown (spurious regression traps, GARCH asymmetric leverage derivations, Johansen VECM cointegration, ARFIMA long memory, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - ⚠️ **[Spurious Regression & Unit Root Proofs](./key-takeaway.md#toy-example-1-spurious-regression--non-stationary-unit-roots)**
+> - 📈 **[GARCH Volatility Updating & Half-Life Calculus](./key-takeaway.md#2-garch11-variance-half-life-calculus)**
+> - ⚡ **[EGARCH Asymmetric Leverage Derivations](./key-takeaway.md#3-egarch-asymmetric-leverage-derivation)**
+> - 🔗 **[Johansen VECM Cointegration Vector Decomposition](./key-takeaway.md#4-johansen-vecm-cointegration-vector-decomposition)**
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. Box-Jenkins ARIMA Model Identification & Diagnostic Lifecycle
+### 1. Box-Jenkins ARIMA Model Identification & Diagnostic Lifecycle — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#1-arimapdq-characteristic-polynomial-roots)
 
 ```mermaid
 flowchart TD

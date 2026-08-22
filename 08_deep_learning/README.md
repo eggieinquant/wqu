@@ -14,13 +14,17 @@ This directory contains analytical notebooks, model scripts, lecture notes, visu
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown (LSTM constant error carousel, Gramian Angular Field 2D image encoding math, Transformer self-attention, PPO DRL reward shaping, VAE reparameterization, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - 📐 **[LSTM Constant Error Carousel Gradient Proof](./key-takeaway.md#toy-example-1-vanishing-gradients-in-rnns-vs-lstm-constant-error-carousel)**
+> - 🖼️ **[Gramian Angular Field (GAF) 2D Encoding Calculus](./key-takeaway.md#toy-example-2-gramian-angular-fields-gaf-2d-spatial-vision-encoding)**
+> - 🤖 **[PPO Clipped Objective & DRL Reward Shaping Math](./key-takeaway.md#toy-example-3-deep-reinforcement-learning-drl-reward-shaping)**
+> - 🧮 **[VAE Reparameterization Trick & ELBO Derivation](./key-takeaway.md#4-vae-reparameterization-trick--elbo-derivation)**
 
 ---
 
 ## 📊 Visual Frameworks & Architecture
 
-### 1. 2D Gramian Angular Field (GAF) Image Encoding Pipeline (Module 3)
+### 1. 2D Gramian Angular Field (GAF) Image Encoding Pipeline (Module 3) — [*Detailed Math & Calculations in key-takeaway.md*](./key-takeaway.md#toy-example-2-gramian-angular-fields-gaf-2d-spatial-vision-encoding)
 
 ```mermaid
 flowchart LR
