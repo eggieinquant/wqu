@@ -12,6 +12,12 @@ This directory contains Jupyter notebooks, Python source code, lecture materials
 
 ---
 
+> [!IMPORTANT]
+> **🎓 Master Pedagogical Architecture & Key Takeaways**:
+> Access the structured 4-tier quantitative breakdown (risk-neutral drift independence, Gamma-Theta trade-off math, Trinomial lattice mechanics, Dupire local volatility, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+
+---
+
 ## 📊 Visual Frameworks & Architecture
 
 ### 1. Lattice Branching Mechanics: CRR Binomial vs. Trinomial Tree

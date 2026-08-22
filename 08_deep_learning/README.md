@@ -12,6 +12,12 @@ This directory contains analytical notebooks, model scripts, lecture notes, visu
 
 ---
 
+> [!IMPORTANT]
+> **🎓 Master Pedagogical Architecture & Key Takeaways**:
+> Access the structured 4-tier quantitative breakdown (LSTM constant error carousel, Gramian Angular Field 2D image encoding math, Transformer self-attention, PPO DRL reward shaping, VAE reparameterization, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+
+---
+
 ## 📊 Visual Frameworks & Architecture
 
 ### 1. 2D Gramian Angular Field (GAF) Image Encoding Pipeline (Module 3)

@@ -12,6 +12,12 @@ This directory contains foundational lecture notes, mathematical derivations, qu
 
 ---
 
+> [!IMPORTANT]
+> **🎓 Master Pedagogical Architecture & Key Takeaways**:
+> Access the structured 4-tier quantitative breakdown (Merton structural credit traps, securitization waterfall correlation failures, deleveraging margin spirals, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+
+---
+
 ## 📊 Visual Frameworks & Architecture
 
 ### 1. Merton Structural Credit Risk Model (Equity as a Call Option)

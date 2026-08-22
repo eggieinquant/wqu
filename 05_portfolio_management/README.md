@@ -12,6 +12,12 @@ This directory contains lecture notes, readings, quantitative frameworks, and re
 
 ---
 
+> [!IMPORTANT]
+> **🎓 Master Pedagogical Architecture & Key Takeaways**:
+> Access the structured 4-tier quantitative breakdown (Core Intuition & Mechanical Failure Modes, Mathematical Formulations, Practical Engineering & ML Extensions, and Cheat Sheet Synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+
+---
+
 ## 📊 Visual Frameworks & Architecture
 
 ### 1. Markowitz Efficient Frontier & Capital Allocation Line (CAL)

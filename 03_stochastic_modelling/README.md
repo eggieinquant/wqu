@@ -12,6 +12,12 @@ This directory contains analytical Jupyter notebooks, Python source code, lectur
 
 ---
 
+> [!IMPORTANT]
+> **🎓 Master Pedagogical Architecture & Key Takeaways**:
+> Access the structured 4-tier quantitative breakdown (Ito calculus quadratic variation, Feller boundary conditions, Milstein convergence order, HMM regime switching, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+
+---
+
 ## 📊 Visual Frameworks & Architecture
 
 ### 1. SDE Numerical Discretization & Convergence Architecture

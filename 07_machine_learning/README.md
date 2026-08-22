@@ -12,6 +12,12 @@ This directory contains Jupyter notebooks, Python scripts, lecture notes, datase
 
 ---
 
+> [!IMPORTANT]
+> **🎓 Master Pedagogical Architecture & Key Takeaways**:
+> Access the structured 4-tier quantitative breakdown (purged K-fold CV data leakage prevention, Lasso vs Ridge math, XGBoost 2nd-order Taylor optimization, HRP matrix-free allocation, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+
+---
+
 ## 📊 Visual Frameworks & Architecture
 
 ### 1. Marcos Lopez de Prado's Purged & Embargoed K-Fold CV (Module 5)

@@ -12,6 +12,12 @@ This directory contains analytical Jupyter notebooks, datasets, R scripts, lectu
 
 ---
 
+> [!IMPORTANT]
+> **🎓 Master Pedagogical Architecture & Key Takeaways**:
+> Access the structured 4-tier quantitative breakdown (spurious regression traps, GARCH asymmetric leverage derivations, Johansen VECM cointegration, ARFIMA long memory, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+
+---
+
 ## 📊 Visual Frameworks & Architecture
 
 ### 1. Box-Jenkins ARIMA Model Identification & Diagnostic Lifecycle

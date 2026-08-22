@@ -12,6 +12,12 @@ This directory contains Jupyter notebooks, Python scripts, datasets, and lecture
 
 ---
 
+> [!IMPORTANT]
+> **🎓 Master Pedagogical Architecture & Key Takeaways**:
+> Access the structured 4-tier quantitative breakdown (survivorship bias pitfalls, dollar-bar resampling math, Garman-Klass volatility efficiency, and cheat sheet synthesis) in **[`key-takeaway.md`](./key-takeaway.md)**.
+
+---
+
 ## 📊 Visual Frameworks & Architecture
 
 ### 1. End-to-End Quantitative ETL & Multi-Modal Feature Pipeline
