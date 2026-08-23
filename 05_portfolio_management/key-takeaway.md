@@ -95,7 +95,7 @@ $$\mathcal{L}(\mathbf{w}, \lambda_1, \lambda_2) = \frac{1}{2} \mathbf{w}^T \math
 
 Taking gradient vector derivative $\nabla_{\mathbf{w}} \mathcal{L} = \mathbf{0}$:
 
-$$\mathbf{\Sigma} \mathbf{w} - \lambda_1 \boldsymbol{\mu} - \lambda_2 \mathbf{1} = \mathbf{0} \implies \mathbf{w}^{*} = \mathbf{\Sigma}^{-1} (\lambda_1 \boldsymbol{\mu} + \lambda_2 \mathbf{1})$$
+$$\mathbf{\Sigma} \mathbf{w} - \lambda_1 \boldsymbol{\mu} - \lambda_2 \mathbf{1} = \mathbf{0} \implies \mathbf{w}^{\star} = \mathbf{\Sigma}^{-1} (\lambda_1 \boldsymbol{\mu} + \lambda_2 \mathbf{1})$$
 
 ---
 
@@ -126,7 +126,7 @@ $$\frac{dv}{dx} = \begin{cases} \alpha x^{\alpha - 1} > 0 & x > 0 \text{ (Concav
 
 Empirical walk-forward factor regression results from `GWP`:
 - **OLS Alpha**: $\alpha = +0.0018$ ($t = 1.45$, non-significant).
-- **Huber Robust RLM Alpha**: $\alpha = +0.0021^{*}$ ($t = 2.12$, significant after down-weighting outliers).
+- **Huber Robust RLM Alpha**: $\alpha = +0.0021^{\star}$ ($t = 2.12$, significant after down-weighting outliers).
 
 ---
 

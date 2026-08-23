@@ -31,7 +31,7 @@ Consider regression of daily portfolio excess returns against the Fama-French 5 
 - **Huber Robust Regression (RLM) Solution**: Huber RLM replaces quadratic loss with a hybrid loss function $\rho_k(e)$ using tuning constant $k = 1.345 \sigma$. Outliers beyond $1.345\sigma$ are transition from $L_2$ quadratic penalty to $L_1$ linear penalty.
 - **Empirical Impact**:
   - In OLS, Size factor SMB ($p = 0.1612$) and Profitability factor RMW ($p = 0.2848$) appear statistically insignificant.
-  - In Huber RLM, downweighting heavy-tailed daily return outliers reveals that Size ($\text{SMB}, z = 1.78, p = 0.0746^{*}$) and Profitability ($\text{RMW}, z = -1.69, p = 0.0909^{*}$) are statistically significant factor drivers at the $10\%$ level.
+  - In Huber RLM, downweighting heavy-tailed daily return outliers reveals that Size ($\text{SMB}, z = 1.78, p = 0.0746^{\star}$) and Profitability ($\text{RMW}, z = -1.69, p = 0.0909^{\star}$) are statistically significant factor drivers at the $10\%$ level.
 
 ---
 

@@ -201,7 +201,7 @@ flowchart LR
       $$\hat{\theta}_{AV} = \frac{f(\mathbf{Z}) + f(-\mathbf{Z})}{2}, \quad \text{Var}(\hat{\theta}_{AV}) = \frac{\text{Var}(f)}{2}(1 + \text{Corr}(f(\mathbf{Z}), f(-\mathbf{Z})))$$
   - [`M5/L3-code.ipynb`](./M5/L3-code.ipynb) & [`M5/L3-reading.pdf`](./M5/L3-reading.pdf): **Control Variates Method**.
     - Exploiting an analytical benchmark $Y$ (e.g., European option) to reduce variance of target $X$ (e.g., Asian option):
-      $$\hat{X}_{\text{CV}} = X - c^{*} (Y - \mathbb{E}[Y]), \quad c^{*} = \frac{\text{Cov}(X, Y)}{\text{Var}(Y)}$$
+      $$\hat{X}_{\text{CV}} = X - c^{\star} (Y - \mathbb{E}[Y]), \quad c^{\star} = \frac{\text{Cov}(X, Y)}{\text{Var}(Y)}$$
   - [`M5/L4-code.ipynb`](./M5/L4-code.ipynb) & [`M5/L4-reading.pdf`](./M5/L4-reading.pdf): **Importance Sampling**.
     - Shifting the sampling probability measure to heavily sample deep out-of-the-money tail regions via Radon-Nikodym derivative $\frac{d\mathbb{P}}{d\mathbb{Q}}$.
 
@@ -248,7 +248,7 @@ GWP2 develops an automated quantitative strategy that fits Gaussian Hidden Marko
     - Degree Centrality, Closeness Centrality, Betweenness Centrality $C_B(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}$, and PageRank / Eigenvector Centrality ($\mathbf{A}\mathbf{x} = \lambda \mathbf{x}$).
   - [`M7/L3.ipynb`](./M7/L3.ipynb): **The Eisenberg-Noe Financial Contagion Model**.
     - Clearing payment vector fixed point:
-      $$\mathbf{p}^{*} = \min\left(\bar{\mathbf{p}}, \mathbf{\Pi}^T \mathbf{p}^{*} + \mathbf{e}\right)$$
+      $$\mathbf{p}^{\star} = \min\left(\bar{\mathbf{p}}, \mathbf{\Pi}^T \mathbf{p}^{\star} + \mathbf{e}\right)$$
     - Modeling cascading institutional defaults under liquidity and solvency shocks.
   - [`M7/L4.ipynb`](./M7/L4.ipynb): **Minimum Spanning Trees (MST) in Financial Markets**.
     - Distance metric between assets $i$ and $j$: $d_{ij} = \sqrt{2(1 - \rho_{ij})}$.

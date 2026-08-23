@@ -123,7 +123,7 @@ In the variance process $dv_t = \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v$
 <a id="4-monte-carlo-control-variate-variance-reduction-derivation"></a>
 ### 4. Monte Carlo Control Variate Variance Reduction Derivation
 
-$$\hat{X}_{\text{CV}} = X - c^{*}(Y - \mathbb{E}[Y]), \quad c^{*} = \frac{\text{Cov}(X,Y)}{\text{Var}(Y)}$$
+$$\hat{X}_{\text{CV}} = X - c^{\star}(Y - \mathbb{E}[Y]), \quad c^{\star} = \frac{\text{Cov}(X,Y)}{\text{Var}(Y)}$$
 
 $$\text{Variance Ratio} = \frac{\text{Var}(\hat{X}_{\text{CV}})}{\text{Var}(X)} = 1 - \rho_{XY}^2$$
 
