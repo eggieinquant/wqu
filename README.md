@@ -34,16 +34,16 @@ flowchart TD
 
 Below is the complete WQU MScFE module index organized in official course sequence. Click on any module title to access its dedicated, fully-detailed `README.md` containing lesson breakdowns, mathematical equations, visual diagrams, embedded charts, key takeaways, and cross-module linkages.
 
-| Module Directory | WQU Course Code | Primary Topics & Visual Highlights |
-| :--- | :--- | :--- |
-| **[01_financial_market](./01_financial_market/README.md)** | MScFE 610 | Market structures, option payoffs, Merton structural model diagram, securitization cash flow waterfall, 2008 crisis. |
-| **[02_financial_data](./02_financial_data/README.md)** | MScFE 650 / 610 | Financial REST APIs, OHLCV tick resampling diagram, SEC 10-K web scraping, alternative text sentiment NLP (Reddit, Twitter), SQL ETL pipeline. |
-| **[03_stochastic_modelling](./03_stochastic_modelling/README.md)** | MScFE 622 | Brownian Motion, Ito Calculus, CIR, Heston/Bates option charts, HMM 3-state regime transition diagram & TAA backtest charts, Financial Networks. |
-| **[04_financial_econometrics](./04_financial_econometrics/README.md)** | MScFE 630 | Stationarity (ADF), Box-Jenkins ARIMA workflow diagram, GARCH volatility, VAR, Johansen Cointegration VECM pairs trading pipeline. |
-| **[05_portfolio_management](./05_portfolio_management/README.md)** | MScFE 640 | Markowitz Frontier & CAL diagram, Black-Litterman Bayesian flow, Prospect Theory S-curve, Behavioral BPT pyramid, BMAA matrix, CLA corner portfolios. |
-| **[06_derivative_pricing](./06_derivative_pricing/README.md)** | MScFE 610 | Lattice branching diagram (Binomial vs Trinomial), Dynamic Delta Hedging loop, Black-Scholes PDE derivation, embedded Trinomial GWP analysis chart. |
-| **[07_machine_learning](./07_machine_learning/README.md)** | MScFE 650 | Purged & Embargoed K-Fold CV Gantt chart, Regularization (Lasso/Ridge), XGBoost, Credit Scoring (WoE/IV/SHAP), Multi-Model Stacking Ensemble diagram (GWP2). |
-| **[08_deep_learning](./08_deep_learning/README.md)** | MScFE 690 | MLPs, LSTMs/GRUs, 2D CNN-GAF visual image pipeline diagram, Transformer Multi-Head Attention diagram, DRL (DQN/PPO), embedded GWP equity curve charts. |
+| Module Directory | WQU Course Code | Primary Topics & Visual Highlights | Master Pedagogical Synthesis |
+| :--- | :--- | :--- | :--- |
+| **[01_financial_market](./01_financial_market/README.md)** | MScFE 610 | Market structures, option payoffs, Merton structural model diagram, securitization waterfall, 2008 crisis. | [🎓 01 Key Takeaways](./01_financial_market/key-takeaway.md) |
+| **[02_financial_data](./02_financial_data/README.md)** | MScFE 650 / 610 | Financial REST APIs, OHLCV tick resampling, SEC 10-K scraping, alternative sentiment NLP, SQL ETL pipeline. | [🎓 02 Key Takeaways](./02_financial_data/key-takeaway.md) |
+| **[03_stochastic_modelling](./03_stochastic_modelling/README.md)** | MScFE 622 | Brownian Motion, Ito Calculus, CIR, Heston/Bates option charts, HMM 3-state TAA backtest charts, Networks. | [🎓 03 Key Takeaways](./03_stochastic_modelling/key-takeaway.md) |
+| **[04_financial_econometrics](./04_financial_econometrics/README.md)** | MScFE 630 | Stationarity (ADF), Box-Jenkins ARIMA workflow, GARCH volatility, VAR, Johansen Cointegration VECM pairs trading. | [🎓 04 Key Takeaways](./04_financial_econometrics/key-takeaway.md) |
+| **[05_portfolio_management](./05_portfolio_management/README.md)** | MScFE 640 | Markowitz Frontier & CAL, Black-Litterman Bayesian flow, Prospect Theory S-curve, BPT pyramid, BMAA matrix. | [🎓 05 Key Takeaways](./05_portfolio_management/key-takeaway.md) |
+| **[06_derivative_pricing](./06_derivative_pricing/README.md)** | MScFE 610 | Lattice branching (Binomial vs Trinomial), Dynamic Delta Hedging loop, Black-Scholes PDE, Trinomial GWP analysis. | [🎓 06 Key Takeaways](./06_derivative_pricing/key-takeaway.md) |
+| **[07_machine_learning](./07_machine_learning/README.md)** | MScFE 650 | Purged & Embargoed K-Fold CV Gantt chart, Regularization (Lasso/Ridge), XGBoost, WoE/IV/SHAP, Stacking Ensemble. | [🎓 07 Key Takeaways](./07_machine_learning/key-takeaway.md) |
+| **[08_deep_learning](./08_deep_learning/README.md)** | MScFE 690 | MLPs, LSTMs/GRUs, 2D CNN-GAF visual image pipeline, Transformer Multi-Head Attention, Deep RL (PPO), GWPs. | [🎓 08 Key Takeaways](./08_deep_learning/key-takeaway.md) |
 
 ---
 
