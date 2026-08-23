@@ -52,7 +52,7 @@ $$d_2 = d_1 - \sigma \sqrt{T} = 0.35 - 0.20 = 0.15$$
 
 $$C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) = 100 \times 0.63683 - 100 \times e^{-0.05} \times 0.55962$$
 
-$$C = 63.683 - 100 \times 0.95123 \times 0.55962 = 63.683 - 53.232 = \$10.451$$
+$$C = 63.683 - 100 \times 0.95123 \times 0.55962 = 63.683 - 53.232 = 10.451$$
 
 Notice that $\mu_A = 25\%$ and $\mu_B = 5\%$ **do not appear anywhere** in this equation! Both options cost exactly $\$10.451$.
 
@@ -72,7 +72,7 @@ $$\Gamma = \frac{\phi(d_1)}{S_0 \sigma \sqrt{T}} = \frac{0.37524}{100 \times 0.2
 
 - **Theta $\Theta$**:
 
-$$\Theta = -\frac{S_0 \phi(d_1) \sigma}{2\sqrt{T}} - r K e^{-rT} \Phi(d_2) = -\frac{100 \times 0.37524 \times 0.20}{2} - 0.05 \times 100 \times 0.95123 \times 0.55962 = -3.7524 - 2.6616 = -\$6.414 \text{ / year} \quad (-\$0.01756 \text{ / day})$$
+$$\Theta = -\frac{S_0 \phi(d_1) \sigma}{2\sqrt{T}} - r K e^{-rT} \Phi(d_2) = -\frac{100 \times 0.37524 \times 0.20}{2} - 0.05 \times 100 \times 0.95123 \times 0.55962 = -3.7524 - 2.6616 = -6.414 \text{ / year} \quad (-0.01756 \text{ / day})$$
 
 Checking PDE equilibrium for Delta-neutral portfolio:
 

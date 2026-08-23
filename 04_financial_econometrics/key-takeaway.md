@@ -43,7 +43,7 @@ Because $DW \to 0$ as $N \to \infty$, standard OLS distribution theory breaks do
 
 #### 📐 Calculus & Unit Root Proof
 Let $L$ be the lag operator ($L Y_t = Y_{t-1}$). A process has a unit root if $(1 - L) Y_t = \epsilon_t$.
-- Variance grows unbounded over time: $\operatorname{Var}(Y_t) = t \sigma_\epsilon^2 \xrightarrow{t \to \infty} \infty$.
+- Variance grows unbounded over time: $\text{Var}(Y_t) = t \sigma_\epsilon^2 \xrightarrow{t \to \infty} \infty$.
 - The asymptotic distribution of $\hat{\beta}$ does not follow Student-t, but rather a ratio of Wiener integrals:
 
 $$\hat{\beta} \xrightarrow{d} \frac{\int_0^1 W_Y(r) W_X(r) dr}{\int_0^1 W_X(r)^2 dr}$$

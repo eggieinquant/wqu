@@ -48,9 +48,9 @@ $$d_2 = d_1 - \sigma_V \sqrt{T} = 1.4657 - 0.20 = 1.2657$$
 
 **Step 3: Compute Equity Value $E_0$ and Corporate Debt Value $D_0$**:
 
-$$E_0 = V_0 \Phi(d_1) - D e^{-rT} \Phi(d_2) = 100 \times 0.9286 - 80 \times e^{-0.05} \times 0.8972 = 92.86 - 80 \times 0.95123 \times 0.8972 = 92.86 - 68.27 = \$24.59\text{M}$$
+$$E_0 = V_0 \Phi(d_1) - D e^{-rT} \Phi(d_2) = 100 \times 0.9286 - 80 \times e^{-0.05} \times 0.8972 = 92.86 - 80 \times 0.95123 \times 0.8972 = 92.86 - 68.27 = 24.59\text{M}$$
 
-$$D_0 = V_0 - E_0 = 100 - 24.59 = \$75.41\text{M}$$
+$$D_0 = V_0 - E_0 = 100 - 24.59 = 75.41\text{M}$$
 
 **Step 4: Compute Implied Credit Spread $\mathcal{S}$**:
 
@@ -109,11 +109,11 @@ Borrowing on margin is like renting a house with a mandatory security deposit. I
 - Total Initial Account Cash Assets $= \$100,000 + \$50,000 = \$150,000$.
 - Maintenance Margin ($\text{MM}$) $= 30\%$.
 
-**Deriving the Critical Trigger Price $P^*$**:
+**Deriving the Critical Trigger Price $P^{*}$**:
 
 $$\text{Margin Ratio}(P) = \frac{\text{Total Account Cash Assets} - N \cdot P}{N \cdot P} = \text{MM}$$
 
-$$\$150,000 - 1,000 P^* = 0.30 \times (1,000 P^*) \implies 150,000 = 1,300 P^* \implies P^* = \frac{150,000}{1,300} = \$115.38$$
+$$150{,}000 - 1{,}000 P^{*} = 0.30 \times (1{,}000 P^{*}) \implies 150{,}000 = 1{,}300 P^{*} \implies P^{*} = \frac{150{,}000}{1{,}300} = 115.38$$
 
 If stock price rises above $\$115.38$, Account Equity drops below $\$34,615.40$ ($30\%$), triggering an immediate margin call.
 
@@ -171,6 +171,6 @@ Under Modigliani-Miller Proposition II, $r_E = r_0 + (r_0 - r_D) \frac{D}{E} (1 
 | Asset Class / Model | Governing Equation | Primary Risk Driver | Mechanical Failure Mode | Calculus / Derivative Metric |
 | :--- | :--- | :--- | :--- | :--- |
 | **Merton Structural Credit** | $E_0 = V_0 \Phi(d_1) - D e^{-rT} \Phi(d_2)$ | Firm Volatility $\sigma_V$ | Asset substitution gamble | $\text{Vega}_E = V_0 \sqrt{T} \phi(d_1)$ |
-| **Short Position Margin** | $P^* = \frac{\text{Assets}}{(1 + \text{MM}) N}$ | Upside price spikes | Fire-sale deleveraging loop | $\frac{d\text{Margin}}{dP} = -\frac{\text{Assets}}{N P^2}$ |
+| **Short Position Margin** | $P^{*} = \frac{\text{Assets}}{(1 + \text{MM}) N}$ | Upside price spikes | Fire-sale deleveraging loop | $\frac{d\text{Margin}}{dP} = -\frac{\text{Assets}}{N P^2}$ |
 | **Subordinated Tranche** | $\max(\min(\text{Cash} - L, \text{Attach}), 0)$ | Default correlation $\rho$ | Systemic correlation convergence ($\rho \to 1$) | $\frac{\partial \text{Loss}}{\partial \rho} \gg 0$ in tails |
 | **WACC Capital Structure** | $\frac{E}{V} r_E + \frac{D}{V} r_D (1 - T_C)$ | Debt ratio $D/V$ | Insolvency distress costs | $\frac{d\text{WACC}}{d(D/V)}$ |

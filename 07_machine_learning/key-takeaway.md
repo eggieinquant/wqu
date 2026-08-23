@@ -89,7 +89,7 @@ $$\mathcal{L}^{(t)} \approx \sum_{i=1}^N \left[ l(y_i, \hat{y}^{(t-1)}) + g_i f_
 
 $$g_i = \frac{\partial l(y_i, \hat{y}^{(t-1)})}{\partial \hat{y}^{(t-1)}}, \quad h_i = \frac{\partial^2 l(y_i, \hat{y}^{(t-1)})}{\partial (\hat{y}^{(t-1)})^2}$$
 
-Differentiating leaf weight $w_j$ gives optimal solution $w_j^* = -\frac{\sum g_i}{\sum h_i + \lambda}$.
+Differentiating leaf weight $w_j$ gives optimal solution $w_j^{*} = -\frac{\sum g_i}{\sum h_i + \lambda}$.
 
 ---
 

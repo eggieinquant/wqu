@@ -143,7 +143,7 @@ flowchart LR
     - Extracting statistical macro risk factors from cross-sectional asset universes using [`M3/mlfac_dat.csv`](./M3/mlfac_dat.csv).
   - [`M3/L3.pdf`](./M3/L3.pdf) & [`M3/L3-ln.pdf`](./M3/L3-ln.pdf): **K-Means Clustering**.
     - Minimizing within-cluster sum of squares (inertia): $\min_{\mathbf{S}} \sum_{i=1}^k \sum_{\mathbf{x} \in S_i} \|\mathbf{x} - \boldsymbol{\mu}_i\|^2$.
-    - Silhouette analysis for optimal cluster count $k^*$.
+    - Silhouette analysis for optimal cluster count $k^{*}$.
   - [`M3/L4.ipynb`](./M3/L4.ipynb): **Hierarchical Agglomerative Clustering & Dendrograms**.
     - Linkage criteria (Ward, Single, Complete, Average).
     - Foundation for Marcos Lopez de Prado's Hierarchical Risk Parity (HRP) portfolio construction.

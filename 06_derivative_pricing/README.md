@@ -99,8 +99,8 @@ flowchart TD
     - Mark-to-market value of an existing forward contract with delivery price $K$ at time $t < T$:
       $$V_t = S_t e^{-q(T-t)} - K e^{-r(T-t)}$$
   - [`m2/L3-code.ipynb`](./m2/L3-code.ipynb): **Hedging with Futures & Optimal Hedge Ratio**.
-    - Minimum variance hedge ratio: $h^* = \rho_{SF} \frac{\sigma_S}{\sigma_F}$.
-    - Number of futures contracts: $N^* = h^* \frac{Q_A}{Q_F}$.
+    - Minimum variance hedge ratio: $h^{*} = \rho_{SF} \frac{\sigma_S}{\sigma_F}$.
+    - Number of futures contracts: $N^{*} = h^{*} \frac{Q_A}{Q_F}$.
 
 ---
 

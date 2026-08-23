@@ -124,7 +124,8 @@ flowchart LR
     - Strict stationarity (joint distribution invariant under time shift) vs. Weak (Covariance) stationarity:
       $$\mathbb{E}[y_t] = \mu, \quad \text{Var}(y_t) = \gamma_0 < \infty, \quad \text{Cov}(y_t, y_{t-k}) = \gamma_k \quad \forall t, k$$
   - [`M1/financial_econometrics_module_1_lesson_3.ipynb`](./M1/financial_econometrics_module_1_lesson_3.ipynb) & [`M1/L3-reading.pdf`](./M1/L3-reading.pdf): **Autocorrelation & White Noise Diagnostics**.
-    - Sample Autocorrelation Function (ACF) $\hat{\rho}_k = \frac{\sum_{t=k+1}^T (y_t - \bar{y})(y_{t-k} - \bar{y})}{\sum_{t=1}^T (y_t - \bar{y})^2}$.
+    - Sample Autocorrelation Function (ACF):
+      $$\hat{\rho}_k = \frac{\sum_{t=k+1}^T (y_t - \bar{y})(y_{t-k} - \bar{y})}{\sum_{t=1}^T (y_t - \bar{y})^2}$$
     - Partial Autocorrelation Function (PACF) via Yule-Walker equations.
     - Ljung-Box Portmanteau test for joint serial correlation up to lag $m$:
       $$Q(m) = T(T+2) \sum_{k=1}^m \frac{\hat{\rho}_k^2}{T-k} \sim \chi^2(m)$$

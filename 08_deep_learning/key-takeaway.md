@@ -124,7 +124,7 @@ $$\text{Reparameterization Trick:} \quad \mathbf{z} = \boldsymbol{\mu}_\phi(\mat
 
 This formulation allows backpropagation gradients to pass directly through stochastic latent sampling layers:
 
-$$\frac{\partial \mathbf{z}}{\partial \boldsymbol{\mu}_\phi} = \mathbf{I}, \quad \frac{\partial \mathbf{z}}{\partial \boldsymbol{\sigma}_\phi} = \operatorname{diag}(\boldsymbol{\epsilon})$$
+$$\frac{\partial \mathbf{z}}{\partial \boldsymbol{\mu}_\phi} = \mathbf{I}, \quad \frac{\partial \mathbf{z}}{\partial \boldsymbol{\sigma}_\phi} = \text{diag}(\boldsymbol{\epsilon})$$
 
 ---
 

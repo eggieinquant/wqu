@@ -43,7 +43,7 @@ $$\mathbf{\Sigma}^{-1} = \frac{1}{0.00003564} \begin{bmatrix} 0.0225 & -0.0294 \
 Condition number $\kappa(\mathbf{\Sigma}) = \frac{\lambda_{\max}}{\lambda_{\min}} \approx 185.4$.
 Plugging in noisy expected returns $\boldsymbol{\mu} = [0.12, 0.08]^T$ yields extreme unstable weights:
 
-$$\mathbf{w}_{\text{unconstrained}} = \begin{bmatrix} +420\% \\ -320\% \end{bmatrix}$$
+$$\mathbf{w}_{\text{unconstrained}} = \begin{bmatrix} +420\text{\%} \\ -320\text{\%} \end{bmatrix}$$
 
 The optimizer demands $+420\%$ leverage in Stock A and $-320\%$ short position in Stock B over a tiny $0.01$ return noise error!
 
@@ -95,7 +95,7 @@ $$\mathcal{L}(\mathbf{w}, \lambda_1, \lambda_2) = \frac{1}{2} \mathbf{w}^T \math
 
 Taking gradient vector derivative $\nabla_{\mathbf{w}} \mathcal{L} = \mathbf{0}$:
 
-$$\mathbf{\Sigma} \mathbf{w} - \lambda_1 \boldsymbol{\mu} - \lambda_2 \mathbf{1} = \mathbf{0} \implies \mathbf{w}^* = \mathbf{\Sigma}^{-1} (\lambda_1 \boldsymbol{\mu} + \lambda_2 \mathbf{1})$$
+$$\mathbf{\Sigma} \mathbf{w} - \lambda_1 \boldsymbol{\mu} - \lambda_2 \mathbf{1} = \mathbf{0} \implies \mathbf{w}^{*} = \mathbf{\Sigma}^{-1} (\lambda_1 \boldsymbol{\mu} + \lambda_2 \mathbf{1})$$
 
 ---
 
@@ -107,7 +107,7 @@ $$\rho_\delta(e_i) = \begin{cases} \frac{1}{2} e_i^2 & \text{if } |e_i| \le \del
 
 Derivative $\psi_\delta(e_i) = \frac{d\rho_\delta}{de_i}$:
 
-$$\psi_\delta(e_i) = \begin{cases} e_i & |e_i| \le \delta \\ \delta \operatorname{sgn}(e_i) & |e_i| > \delta \end{cases}$$
+$$\psi_\delta(e_i) = \begin{cases} e_i & |e_i| \le \delta \\ \delta \text{sgn}(e_i) & |e_i| > \delta \end{cases}$$
 
 This bounds influence of market crisis outliers on factor beta estimations.
 
@@ -126,7 +126,7 @@ $$\frac{dv}{dx} = \begin{cases} \alpha x^{\alpha - 1} > 0 & x > 0 \text{ (Concav
 
 Empirical walk-forward factor regression results from `GWP`:
 - **OLS Alpha**: $\alpha = +0.0018$ ($t = 1.45$, non-significant).
-- **Huber Robust RLM Alpha**: $\alpha = +0.0021^*$ ($t = 2.12$, significant after down-weighting outliers).
+- **Huber Robust RLM Alpha**: $\alpha = +0.0021^{*}$ ($t = 2.12$, significant after down-weighting outliers).
 
 ---
 

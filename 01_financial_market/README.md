@@ -113,7 +113,7 @@ flowchart TD
     - Short sale mechanics: Borrowing securities via prime brokers, locate requirements, borrow fees / rebate rates.
     - Margin Account Equity:
       $$\text{Margin Ratio} = \frac{\text{Total Account Equity}}{\text{Market Value of Securities Sold Short}} = \frac{(\text{Cash Proceeds} + \text{Initial Collateral}) - P_t \cdot N}{P_t \cdot N}$$
-    - Margin Call Trigger Price: $P^* = \frac{\text{Total Initial Assets}}{(1 + \text{Maintenance Margin}) \cdot N}$.
+    - Margin Call Trigger Price: $P^{*} = \frac{\text{Total Initial Assets}}{(1 + \text{Maintenance Margin}) \cdot N}$.
   - [`M1/Lesson 4: Surveying the Financial Industry.pdf`](./M1/Lesson%204:%20Surveying%20the%20Financial%20Industry.pdf): **Institutional Ecosystem**.
     - Structure of investment banks, commercial banks, hedge funds, sovereign wealth funds, and central banks (monetary transmission mechanisms).
 
