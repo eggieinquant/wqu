@@ -14,11 +14,37 @@ This directory contains Jupyter notebooks, Python scripts, datasets, and lecture
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations, notation breakdowns, and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
 > - ⚠️ **[Survivorship Bias & Phantom Sharpe Ratio Math](./key-takeaway.md#toy-example-1-survivorship-bias--phantom-sharpe-ratios)**
 > - 📊 **[Dollar-Bar Resampling vs Time-Bar Gaussian Proof](./key-takeaway.md#toy-example-2-time-bar-sampling-vs-information-based-dollar-bars)**
 > - 🧮 **[Garman-Klass Volatility $8\times$ Efficiency Derivation](./key-takeaway.md#1-garman-klass-intraday-volatility-efficiency-derivation)**
 > - 💬 **[VADER Sentiment Polarity Derivatives](./key-takeaway.md#2-vader-sentiment-polarity-normalization-function)**
+> - 📚 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
+
+---
+
+## 🏷️ Master Quantitative Notation & Variable Glossary
+
+| Variable / Notation | Mathematical / Financial Meaning | Context & Governing Formula |
+| :--- | :--- | :--- |
+| **$S \in \{0, 1\}$** | Survival Indicator ($1 = \text{survived to present}, 0 = \text{delisted/bankrupt}$) | Survivorship Bias: $\mathbb{E}[R \mid S=1] > \mathbb{E}[R]$ |
+| **$\mathbb{E}[R], \mathbb{E}[R \mid S=1]$** | True Unconditional Mean Return vs. Conditional Survived Return | $\text{Bias} = \frac{P(S=0)}{P(S=1)}(\mathbb{E}[R\mid S=1] - \mathbb{E}[R\mid S=0]) > 0$ |
+| **$\text{SR}_{\text{actual}}, \text{SR}_{\text{biased}}$** | True Strategy Sharpe Ratio vs. Phantom Biased Sharpe Ratio | $\text{SR} = \frac{\mu - r_f}{\sigma}$ |
+| **$\text{Var}(\cdot)$** | **Variance**: Statistical dispersion of estimators or returns | Efficiency Ratio $= \frac{\text{Var}(\sigma_{CC}^2)}{\text{Var}(\sigma_{GK}^2)} \approx 8.0$ |
+| **$O, H, L, C$** | Open, High, Low, and Close Prices for a trading bar | Standard OHLC bar representation |
+| **$h, l, c$** | Normalized Log Prices relative to Open ($h=\ln(H/O), l=\ln(L/O), c=\ln(C/O)$) | Microstructure log ratios |
+| **$\sigma_P^2, \sigma_P$** | Parkinson High-Low Volatility Estimator | $\sigma_P = \sqrt{\frac{1}{4\ln 2 \cdot N}\sum (\ln(H_i/L_i))^2}$ |
+| **$\sigma_{GK}^2, \sigma_{GK}$** | Garman-Klass OHLC Volatility Estimator | $\sigma_{GK} = \sqrt{\frac{1}{N}\sum [0.5(\ln(H_i/L_i))^2 - (2\ln 2 - 1)(\ln(C_i/O_i))^2]}$ |
+| **$\Delta t$** | Fixed Chronological Time Sampling Window | Standard 1m, 5m, 1h, 1D time bars |
+| **$T, V_{\text{threshold}}$** | Dollar / Volume Sampling Threshold for Information Bars | Resamples bars dynamically: $\sum p_i v_i \ge T$ |
+| **$I(t)$** | Subordinated Stochastic Information Flow Process | Clark (1973) model: $dx(t) = \mu dI(t) + \sigma\sqrt{dI(t)}Z(t)$ |
+| **$x_{\text{pos}}, x_{\text{neg}}, x$** | Positive sum, negative sum, and net valence of text tokens | VADER sentiment scoring: $x = x_{\text{pos}} + x_{\text{neg}}$ |
+| **$\alpha$** | VADER Non-Linear Normalization Scaling Parameter | Calibration constant ($\alpha \approx 15.0$) |
+| **$C$** | Normalized VADER Compound Polarity Index | $C = \frac{x}{\sqrt{x^2 + \alpha}} \in [-1, +1]$ |
+| **$\text{IC}_t, \text{Rank IC}_t$** | Pearson and Spearman Rank Information Coefficients | $\text{IC} = \text{Corr}(S_t, R_{t+1}), \ \text{Rank IC} = 1 - \frac{6\sum d_i^2}{N(N^2-1)}$ |
+| **$\text{IR}$** | Information Ratio of Predictive Alpha Signal | $\text{IR} = \frac{\bar{\text{IC}}}{\sigma_{\text{IC}}}\sqrt{252}$ |
+| **$P_{\text{adj}}$** | Split- and Dividend-Adjusted Historical Stock Price | $P_{\text{adj}} = P \cdot (1 - D/P) / \text{Split Ratio}$ |
+| **$\text{EMA}_t$** | Exponential Moving Average at time $t$ | $\text{EMA}_t = \alpha P_t + (1 - \alpha)\text{EMA}_{t-1}$ |
 
 ---
 

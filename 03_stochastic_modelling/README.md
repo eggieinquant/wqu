@@ -14,11 +14,39 @@ This directory contains analytical Jupyter notebooks, Python source code, lectur
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations, notation breakdowns, and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
 > - 📐 **[Ito Calculus vs Ordinary Calculus Derivations](./key-takeaway.md#toy-example-1-ordinary-calculus-vs-ito-calculus--quadratic-variation)**
 > - 🛑 **[Vasicek vs CIR Feller Boundary Violation Proof](./key-takeaway.md#toy-example-2-negative-rates-in-vasicek-vs-cir-feller-boundary-violation)**
 > - ⚙️ **[Milstein $\mathcal{O}(\Delta t)$ vs Euler-Maruyama Derivation](./key-takeaway.md#toy-example-3-euler-maruyama-vs-milstein-discretization-convergence)**
 > - 🧮 **[Heston Volatility & Control Variates Math](./key-takeaway.md#2-core-mathematical-formulations--calculus-derivations)**
+> - 📚 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
+
+---
+
+## 🏷️ Master Quantitative Notation & Variable Glossary
+
+| Variable / Notation | Mathematical / Financial Meaning | Context & Governing Formula |
+| :--- | :--- | :--- |
+| **$W_t, W_T$** | Standard 1D Brownian Motion / Wiener Process | Martingale property: $\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s$, $W_t \sim \mathcal{N}(0, t)$ |
+| **$dW_t$** | Continuous Infinitesimal Brownian Increment | $dW_t = \sqrt{dt} Z_t, \ Z_t \sim \mathcal{N}(0, 1)$ |
+| **$(dW_t)^2 = dt$** | Quadratic Variation Deterministic Identity | Non-zero variance accumulation: $\int_0^T W_t dW_t = \frac{1}{2}W_T^2 - \frac{1}{2}T$ |
+| **$r_t, r_0$** | Continuous Instantaneous Short Interest Rate | Short rate models (Vasicek, CIR) |
+| **$\kappa$** | Mean-Reversion Velocity Parameter | Controls pull speed back to equilibrium $\theta$ |
+| **$\theta$** | Long-Term Asymptotic Mean / Reversion Target | Equilibrium level of short rate or variance |
+| **$\sigma$** | Diffusion Volatility Coefficient | Magnitude of stochastic noise component |
+| **$v_t$** | Instantaneous Variance in Heston Stochastic Volatility Model | CIR process: $dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW_t^v$ |
+| **$\xi$** | Volatility of Variance ("Vol of Vol") Parameter | Determines kurtosis/tail thickness of option return distributions |
+| **$\rho$** | Instantaneous Price-Volatility Correlation | $d\langle W^S, W^v\rangle_t = \rho dt$ (Generates implied volatility skew) |
+| **$2\kappa\theta > \sigma^2$** | **The Feller Condition** | Strict boundary test; guarantees $r_t > 0$ strictly (origin is non-attainable) |
+| **$\Delta t$** | Discretization Grid Step Size | Discretization resolution: $\Delta t = T / N$ |
+| **$X_n, X_{n+1}$** | Discretized SDE State Variable at Step $n$ and $n+1$ | Time-stepping integration variable |
+| **$\sigma'(X)$** | Spatial Derivative of the Diffusion Function | $\frac{d\sigma(X)}{dX}$ used in Milstein 2nd-order expansion |
+| **$\mathcal{O}(\sqrt{\Delta t}), \mathcal{O}(\Delta t)$** | Strong Error Convergence Rates | Euler-Maruyama ($\mathcal{O}(\sqrt{\Delta t})$) vs Milstein ($\mathcal{O}(\Delta t)$) |
+| **$\text{Var}(\cdot), \text{Cov}(\cdot)$** | Statistical Variance and Covariance Operators | Variance reduction: $\text{Var}(\hat{X}_{\text{CV}}) = \text{Var}(X)(1 - \rho_{XY}^2)$ |
+| **$\hat{X}_{\text{CV}}, c^\star$** | Control Variate Estimator & Optimal Weighting Scalar | $\hat{X}_{\text{CV}} = X - c^\star(Y - \mathbb{E}[Y]), \ c^\star = \frac{\text{Cov}(X,Y)}{\text{Var}(Y)}$ |
+| **$\mathbf{P}, \boldsymbol{\pi}$** | Markov Transition Matrix & Stationary Vector | $\mathbf{P}^{(n+m)} = \mathbf{P}^{(n)}\mathbf{P}^{(m)}, \ \boldsymbol{\pi}\mathbf{P} = \boldsymbol{\pi}$ |
+| **$\mathbf{p}^\star, \bar{\mathbf{p}}$** | Clearing Payment Vector vs. Nominal Liabilities | Eisenberg-Noe Contagion: $\mathbf{p}^\star = \min(\bar{\mathbf{p}}, \mathbf{\Pi}^T \mathbf{p}^\star + \mathbf{e})$ |
+| **$\mathbf{\Pi}, \mathbf{e}$** | Relative Liability Matrix & External Asset Vector | Interbank network graph topology |
 
 ---
 

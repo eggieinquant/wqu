@@ -14,11 +14,40 @@ This directory contains analytical Jupyter notebooks, datasets, R scripts, lectu
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations, notation breakdowns, and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
 > - ⚠️ **[Spurious Regression & Unit Root Proofs](./key-takeaway.md#toy-example-1-spurious-regression--non-stationary-unit-roots)**
 > - 📈 **[GARCH Volatility Updating & Half-Life Calculus](./key-takeaway.md#2-garch11-variance-half-life-calculus)**
 > - ⚡ **[EGARCH Asymmetric Leverage Derivations](./key-takeaway.md#3-egarch-asymmetric-leverage-derivation)**
 > - 🔗 **[Johansen VECM Cointegration Vector Decomposition](./key-takeaway.md#4-johansen-vecm-cointegration-vector-decomposition)**
+> - 📚 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
+
+---
+
+## 🏷️ Master Quantitative Notation & Variable Glossary
+
+| Variable / Notation | Mathematical / Financial Meaning | Context & Governing Formula |
+| :--- | :--- | :--- |
+| **$Y_t, X_t$** | Observed Financial Time Series / Regressors | Non-stationary $I(1)$ series or stationary spreads |
+| **$r_t$** | Continuously Compounded Log Return | $r_t = \ln(P_t / P_{t-1}) \sim I(0)$ |
+| **$L$** | Lag Operator ($L^k y_t = y_{t-k}$) | Differencing operator $(1-L)^d y_t$ |
+| **$\epsilon_t, \eta_t, u_t$** | White Noise Innovations / Residual Shocks | $\epsilon_t = \sigma_t z_t$ where $z_t \sim \text{i.i.d. } \mathcal{N}(0, 1)$ |
+| **$\sigma_t^2, \sigma_t$** | Conditional Variance & Daily Conditional Volatility | GARCH: $\sigma_t^2 = \omega + \alpha\epsilon_{t-1}^2 + \beta\sigma_{t-1}^2$ |
+| **$\omega$** | Baseline GARCH Constant Parameter | $\omega > 0$, determines long-run variance floor |
+| **$\alpha, \alpha_i$** | ARCH Coefficient (Shock Sensitivity) | Quantifies immediate volatility reaction to yesterday's return shock |
+| **$\beta, \beta_j$** | GARCH Coefficient (Volatility Persistence) | Quantifies memory persistence of previous conditional variance |
+| **$\alpha + \beta$** | Volatility Persistence Index | Must satisfy $\alpha + \beta < 1$ for covariance stationarity |
+| **$\bar{\sigma}^2$** | Long-Run Unconditional Variance | $\bar{\sigma}^2 = \frac{\omega}{1 - \alpha - \beta}$ |
+| **$\tau_{1/2}$** | Volatility Shock Half-Life | $\tau_{1/2} = \frac{\ln(0.5)}{\ln(\alpha + \beta)}$ (trading days to dissipate 50% of shock) |
+| **$z_t$** | Standardized Return Innovation ($z_t = \epsilon_t / \sigma_t$) | Used in EGARCH: $|z_t|$ (magnitude effect), $z_t$ (sign effect) |
+| **$\gamma$** | Asymmetric Leverage Parameter | EGARCH ($\gamma < 0$) or GJR-GARCH ($\gamma > 0$), capturing crash vol spikes |
+| **$\Phi(L), \Theta(L)$** | AR and MA Characteristic Lag Polynomials | $\text{ARIMA}(p,d,q)$: $\Phi(L)(1-L)^d y_t = c + \Theta(L)\epsilon_t$ |
+| **$\mathbf{Y}_t, \mathbf{\Phi}_i$** | Multivariate Vector of Endogenous Variables & Coefficients | $\text{VAR}(p)$: $\mathbf{Y}_t = \mathbf{c} + \sum_{i=1}^p \mathbf{\Phi}_i \mathbf{Y}_{t-i} + \boldsymbol{\epsilon}_t$ |
+| **$\mathbf{\Pi} = \boldsymbol{\alpha}\boldsymbol{\beta}^T$** | Johansen Cointegration Matrix Factorization | $\boldsymbol{\beta}$ (cointegrating vectors), $\boldsymbol{\alpha}$ (error-correction speeds) |
+| **$S_t, Z_t$** | Cointegrated Stationary Spread & Standardized $Z$-Score | Pairs trading: $S_t = Y_t - \beta X_t \sim I(0), \ Z_t = \frac{S_t - \mu_S}{\sigma_S}$ |
+| **$d$** | Fractional Integration Differencing Parameter | $\text{ARFIMA}(p,d,q)$: $(1-L)^d y_t = \epsilon_t$ with $d \in (-0.5, 0.5)$ |
+| **$DW$** | Durbin-Watson Autocorrelation Statistic | $DW \to 0$ indicates spurious regression failure |
+| **$\text{JB}$** | Jarque-Bera Normality Test Statistic | Tests excess kurtosis $\kappa$ and skewness $S$ against $\chi^2(2)$ |
+| **$RV_t$** | Intraday Realized Volatility | High-frequency sampling: $RV_t = \sum_{i=1}^M r_{t, i}^2$ |
 
 ---
 

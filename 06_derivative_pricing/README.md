@@ -14,11 +14,37 @@ This directory contains Jupyter notebooks, Python source code, lecture materials
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations, notation breakdowns, and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
 > - 📐 **[Risk-Neutral Drift Independence & Call Option Math](./key-takeaway.md#toy-example-1-real-world-drift-vs-risk-neutral-pricing)**
 > - ⏳ **[Gamma-Theta Convexity Trade-off Equilibrium](./key-takeaway.md#toy-example-2-black-scholes-gamma-theta-convexity-trade-off)**
 > - 🧮 **[Black-Scholes PDE Dynamic Hedging Derivation](./key-takeaway.md#1-black-scholes-dynamic-hedging-pde-derivation)**
 > - 🌊 **[Dupire Local Volatility Surface Derivations](./key-takeaway.md#4-dupire-local-volatility-partial-differential-derivation)**
+> - 📚 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
+
+---
+
+## 🏷️ Master Quantitative Notation & Variable Glossary
+
+| Variable / Notation | Mathematical / Financial Meaning | Context & Governing Formula |
+| :--- | :--- | :--- |
+| **$S_0, S_t$** | Spot Asset Price at $t=0$ and time $t$ | Black-Scholes PDE: $S \in (0, \infty)$ |
+| **$K$** | Option Strike Price | Exercise boundary: Call payoff $\max(S_T - K, 0)$ |
+| **$T, \tau$** | Maturity Horizon & Time to Expiration ($\tau = T - t$) | Discounting factor $e^{-r\tau}$ |
+| **$r, q$** | Risk-Free Rate & Continuous Dividend / Foreign Yield | Forward price: $F_0 = S_0 e^{(r - q)\tau}$ |
+| **$\sigma$** | Underlying Asset Return Volatility | Continuous diffusion coefficient in GBM |
+| **$C, P$** | European Call and Put Option Prices | Put-Call Parity: $C - P = S e^{-q\tau} - K e^{-r\tau}$ |
+| **$d_1, d_2$** | Standardized Black-Scholes Moneyness Metrics | $d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}, \ d_2 = d_1 - \sigma\sqrt{\tau}$ |
+| **$\Phi(\cdot), \phi(\cdot)$** | Standard Normal CDF and PDF | $\Phi(d_1) = \text{Delta (undiscounted)}, \Phi(d_2) = \mathbb{Q}(S_T \ge K)$ |
+| **$\Delta$** | **Delta**: Rate of change of option price w.r.t. spot | $\Delta_C = e^{-q\tau}\Phi(d_1), \ \Delta_P = -e^{-q\tau}\Phi(-d_1)$ |
+| **$\Gamma$** | **Gamma**: Second spatial derivative (Convexity) | $\Gamma = \frac{e^{-q\tau}\phi(d_1)}{S\sigma\sqrt{\tau}}$ |
+| **$\mathcal{V} \text{ (Vega)}$** | **Vega**: Sensitivity of option price to volatility | $\mathcal{V} = S e^{-q\tau}\phi(d_1)\sqrt{\tau}$ |
+| **$\Theta$** | **Theta**: Option time decay rate | $\Theta_C = -\frac{S e^{-q\tau}\phi(d_1)\sigma}{2\sqrt{\tau}} - r K e^{-r\tau}\Phi(d_2)$ |
+| **$\rho$** | **Rho**: Sensitivity of option price to interest rates | $\rho_C = K\tau e^{-r\tau}\Phi(d_2)$ |
+| **$u, d, m$** | Up, Down, and Middle Multipliers in Discrete Trees | CRR: $u = e^{\sigma\sqrt{\Delta t}}, d = 1/u$; Boyle: $u = e^{\lambda\sigma\sqrt{\Delta t}}, m = 1$ |
+| **$p, p_u, p_d, p_m$** | Risk-Neutral Lattice Transition Probabilities | $p = \frac{e^{(r-q)\Delta t} - d}{u - d}$ |
+| **$\sigma_{\text{loc}}(K, T)$** | Dupire Local Volatility Surface | $\sigma_{\text{loc}}^2 = \frac{\partial C/\partial T + qC + K(r-q)\partial C/\partial K}{\frac{1}{2}K^2 \partial^2 C/\partial K^2}$ |
+| **$\Pi$** | Hedged Delta-Neutral Portfolio | $\Pi = V - \Delta S$; PDE equilibrium: $\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r\Pi$ |
+| **$h^\star$** | Minimum-Variance Optimal Futures Hedge Ratio | $h^\star = \rho_{SF}\frac{\sigma_S}{\sigma_F}$ |
 
 ---
 

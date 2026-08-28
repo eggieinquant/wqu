@@ -14,11 +14,35 @@ This directory contains analytical notebooks, model scripts, lecture notes, visu
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations, notation breakdowns, and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
 > - 📐 **[LSTM Constant Error Carousel Gradient Proof](./key-takeaway.md#toy-example-1-vanishing-gradients-in-rnns-vs-lstm-constant-error-carousel)**
 > - 🖼️ **[Gramian Angular Field (GAF) 2D Encoding Calculus](./key-takeaway.md#toy-example-2-gramian-angular-fields-gaf-2d-spatial-vision-encoding)**
 > - 🤖 **[PPO Clipped Objective & DRL Reward Shaping Math](./key-takeaway.md#toy-example-3-deep-reinforcement-learning-drl-reward-shaping)**
 > - 🧮 **[VAE Reparameterization Trick & ELBO Derivation](./key-takeaway.md#4-vae-reparameterization-trick--elbo-derivation)**
+> - 📚 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
+
+---
+
+## 🏷️ Master Quantitative Notation & Variable Glossary
+
+| Variable / Notation | Mathematical / Financial Meaning | Context & Governing Formula |
+| :--- | :--- | :--- |
+| **$\mathbf{x}_t, \mathbf{h}_t$** | Input Feature Vector & Recurrent Hidden State | Sequential hidden state representations at time $t$ |
+| **$C_t, \tilde{C}_t$** | LSTM Persistent Cell State & Candidate Update | Constant Error Carousel: $C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$ |
+| **$f_t, i_t, o_t$** | Forget Gate, Input Gate, Output Gate Activations | Sigmoid gate switches $\in [0, 1]$ governing information flow |
+| **$\mathbf{W}, \mathbf{U}, \mathbf{b}$** | Feedforward Projection, Recurrent Weights, Biases | Learnable deep network parameter tensors |
+| **$\mathbf{Q}, \mathbf{K}, \mathbf{V}$** | Query, Key, and Value Projections in Transformers | Self-Attention: $\text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}$ |
+| **$d_k$** | Key Vector Embedding Dimension | Scaling divisor to prevent vanishing softmax gradients |
+| **$\text{GASF}, \text{GADF}$** | Gramian Angular Summation / Difference 2D Fields | Encodes 1D price series into 2D vision matrices |
+| **$\phi_i$** | Polar Angle Transformation of Rescaled Price | $\phi_i = \arccos(\tilde{x}_i) \in [0, \pi]$ where $\tilde{x}_i \in [-1, 1]$ |
+| **$s_t, a_t, r_t$** | MDP Environment State, Agent Action, and Step Reward | Deep Reinforcement Learning trading interaction |
+| **$\pi_\theta(a \mid s)$** | Parameterized Actor Trading Policy | Generates target portfolio asset allocation weights $\mathbf{w}_t$ |
+| **$V_\phi(s), Q(s,a)$** | Critic State-Value & Action-Value Estimators | Estimates expected future cumulative discounted reward |
+| **$\hat{A}_t$** | Generalized Advantage Estimator (GAE) | $\hat{A}_t = \delta_t + (\gamma \lambda)\hat{A}_{t+1}$ |
+| **$r_t(\theta)$** | PPO Probability Ratio | $r_t(\theta) = \frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{\text{old}}}(a_t \mid s_t)}$ |
+| **$\epsilon$** | PPO Policy Clipping Threshold | Prevents destructively large policy updates ($\epsilon \approx 0.2$) |
+| **$\mathbf{z}$** | Latent Stochastic Representation Vector | Gaussian latent space: $\mathbf{z} = \boldsymbol{\mu}_\phi + \boldsymbol{\sigma}_\phi \odot \boldsymbol{\epsilon}$ |
+| **$D_{\text{KL}}$** | Kullback-Leibler Divergence (Relative Entropy) | Loss penalty measuring latent divergence from $\mathcal{N}(\mathbf{0}, \mathbf{I})$ |
 
 ---
 

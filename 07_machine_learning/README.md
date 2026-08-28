@@ -14,11 +14,31 @@ This directory contains Jupyter notebooks, Python scripts, lecture notes, datase
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations, notation breakdowns, and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
 > - ⚠️ **[Purged & Embargoed K-Fold CV Data Leakage Prevention](./key-takeaway.md#toy-example-1-standard-k-fold-cv-data-leakage-illusion)**
 > - 🧮 **[Ridge Matrix Derivative & Lasso L1 Soft Thresholding](./key-takeaway.md#1-ridge-and-lasso-loss-function-matrix-derivatives)**
 > - ⚡ **[XGBoost 2nd-Order Taylor Expansion Gradients](./key-takeaway.md#2-xgboost-2nd-order-taylor-objective-gradient-derivation)**
 > - 🌲 **[Hierarchical Risk Parity (HRP) Allocation Math](./key-takeaway.md#toy-example-3-markowitz-covariance-inversion-vs-hierarchical-risk-parity)**
+> - 📚 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
+
+---
+
+## 🏷️ Master Quantitative Notation & Variable Glossary
+
+| Variable / Notation | Mathematical / Financial Meaning | Context & Governing Formula |
+| :--- | :--- | :--- |
+| **$\mathbf{X}, \mathbf{y}$** | Feature Matrix ($N \times P$) & Target Vector ($N \times 1$) | Supervised learning: predict forward returns $y_t$ |
+| **$\boldsymbol{\beta}, \hat{\boldsymbol{\beta}}$** | Regression Weights Vector & Closed-Form Estimator | OLS: $\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$ |
+| **$\lambda, \lambda_1, \lambda_2$** | Regularization Complexity Penalties | Ridge ($L_2: \lambda\|\boldsymbol{\beta}\|_2^2$), Lasso ($L_1: \lambda\|\boldsymbol{\beta}\|_1$), ElasticNet |
+| **$H, E$** | Target Label Horizon & Embargo Cooldown (days) | Purged K-Fold CV: eliminates temporal overlap & memory leakage |
+| **$g_i, h_i$** | First & Second Derivatives (Gradient & Hessian) | XGBoost: $g_i = \partial l/\partial \hat{y}_i, \ h_i = \partial^2 l/\partial \hat{y}_i^2$ |
+| **$w_j, w_j^\star$** | XGBoost Tree Leaf Output Weight & Closed-Form Optimum | $w_j^\star = -\frac{\sum_{i \in I_j} g_i}{\sum_{i \in I_j} h_i + \lambda}$ |
+| **$\gamma$** | XGBoost Tree Leaf Complexity Split Regularizer | Minimum loss reduction threshold to partition a leaf |
+| **$\text{WoE}_i, \text{IV}$** | Weight of Evidence & Information Value | Scorecards: $\text{WoE}_i = \ln(\%\text{Good}_i/\%\text{Bad}_i), \ \text{IV} = \sum(\Delta\%)\text{WoE}_i$ |
+| **$\phi_i(x)$** | SHAP Shapley Marginal Feature Attribution | Cooperative game theory fair feature contribution |
+| **$\rho_{ij}, d_{ij}$** | Asset Correlation & Tree Clustering Distance Metric | HRP: $d_{ij} = \sqrt{\frac{1}{2}(1 - \rho_{ij})}$ |
+| **$\text{OOF}$** | Out-of-Fold Prediction Matrix | Matrix of cross-validated base learner predictions for meta-learners |
+| **$\text{VIF}$** | Variance Inflation Factor | $\text{VIF}_j = \frac{1}{1 - R_j^2}$ (Flags collinearity if $>5$) |
 
 ---
 

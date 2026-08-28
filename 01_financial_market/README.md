@@ -14,11 +14,48 @@ This directory contains foundational lecture notes, mathematical derivations, qu
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 4-tier quantitative breakdown with worked numerical calculations and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
+> Access the structured 4-tier quantitative breakdown with worked numerical calculations, notation breakdowns, and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
 > - 📐 **[Merton Credit Model & Asset Substitution Trap](./key-takeaway.md#toy-example-1-merton-structural-credit--equity-as-a-call-option)**
 > - 🌊 **[Securitization Subordination & Correlation Failure](./key-takeaway.md#toy-example-2-securitization-subordination--correlation-breakdown)**
 > - 📈 **[Margin Mechanics & Deleveraging Spirals](./key-takeaway.md#toy-example-3-margin-mechanics--deleveraging-spirals)**
 > - 🧮 **[Calculus Derivations & Greeks](./key-takeaway.md#2-core-mathematical-formulations--calculus-derivations)**
+> - 📚 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
+
+---
+
+## 🏷️ Master Quantitative Notation & Variable Glossary
+
+| Variable / Notation | Mathematical / Financial Meaning | Context & Governing Formula |
+| :--- | :--- | :--- |
+| **$V_0, V_t, V_T$** | Total Enterprise / Firm Asset Value (at $t=0, t, T$) | Merton Model: $V_0 = E_0 + D_0$; evolves via Geometric Brownian Motion |
+| **$D$** | Nominal Zero-Coupon Debt Face Value (Option Strike $K$) | Merton Payoff: $E_T = \max(V_T - D, 0)$; default occurs if $V_T < D$ |
+| **$E_0, E_T$** | Market Value of Equity (Call option price today / terminal payoff) | $E_0 = V_0\Phi(d_1) - De^{-rT}\Phi(d_2)$ |
+| **$D_0$** | Market Value of Risky Corporate Debt today | $D_0 = V_0 - E_0 = De^{-rT}\Phi(d_2) + V_0(1 - \Phi(d_1))$ |
+| **$r, r_f$** | Annualized Continuous Risk-Free Interest Rate | Continuous discount factor $e^{-rT}$ |
+| **$T$** | Time Horizon / Maturity of Debt or Option | Measured in years ($T = 1.0, 5.0$) |
+| **$\sigma_V$** | Total Firm Asset Volatility ($\sqrt{\text{Var}(\text{Asset Return})}$) | Annualized standard deviation of firm value returns |
+| **$\text{Var}(\cdot)$** | **Variance**: Statistical dispersion ($\sigma^2$) | Asset process: $\text{Var}(S_t) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$ |
+| **$\mathbb{E}[\cdot]$** | **Expected Value**: Probability-weighted mean | Expected stock price: $\mathbb{E}[S_t] = S_0 e^{\mu t}$; Portfolio: $\mathbb{E}[R_p] = \mathbf{w}^T\boldsymbol{\mu}$ |
+| **$d_1, d_2$** | Standardized Black-Scholes distance-to-default metrics | $d_1 = \frac{\ln(V_0/D) + (r + \frac{1}{2}\sigma_V^2)T}{\sigma_V\sqrt{T}}, \ d_2 = d_1 - \sigma_V\sqrt{T}$ |
+| **$\Phi(\cdot), \phi(\cdot)$** | Standard Normal CDF ($\Phi$) and PDF ($\phi$) | $\Phi(d_1) = \text{Delta}$, $\Phi(d_2) = \mathbb{Q}(\text{Solvency})$, $\Phi(-d_2) = \mathbb{Q}(\text{Default})$ |
+| **$\mathcal{S}$** | Implied Annual Credit Spread | $\mathcal{S} = -\frac{1}{T}\ln\left(\frac{D_0}{De^{-rT}}\right)$ (Yield premium over risk-free rate) |
+| **$\text{Vega}_E$** | Sensitivity of Equity Value to Asset Volatility | $\text{Vega}_E = \frac{\partial E_0}{\partial \sigma_V} = V_0\sqrt{T}\phi(d_1) > 0$ (Asset substitution) |
+| **$N$** | Number of shares shorted / Number of loans in securitization pool | Margin debt ($N \cdot P$) & Pool size |
+| **$p$** | Individual default probability per loan in securitization pool | Expected defaults $= N \cdot p$ |
+| **$\rho, \rho_{ij}$** | Pearson correlation coefficient (between assets / loan defaults) | Spikes toward $+1.0$ during systemic stress, destroying diversification |
+| **$\sigma_{\text{pool}}^2$** | Variance of total pool defaults | $\sigma_{\text{pool}}^2 = N p (1-p) [1 + (N-1)\rho]$ |
+| **$\mathbf{w}, \boldsymbol{\mu}, \mathbf{\Sigma}$** | Portfolio weights vector, asset returns vector, covariance matrix | $\mathbb{E}[R_p] = \mathbf{w}^T\boldsymbol{\mu}, \ \sigma_p^2 = \mathbf{w}^T\mathbf{\Sigma}\mathbf{w}$ |
+| **$\bar{\sigma}_i^2, \bar{\sigma}_{ij}$** | Average individual asset variance vs. Average pairwise covariance | Asymptotic risk limit: $\lim_{N\to\infty}\sigma_p^2 = \bar{\sigma}_{ij}$ |
+| **$P_0, P_t, P^\star$** | Initial execution price, current price, and Margin Call trigger price | $P^\star = \frac{\text{Total Initial Assets}}{(1 + \text{MM})N}$ |
+| **$\text{IM}, \text{MM}$** | Initial Margin requirement & Maintenance Margin requirement | Broker leverage constraints (e.g., $\text{IM} = 50\%, \text{MM} = 30\%$) |
+| **$h$** | Repo Haircut (Markdown on collateral value) | Maximum borrowing leverage $= 1/h$ |
+| **$\lambda$** | Kyle's Lambda (Market illiquidity / price impact parameter) | $\Delta P = \lambda \cdot \text{Order Flow}$ |
+| **$\text{WACC}$** | Weighted Average Cost of Capital | $\text{WACC} = \frac{E}{V}r_E + \frac{D}{V}r_D(1 - T_C)$ |
+| **$V_L, V_U$** | Value of Levered Firm vs. Value of Unlevered Firm | Modigliani-Miller: $V_L = V_U + T_C D$ |
+| **$T_C$** | Corporate income tax rate (Tax Shield = $T_C \cdot D$) | Interest expense tax-deductibility benefit |
+| **$r_E, r_D, r_0$** | Cost of equity, cost of debt, and unlevered cost of capital | MM Prop II: $r_E = r_0 + (r_0 - r_D)\frac{D}{E}(1 - T_C)$ |
+| **$\text{EAR}, DF(T)$** | Effective Annual Rate & Discount Factor | $\text{EAR} = e^r - 1, \ DF(T) = e^{-rT}$ |
+| **$\text{CAGR}, \text{MDD}, \text{SR}$** | Compound Annual Growth Rate, Max Drawdown, Sharpe Ratio | Risk-adjusted performance analytics |
 
 ---
 
