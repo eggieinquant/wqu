@@ -291,5 +291,5 @@ stateDiagram-v2
 | **$\text{Var}(\cdot), \text{Cov}(\cdot)$** | Statistical Variance and Covariance Operators | Squared / Cross units | Control Variates: $\text{Var}(\hat{X}_{\text{CV}}) = \text{Var}(X)(1 - \rho_{XY}^2)$ |
 | **$\hat{X}_{\text{CV}}, c^\star$** | Control Variate Estimator & Optimal Weight | Optimal variance reduction | $\hat{X}_{\text{CV}} = X - c^\star(Y - \mathbb{E}[Y]), \ c^\star = \frac{\text{Cov}(X,Y)}{\text{Var}(Y)}$ |
 | **$\mathbf{P}, \boldsymbol{\pi}$** | Markov Chain Transition Matrix & Stationary Vector | $\mathbf{P}_{ij} \in [0, 1], \sum \pi_i = 1$ | Chapman-Kolmogorov: $\mathbf{P}^{(n+m)} = \mathbf{P}^{(n)}\mathbf{P}^{(m)}$ |
-| **$\mathbf{p}^\star, \bar{\mathbf{p}}$** | Clearing Payment Vector vs. Nominal Liabilities | Currency ($\$$) | Eisenberg-Noe: $\mathbf{p}^\star = \min(\bar{\mathbf{p}}, \mathbf{\Pi}^T \mathbf{p}^\star + \mathbf{e})$ |
-| **$\mathbf{\Pi}, \mathbf{e}$** | Relative Liability Matrix & External Asset Vector | Matrix $[0, 1]$ / Currency | Network contagion & systemic cascade modeling |ive $\sigma'(X)$ computation |
+| **$\mathbf{p}^\star, \bar{\mathbf{p}}$** | Clearing Payment Vector vs. Nominal Liabilities | USD | Eisenberg-Noe: $\mathbf{p}^\star = \min(\bar{\mathbf{p}}, \mathbf{\Pi}^T \mathbf{p}^\star + \mathbf{e})$ |
+| **$\mathbf{\Pi}, \mathbf{e}$** | Relative Liability Matrix & External Asset Vector | Matrix $[0, 1]$ / USD | Network contagion & systemic cascade modeling |

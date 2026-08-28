@@ -27,7 +27,7 @@
 ### Toy Example 1: Survivorship Bias & Phantom Sharpe Ratios
 
 #### 💡 The Intuitive Metaphor (Easiest to Understand)
-Imagine evaluating the average income of tech startup founders by surveying only the CEOs of companies currently listed on NASDAQ. You completely ignore the $95\%$ of founders whose startups went bankrupt along the way. Your survey concludes that starting a tech company has a $100\%$ success rate and average earnings of $\$10\text{M}$! 
+Imagine evaluating the average income of tech startup founders by surveying only the CEOs of companies currently listed on NASDAQ. You completely ignore the $95\%$ of founders whose startups went bankrupt along the way. Your survey concludes that starting a tech company has a $100\%$ success rate and average earnings of $10\text{M}! 
 In finance, **Survivorship Bias** occurs when you backtest a quantitative strategy using today's index constituents, ignoring past bankrupt/delisted assets.
 
 #### 🏷️ Notation Breakdown:
@@ -96,12 +96,12 @@ Taking time bars (e.g. 5-minute bars) is like taking a photo of a highway every 
 
 #### 🔢 Step-by-Step Numerical Calculation
 - Stock X Trades across 2 hours:
-  - Hour 1 (Quiet Lunch): 100 trades, average price $P = \$100$, volume $V = 100 \implies \text{Value} = \$10,000$.
-  - Hour 2 (FOMC Rate Shock): 100,000 trades, average price $P = \$100$, volume $V = 50,000 \implies \text{Value} = \$5,000,000$.
+  - Hour 1 (Quiet Lunch): 100 trades, average price $P = \$100$, volume $V = 100 \implies \text{Value} = \$10{,}000$.
+  - Hour 2 (FOMC Rate Shock): 100,000 trades, average price $P = \$100$, volume $V = 50,000 \implies \text{Value} = \$5{,}000{,}000$.
 - **Time Bar Aggregation ($\Delta t = 1\text{ hour}$)**:
-  - Bar 1: Represents $\$10,000$ traded (over-samples noise).
-  - Bar 2: Represents $\$5,000,000$ traded (under-samples structural trend). Total return variance is heavily heteroskedastic.
-- **Dollar Bar Aggregation ($T = \$1,000,000$)**:
+  - Bar 1: Represents $\$10{,}000$ traded (over-samples noise).
+  - Bar 2: Represents $\$5{,}000{,}000$ traded (under-samples structural trend). Total return variance is heavily heteroskedastic.
+- **Dollar Bar Aggregation ($T = \$1{,}000{,}000$)**:
   - Hour 1: 0.01 bars generated (waits for activity).
   - Hour 2: Exactly 5 uniform dollar bars generated, capturing micro-regime price changes at constant information intervals.
 
@@ -279,13 +279,13 @@ JOIN pit_fundamentals f
 | **$\mathbb{E}[R], \mathbb{E}[R \mid S=1]$** | Unconditional vs. Conditional Expected Return | Annualized percentage | $\text{Bias} = \mathbb{E}[R \mid S=1] - \mathbb{E}[R]$ |
 | **$\text{SR}_{\text{actual}}, \text{SR}_{\text{biased}}$** | True Strategy Sharpe Ratio vs. Biased Phantom Sharpe Ratio | Dimensionless ratio | $\text{SR} = \frac{\mu - r_f}{\sigma}$ |
 | **$\text{Var}(\cdot)$** | **Variance**: Statistical dispersion of returns/estimators | $\sigma^2$ (Squared units) | Efficiency Ratio $= \frac{\text{Var}(\sigma_{CC}^2)}{\text{Var}(\sigma_{GK}^2)}$ |
-| **$O, H, L, C$** | Open, High, Low, and Close Prices for a trading bar | Currency ($\$$) | OHLCV bar tuple |
+| **$O, H, L, C$** | Open, High, Low, and Close Prices for a trading bar | USD per share | OHLCV bar tuple |
 | **$h, l, c$** | Normalized Log Prices relative to Open ($h=\ln(H/O), l=\ln(L/O), c=\ln(C/O)$) | Dimensionless log ratios | Garman-Klass: $\sigma_{GK}^2 = 0.5(h-l)^2 - 0.386 c^2$ |
 | **$\sigma_P^2, \sigma_P$** | Parkinson High-Low Volatility Estimator | Annualized volatility | $\sigma_P^2 = \frac{(\ln(H/L))^2}{4\ln 2} \approx 0.361(h-l)^2$ |
 | **$\sigma_{GK}^2, \sigma_{GK}$** | Garman-Klass OHLC Volatility Estimator | Annualized volatility | Delivers $\approx 8\times$ variance reduction vs. close-to-close |
 | **$\sigma_{CC}^2$** | Classical Close-to-Close Sample Return Variance | Variance units | $\sigma_{CC}^2 = \frac{1}{N-1}\sum (r_t - \bar{r})^2$ |
 | **$\Delta t$** | Fixed Chronological Sampling Window (Time Bars) | Minutes / Hours / Days | Standard time-series discretization |
-| **$T, V_{\text{threshold}}$** | Dollar / Volume Sampling Threshold for Information Bars | $\$$ Traded / Share Volume | $\sum p_i v_i \ge T$ (Restores Gaussian normality) |
+| **$T, V_{\text{threshold}}$** | Dollar / Volume Sampling Threshold for Information Bars | USD Traded / Share Volume | $\sum p_i v_i \ge T$ (Restores Gaussian normality) |
 | **$I(t)$** | Subordinated Information Arrival Stochastic Process | Cumulative activity | $dx(t) = \mu dI(t) + \sigma\sqrt{dI(t)}Z(t)$ |
 | **$x_{\text{pos}}, x_{\text{neg}}, x$** | Positive sum, negative sum, and net valence of text tokens | Real numbers ($\mathbb{R}$) | VADER lexicon scoring: $x = x_{\text{pos}} + x_{\text{neg}}$ |
 | **$\alpha$** | VADER Compound Polarity Normalization Parameter | Calibration scalar ($\approx 15$) | $C = \frac{x}{\sqrt{x^2 + \alpha}}$ |
@@ -294,6 +294,6 @@ JOIN pit_fundamentals f
 | **$\text{Rank IC}_t$** | Spearman Rank Information Coefficient | Bounded $[-1, +1]$ | $\text{Rank IC} = 1 - \frac{6\sum d_i^2}{N(N^2-1)}$ |
 | **$d_i$** | Rank Difference between Signal Rank and Forward Return Rank | Integer | $d_i = \text{Rank}(S_{i,t}) - \text{Rank}(R_{i,t+1})$ |
 | **$\text{IR}$** | Information Ratio of Predictive Alpha Signal | Annualized ratio | $\text{IR} = \frac{\bar{\text{IC}}}{\sigma_{\text{IC}}}\sqrt{252}$ |
-| **$P_{\text{adj}}$** | Split- and Dividend-Adjusted Historical Stock Price | Currency ($\$$) | $P_{\text{adj}} = P \cdot (1 - \text{Div}/P) / \text{Split Ratio}$ |
-| **$\text{EMA}_t$** | Exponential Moving Average at time $t$ | Price units ($\$$) | $\text{EMA}_t = \alpha P_t + (1-\alpha)\text{EMA}_{t-1}$ |
+| **$P_{\text{adj}}$** | Split- and Dividend-Adjusted Historical Stock Price | USD per share | $P_{\text{adj}} = P \cdot (1 - \text{Div}/P) / \text{Split Ratio}$ |
+| **$\text{EMA}_t$** | Exponential Moving Average at time $t$ | USD per share | $\text{EMA}_t = \alpha P_t + (1-\\alpha)\text{EMA}_{t-1}$ |
 | **$\text{RSI}, \text{MACD}$** | Relative Strength Index & Moving Average Convergence Divergence | Technical momentum | Derived momentum & trend features |

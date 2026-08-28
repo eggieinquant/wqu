@@ -74,9 +74,9 @@ If you lose $50\%$ of your money on Day 1, you don't need a $50\%$ gain on Day 2
 - $\frac{1}{2}\sigma^2$: **Volatility Drag Term** (The continuous variance tax on compounded terminal wealth).
 
 #### 🔢 Step-by-Step Calculation
-- Start Capital: $\$100,000$.
-- Period 1: $-50\%$ loss $\implies \$50,000$ remaining.
-- Period 2: $+50\%$ gain $\implies \$50,000 \times 1.50 = \$75,000$ (Net loss of $-\$25,000$ or $-25\%$).
+- Start Capital: $100,000.
+- Period 1: $-50\%$ loss $\implies \$50{,}000$ remaining.
+- Period 2: $+50\%$ gain $\implies \$50{,}000 \times 1.50 = \$75{,}000$ (Net loss of $-\$25{,}000$ or $-25\%$).
 - Geometric mean return: $g = \sqrt{(1 - 0.50)(1 + 0.50)} - 1 = \sqrt{0.75} - 1 = 0.8660 - 1 = -13.40\%$ per period.
 - Compounding Drag term $\approx \frac{1}{2}\sigma^2$: For $\sigma = 30\%$, volatility drag $= 0.5 \times (0.30)^2 = 4.5\%$ annual geometric return penalty.
 
@@ -86,7 +86,7 @@ If you lose $50\%$ of your money on Day 1, you don't need a $50\%$ gain on Day 2
 ### Toy Example 3: Behavioral Prospect Theory & Disposition Drag (Module 4)
 
 #### 💡 The Intuitive Metaphor
-Traders feel twice as much pain from losing $\$100$ as pleasure from gaining $\$100$. Because losing hurts so much, traders hold onto losing stocks hoping they'll get back to zero (convex risk seeking in losses), while selling winning stocks early to lock in safety (concave risk aversion in gains). This creates the **Disposition Effect**.
+Traders feel twice as much pain from losing $100 as pleasure from gaining $100. Because losing hurts so much, traders hold onto losing stocks hoping they'll get back to zero (convex risk seeking in losses), while selling winning stocks early to lock in safety (concave risk aversion in gains). This creates the **Disposition Effect**.
 
 #### 🏷️ Notation Breakdown:
 - $v(x)$: **Psychological Value Function** of perceived gain/loss $x$.
@@ -98,8 +98,8 @@ Under Kahneman-Tversky Prospect Theory ($v(x)$):
 
 $$v(x) = \begin{cases} x^{\alpha} & x \ge 0 \\ -\lambda (-x)^{\beta} & x < 0 \end{cases} \quad (\alpha = \beta = 0.88, \; \lambda = 2.25)$$
 
-- Gain of $+\$1,000$: $v(+1000) = (1000)^{0.88} \approx +436.5$ units of psychological utility.
-- Loss of $-\$1,000$: $v(-1000) = -2.25 \times (1000)^{0.88} = -2.25 \times 436.5 = -982.1$ units of psychological pain.
+- Gain of $+\$1{,}000$: $v(+1000) = (1000)^{0.88} \approx +436.5$ units of psychological utility.
+- Loss of $-\$1{,}000$: $v(-1000) = -2.25 \times (1000)^{0.88} = -2.25 \times 436.5 = -982.1$ units of psychological pain.
 - Net Emotional Balance for $+1000 / -1000$ gamble: $+436.5 - 982.1 = -545.6$ (A fair $50/50$ coin toss feels like a disaster).
 
 ---
@@ -159,7 +159,7 @@ Imagine a packed theater where all patrons wear identical shoes and follow ident
 Consider 10 Long/Short Equity Market-Neutral quantitative hedge funds running statistical arbitrage and factor-tilt models (Long Value/Momentum, Short Overvalued/Reversal) with $5\times$ leverage ($L = 5$) and net market beta $\beta_p = 0.0$.
 
 1. **Exogenous Liquidation Trigger:**
-   A multi-strategy fund experiences $\$2\text{B}$ of losses in subprime mortgages. To satisfy prime broker margin calls, it is forced to liquidate $\$10\text{B}$ of gross equity market-neutral positions over 48 hours.
+   A multi-strategy fund experiences $2\text{B}$ of losses in subprime mortgages. To satisfy prime broker margin calls, it is forced to liquidate $10\text{B}$ of gross equity market-neutral positions over 48 hours.
 
 2. **Adverse Price Impact on Illiquid Factor Portfolios:**
    Market makers (providing contrarian liquidity) are overwhelmed by unidirectional order flow. Bid-ask spreads blow out from $5\text{ bps}$ to $25\text{ bps}$ ($5\times$).
@@ -171,7 +171,7 @@ Consider 10 Long/Short Equity Market-Neutral quantitative hedge funds running st
 3. **Leveraged Loss & Cascading Contagion:**
    For a separate, unaffected Quant Fund holding identical factor models at $5\times$ leverage:
    $$R_{\text{fund}} = L \times R_{\text{spread}} = 5 \times (-6.0\%) = -30.0\%\text{ loss in 48 hours!}$$
-   Prime brokers demand immediate deleveraging, forcing Fund 2 to liquidate another $\$15\text{B}$, generating a second-wave fire sale that pushes fund losses to $-45\%$, **while the S&P 500 moves less than $0.5\%$**.
+   Prime brokers demand immediate deleveraging, forcing Fund 2 to liquidate another $15\text{B}$, generating a second-wave fire sale that pushes fund losses to $-45\%$, **while the S&P 500 moves less than $0.5\%$**.
 
 ---
 
@@ -389,7 +389,7 @@ Aug 10-13:    Dramatic Unwind Rebound & Mean Reversion
 | **$f, f^*$** | Portfolio Leverage Fraction & Optimal Full Kelly Fraction | Real scalar ($f^* = 2.0 = 2\times$) | Kelly growth: $f^* = \frac{\mu - r_f}{\sigma^2}$ |
 | **$g(f)$** | Expected Continuous Logarithmic Growth Rate | Annualized percentage | $g(f) = r_f + f(\mu - r_f) - \frac{1}{2}f^2\sigma^2$ |
 | **$v(x)$** | Kahneman-Tversky Prospect Theory Value Function | Subjective utility units | Asymmetric loss aversion value mapping |
-| **$\lambda$** | Loss Aversion Coefficient | Calibration constant ($\lambda \approx 2.25$) | Pain of $\$1$ loss is $2.25\times$ pleasure of $\$1$ gain |
+| **$\lambda$** | Loss Aversion Coefficient | Calibration constant ($\lambda \approx 2.25$) | Pain of $1 loss is $2.25\times$ pleasure of $1 gain |
 | **$\alpha, \beta$** | Value Function Curvature Exponents | Empirical scalars ($\alpha = \beta \approx 0.88$) | Concave in gains ($x \ge 0$), convex in losses ($x < 0$) |
 | **$\rho_\delta(e), \psi_\delta(e)$** | Huber Robust Loss Function & Influence Function | Threshold $\delta \approx 1.345$ | Bounds influence of extreme return crisis outliers |
 | **$\hat{\boldsymbol{\beta}}_i, \hat{\mathbf{B}}$** | Factor Beta Loadings Vector & $N \times K$ Beta Matrix | Factor exposures | Step 1 Fama-MacBeth time-series regressions |

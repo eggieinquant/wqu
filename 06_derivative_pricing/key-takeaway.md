@@ -140,7 +140,7 @@ flowchart LR
 ### Toy Example 3: American Early Exercise Boundary Dynamics
 
 #### 💡 The Intuitive Metaphor (Easiest to Understand)
-Holding a deep in-the-money American put option when the company goes bankrupt ($S = 0$) is like holding a check for $\$100$ that you refuse to cash until next year. Cashing it today lets you earn bank interest on $\$100$ right now!
+Holding a deep in-the-money American put option when the company goes bankrupt ($S = 0$) is like holding a check for $100 that you refuse to cash until next year. Cashing it today lets you earn bank interest on $100 right now!
 
 #### 🏷️ Notation Breakdown:
 - $S^\star(t)$: **Critical Early Exercise Price Boundary** (Optimal exercise threshold).
@@ -258,13 +258,13 @@ flowchart TD
 
 | Symbol | Mathematical / Financial Meaning | Typical Range / Units | Context & Core Formula |
 | :--- | :--- | :--- | :--- |
-| **$S_0, S_t$** | Underlying Asset Spot Price today and at time $t$ | Currency ($\$$) | Black-Scholes PDE: $S \in (0, \infty)$ |
-| **$K$** | Option Strike Price (Exercise price) | Currency ($\$$) | Payoffs: $\max(S_T - K, 0)$ (Call), $\max(K - S_T, 0)$ (Put) |
+| **$S_0, S_t$** | Underlying Asset Spot Price today and at time $t$ | USD per share | Black-Scholes PDE: $S \in (0, \infty)$ |
+| **$K$** | Option Strike Price (Exercise price) | USD per share | Payoffs: $\max(S_T - K, 0)$ (Call), $\max(K - S_T, 0)$ (Put) |
 | **$T, \tau$** | Maturity Horizon & Time Remaining to Expiration | Years ($\tau = T - t$) | Option pricing time decay |
 | **$r$** | Continuous Annualized Risk-Free Rate | Percentage ($0.05 = 5\%$) | Discount factor $e^{-r\tau}$ under $\mathbb{Q}$-measure |
 | **$q$** | Continuous Dividend / Foreign Yield | Percentage ($0.02 = 2\%$) | Cost of carry drift $(r - q)$ |
 | **$\sigma$** | Volatility of Underlying Asset Returns | Annualized percentage ($0.20 = 20\%$) | Black-Scholes diffusion coefficient |
-| **$C, P$** | European Call and Put Option Theoretical Prices | Currency ($\$$) | Put-Call Parity: $C - P = S e^{-q\tau} - K e^{-r\tau}$ |
+| **$C, P$** | European Call and Put Option Theoretical Prices | USD per contract | Put-Call Parity: $C - P = S e^{-q\tau} - K e^{-r\tau}$ |
 | **$d_1, d_2$** | Standardized Black-Scholes Moneyness Metrics | Real numbers ($\mathbb{R}$) | $d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}, \ d_2 = d_1 - \sigma\sqrt{\tau}$ |
 | **$\Phi(\cdot), \phi(\cdot)$** | Standard Normal CDF and PDF | Probability $[0, 1]$ / Density | $\Phi(d_1) = \text{Delta (undiscounted)}, \Phi(d_2) = \mathbb{Q}(S_T \ge K)$ |
 | **$\Delta$** | **Delta**: Rate of change of option price w.r.t. spot | Call $[0, 1]$, Put $[-1, 0]$ | $\Delta_C = e^{-q\tau}\Phi(d_1), \ \Delta_P = -e^{-q\tau}\Phi(-d_1)$ |
@@ -275,6 +275,6 @@ flowchart TD
 | **$u, d, m$** | Up, Down, and Middle Multipliers in Discrete Trees | Multipliers ($u > 1, d < 1$) | CRR: $u = e^{\sigma\sqrt{\Delta t}}, d = 1/u$ |
 | **$p, p_u, p_d, p_m$** | Risk-Neutral Lattice Transition Probabilities | Probability $[0, 1]$ | $p = \frac{e^{(r-q)\Delta t} - d}{u - d}$ |
 | **$\sigma_{\text{loc}}(K, T)$** | Dupire Local Volatility Surface | Percentage volatility | $\sigma_{\text{loc}}^2 = \frac{\partial C/\partial T + qC + K(r-q)\partial C/\partial K}{\frac{1}{2}K^2 \partial^2 C/\partial K^2}$ |
-| **$\Pi$** | Hedged Delta-Neutral Portfolio | Currency ($\$$) | $\Pi = V - \Delta S$; PDE equilibrium: $\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r\Pi$ |
+| **$\Pi$** | Hedged Delta-Neutral Portfolio | USD | $\Pi = V - \Delta S$; PDE equilibrium: $\Theta + \frac{1}{2}\sigma^2 S^2 \Gamma = r\Pi$ |
 | **$h^\star$** | Minimum-Variance Optimal Futures Hedge Ratio | Ratio | $h^\star = \rho_{SF}\frac{\sigma_S}{\sigma_F}$ |
-| **$F_0$** | Forward / Futures Price | Currency ($\$$) | $F_0 = S_0 e^{(r + c - q)T}$ |
+| **$F_0$** | Forward / Futures Price | USD | $F_0 = S_0 e^{(r + c - q)T}$ |

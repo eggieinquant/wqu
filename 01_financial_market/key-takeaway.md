@@ -27,7 +27,7 @@
 ### Toy Example 1: Merton Structural Credit & Equity as a Call Option
 
 #### 💡 The Intuitive Metaphor (Easiest to Understand)
-Imagine you buy a house for $\$100,000$ using an $\$80,000$ mortgage debt ($D$) and $\$20,000$ of your own cash equity ($E$). If the house price rises to $\$120,000$, you pay back the bank $\$80,000$ and keep $\$40,000$. But if the house price crashes to $\$50,000$, you can simply walk away, hand the keys to the bank, and lose only your initial cash (equity becomes $\$0$). 
+Imagine you buy a house for $100,000 using an $80,000 mortgage debt ($D$) and $20,000 of your own cash equity ($E$). If the house price rises to $120,000, you pay back the bank $80,000 and keep $40,000. But if the house price crashes to $50,000, you can simply walk away, hand the keys to the bank, and lose only your initial cash (equity becomes $0). 
 In corporate finance, **company equity is economically identical to a Call Option** written on total company assets $V$ with a strike price equal to nominal debt $D$.
 
 #### 🏷️ Notation Breakdown:
@@ -49,8 +49,8 @@ In corporate finance, **company equity is economically identical to a Call Optio
 - $\text{Vega}_E$: **Volatility Sensitivity** ($\frac{\partial E_0}{\partial \sigma_V}$, rate of change of equity value per unit increase in asset volatility).
 
 #### 🔢 Step-by-Step Numerical Calculation
-- Total Enterprise Firm Value: $V_0 = \$100\text{ Million}$
-- Nominal Zero-Coupon Debt Face Value: $D = \$80\text{ Million}$ due in $T = 1\text{ year}$
+- Total Enterprise Firm Value: $V_0 = \$100\text{M}$ ($100\text{ Million}$)
+- Nominal Zero-Coupon Debt Face Value: $D = \$80\text{M}$ ($80\text{ Million}$) due in $T = 1.0\text{ year}$
 - Risk-free Rate: $r = 5\%$ ($0.05$)
 - Asset Volatility: $\sigma_V = 20\%$ ($0.20$)
 
@@ -63,13 +63,13 @@ $$d_2 = d_1 - \sigma_V \sqrt{T} = 1.4657 - 0.20 = 1.2657$$
 **Step 2: Lookup Standard Normal Cumulative Distribution Values $\Phi(d)$**:
 - $\Phi(d_1) = \Phi(1.4657) \approx 0.9286$ (Equity Delta)
 - $\Phi(d_2) = \Phi(1.2657) \approx 0.8972$ (Solvency probability)
-- $\Phi(-d_2) = 1 - 0.8972 = 0.1028$ (10.28% risk-neutral default probability)
+- $\Phi(-d_2) = 1 - 0.8972 = 0.1028$ ($10.28\%$ risk-neutral default probability)
 
 **Step 3: Compute Equity Value $E_0$ and Corporate Debt Value $D_0$**:
 
-$$E_0 = V_0 \Phi(d_1) - D e^{-rT} \Phi(d_2) = 100 \times 0.9286 - 80 \times e^{-0.05} \times 0.8972 = 92.86 - 80 \times 0.95123 \times 0.8972 = 92.86 - 68.27 = 24.59\text{M}$$
+$$E_0 = V_0 \Phi(d_1) - D e^{-rT} \Phi(d_2) = 100 \times 0.9286 - 80 \times e^{-0.05} \times 0.8972 = 92.86 - 80 \times 0.95123 \times 0.8972 = 92.86 - 68.27 = \$24.59\text{M}$$
 
-$$D_0 = V_0 - E_0 = 100 - 24.59 = 75.41\text{M}$$
+$$D_0 = V_0 - E_0 = 100 - 24.59 = \$75.41\text{M}$$
 
 **Step 4: Compute Implied Credit Spread $\mathcal{S}$**:
 
@@ -148,24 +148,31 @@ Think of credit subordination like a multi-tiered bucket system collecting rainw
 - **SPV**: **Special Purpose Vehicle** (Bankruptcy-remote legal trust that holds the loans and issues the bonds).
 
 #### 🔢 Step-by-Step Numerical Calculation
-- Total Collateral Pool: 1,000 loans of $\$100,000$ each ($100\text{M}$ total).
+- Total Collateral Pool: 1,000 loans of $100,000 each ($100M total).
 - Expected Default Rate: $p = 3\%$ per year.
 - Tranche Structure:
-  - Equity Tranche ($0\% - 5\%$): Absorbs first $\$5\text{M}$ of default losses.
-  - Mezzanine Tranche ($5\% - 15\%$): Absorbs losses between $\$5\text{M}$ and $\$15\text{M}$.
-  - Senior Tranche ($15\% - 100\%$): Protected against first $\$15\text{M}$ of losses.
+  - **Equity Tranche** (0% – 5% / $5M): Absorbs the first $5M of default losses.
+  - **Mezzanine Tranche** (5% – 15% / $10M): Absorbs losses between $5M and $15M.
+  - **Senior Tranche** (15% – 100% / $85M): Protected against the first $15M of losses.
 
 **Low Correlation State ($\rho = 0.02$)**:
-Default variance across loans is low: $\sigma_{\text{pool}}^2 = N p (1-p) [1 + (N-1)\rho] \approx 1,000 \times 0.03 \times 0.97 \times [1 + 999 \times 0.02] \approx 29.1 \times 20.98 \approx 610.5$. Expected defaults $= N \cdot p = 30$ loans ($\$3\text{M}$).
-- Losses ($\$3\text{M}$) are absorbed entirely by the Equity Tranche ($\$5\text{M}$ capacity).
-- Senior Tranche suffers $\$0$ loss $\implies$ AAA rating intact.
+Default variance across loans is low:
+
+$$\sigma_{\text{pool}}^2 = N p (1-p) [1 + (N-1)\rho] \approx 1{,}000 \times 0.03 \times 0.97 \times [1 + 999 \times 0.02] \approx 29.1 \times 20.98 \approx 610.5$$
+
+Expected defaults $= N \cdot p = 30\text{ loans}$ ($3M total loss).
+- Losses ($3M) are absorbed entirely by the **Equity Tranche** ($5M capacity).
+- Senior Tranche suffers $0 loss $\implies$ AAA rating intact.
 
 **Systemic Crash State ($\rho \to 0.85$)**:
-During a housing crisis, default correlation spikes. Variance expands: $\sigma_{\text{pool}}^2 = 29.1 \times [1 + 999 \times 0.85] = 24,739$.
-Defaults cluster violently: 200 loans default ($\$20\text{M}$ loss).
-- Equity Tranche ($0-5\%$ / $\$5\text{M}$) wiped out ($100\%$ loss).
-- Mezzanine Tranche ($5-15\%$ / $\$10\text{M}$) wiped out ($100\%$ loss).
-- Senior Tranche ($15-100\%$) loses $\$5\text{M}$ ($5.88\%$ principal loss) $\implies$ Catastrophic downgrade.
+During a housing crisis, default correlation spikes. Variance expands:
+
+$$\sigma_{\text{pool}}^2 = 29.1 \times [1 + 999 \times 0.85] \approx 24{,}739$$
+
+Defaults cluster violently: 200 loans default ($20M total loss).
+- **Equity Tranche** (0% – 5% / $5M) wiped out (100% loss).
+- **Mezzanine Tranche** (5% – 15% / $10M) wiped out (100% loss).
+- **Senior Tranche** (15% – 100% / $85M) loses $5M (5.88% principal loss) $\implies$ Catastrophic downgrade.
 
 #### 📊 Visual Subordination & Waterfall Breakdown:
 
@@ -229,9 +236,9 @@ Borrowing on margin is like renting a house with a mandatory security deposit. I
 - $P^{\star}$: **Margin Call Trigger Price** (The critical market price at which $\text{Margin Ratio} = \text{MM}$).
 
 #### 🔢 Step-by-Step Calculation & Calculus of Margin Call Trigger
-- Investor shorts $N = 1,000$ shares at price $P_0 = \$100$.
-- Initial Short Value $= N \cdot P_0 = \$100,000$. Initial Margin Requirement $= 50\% \implies \$50,000$ collateral cash.
-- Total Initial Account Cash Assets $= N \cdot P_0 \times (1 + \text{IM}) = \$100,000 + \$50,000 = \$150,000$.
+- Investor shorts $N = 1{,}000\text{ shares}$ at price $P_0 = \$100$.
+- Initial Short Value $= N \cdot P_0 = \$100{,}000$. Initial Margin Requirement $= 50\% \implies \$50{,}000$ collateral cash.
+- Total Initial Account Cash Assets $= N \cdot P_0 \times (1 + \text{IM}) = \$100{,}000 + \$50{,}000 = \$150{,}000$.
 - Maintenance Margin ($\text{MM}$) $= 30\%$.
 
 **Deriving the Critical Trigger Price $P^{\star}$**:
@@ -240,7 +247,7 @@ $$\text{Margin Ratio}(P) = \frac{\text{Total Account Cash Assets} - N \cdot P}{N
 
 $$150{,}000 - 1{,}000 P^{\star} = 0.30 \times (1{,}000 P^{\star}) \implies 150{,}000 = 1{,}300 P^{\star} \implies P^{\star} = \frac{150{,}000}{1{,}300} = \$115.38$$
 
-If stock price rises above $\$115.38$, Account Equity drops below $\$34,615.40$ ($30\%$), triggering an immediate margin call.
+If stock price rises above $\$115.38$, Account Equity drops below $\$34{,}615.40$ ($30\%$), triggering an immediate margin call.
 
 #### 📊 Visual Margin Anatomy & Liquidation Spiral:
 
@@ -393,10 +400,10 @@ flowchart TD
 
 | Symbol | Mathematical / Economic Meaning | Typical Units / Range | Context & Core Formula |
 | :--- | :--- | :--- | :--- |
-| **$V_0, V_t, V_T$** | Total Enterprise / Firm Asset Value (at $t=0$, $t$, and maturity $T$) | Currency ($\$$ Millions) | Merton Credit Model ($V_0 = E_0 + D_0$) |
-| **$D$** | Nominal Zero-Coupon Debt Face Value (Option Strike Price $K$) | Currency ($\$$ Millions) | $E_T = \max(V_T - D, 0)$ |
-| **$E_0, E_T$** | Equity Value (Call option price today and terminal payoff) | Currency ($\$$ Millions) | $E_0 = V_0\Phi(d_1) - De^{-rT}\Phi(d_2)$ |
-| **$D_0$** | Market Value of Risky Corporate Debt today | Currency ($\$$ Millions) | $D_0 = V_0 - E_0 = De^{-rT}\Phi(d_2) + V_0(1-\Phi(d_1))$ |
+| **$V_0, V_t, V_T$** | Total Enterprise / Firm Asset Value (at $t=0$, $t$, and maturity $T$) | USD Millions | Merton Credit Model ($V_0 = E_0 + D_0$) |
+| **$D$** | Nominal Zero-Coupon Debt Face Value (Option Strike Price $K$) | USD Millions | $E_T = \max(V_T - D, 0)$ |
+| **$E_0, E_T$** | Equity Value (Call option price today and terminal payoff) | USD Millions | $E_0 = V_0\Phi(d_1) - De^{-rT}\Phi(d_2)$ |
+| **$D_0$** | Market Value of Risky Corporate Debt today | USD Millions | $D_0 = V_0 - E_0 = De^{-rT}\Phi(d_2) + V_0(1-\Phi(d_1))$ |
 | **$r, r_f$** | Risk-free interest rate (continuous compounding) | Annualized percentage ($0.05 = 5\%$) | Discount factor $e^{-rT}$ |
 | **$T$** | Time to horizon / Debt maturity | Years (e.g., $1.0$, $5.0$) | Merton model & option pricing |
 | **$\sigma_V$** | Total Firm Asset Volatility ($\sqrt{\text{Var}(\text{Asset Return})}$) | Annualized percentage ($0.20 = 20\%$) | Merton $d_1, d_2$ and Vega |
@@ -406,7 +413,7 @@ flowchart TD
 | **$\Phi(\cdot)$** | Standard Normal Cumulative Distribution Function (CDF) | Probability $[0, 1]$ | $\Phi(d_2) = \mathbb{Q}(\text{Solvency})$, $\Phi(-d_2) = \mathbb{Q}(\text{Default})$ |
 | **$\phi(\cdot)$** | Standard Normal Probability Density Function (PDF) | Positive Real ($\mathbb{R}^+$) | $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ |
 | **$\mathcal{S}$** | Implied Credit Spread (Annual yield premium over risk-free rate) | Basis Points / $\%$ ($100\text{ bps} = 1\%$) | $\mathcal{S} = -\frac{1}{T}\ln\left(\frac{D_0}{De^{-rT}}\right)$ |
-| **$\text{Vega}_E$** | Sensitivity of Equity value to Asset Volatility ($\frac{\partial E_0}{\partial \sigma_V}$) | $\$$ / unit volatility | $\text{Vega}_E = V_0\sqrt{T}\phi(d_1) > 0$ |
+| **$\text{Vega}_E$** | Sensitivity of Equity value to Asset Volatility ($\frac{\partial E_0}{\partial \sigma_V}$) | USD / unit volatility | $\text{Vega}_E = V_0\sqrt{T}\phi(d_1) > 0$ |
 | **$\Delta, \Gamma, \Theta$** | Option Greeks: Delta ($\frac{\partial C}{\partial S}$), Gamma ($\frac{\partial^2 C}{\partial S^2}$), Theta ($\frac{\partial C}{\partial t}$) | First & Second Derivatives | Option pricing & risk management |
 | **$N$** | Number of shares / Number of collateral loans in pool | Count (Integer) | Short margin ($N \cdot P$) & Pool size |
 | **$p$** | Individual default probability per loan in securitization pool | Probability $[0, 1]$ | Expected defaults $= N \cdot p$ |
@@ -414,12 +421,12 @@ flowchart TD
 | **$\mathbf{w}$** | Vector of portfolio allocation weights ($[w_1, w_2, \dots, w_N]^T$) | $\sum w_i = 1.0$ | Portfolio return $R_p = \mathbf{w}^T\boldsymbol{\mu}$ |
 | **$\mathbf{\Sigma}$** | Covariance Matrix ($N \times N$ symmetric positive semi-definite) | Covariance units | Portfolio variance $\sigma_p^2 = \mathbf{w}^T\mathbf{\Sigma}\mathbf{w}$ |
 | **$\bar{\sigma}_i^2, \bar{\sigma}_{ij}$** | Average individual asset variance vs. Average pairwise covariance | Statistical variance | Asymptotic limit $\lim_{N\to\infty}\sigma_p^2 = \bar{\sigma}_{ij}$ |
-| **$P_0, P_t, P^\star$** | Initial price, current price, and Margin Call trigger price | Currency per share ($\$$) | $P^\star = \frac{\text{Total Assets}}{(1 + \text{MM})N}$ |
+| **$P_0, P_t, P^\star$** | Initial price, current price, and Margin Call trigger price | USD per share | $P^\star = \frac{\text{Total Assets}}{(1 + \text{MM})N}$ |
 | **$\text{IM}, \text{MM}$** | Initial Margin requirement & Maintenance Margin requirement | Percentage ($0.50, 0.30$) | Margin account solvency constraint |
 | **$h$** | Repo Haircut (Collateral valuation markdown) | Percentage ($0.02 = 2\%$) | Max Leverage $= \frac{1}{h}$ |
 | **$\lambda$** | Kyle's Lambda (Market illiquidity / price impact parameter) | $\Delta P / \text{Volume}$ | $\Delta P_t = \lambda \cdot \text{Order Flow}_t$ |
 | **$\text{WACC}$** | Weighted Average Cost of Capital | Annual percentage | $\text{WACC} = \frac{E}{V}r_E + \frac{D}{V}r_D(1 - T_C)$ |
-| **$V_L, V_U$** | Value of Levered firm vs. Value of Unlevered (all-equity) firm | Currency ($\$$ Millions) | MM Proposition I with taxes: $V_L = V_U + T_C D$ |
+| **$V_L, V_U$** | Value of Levered firm vs. Value of Unlevered (all-equity) firm | USD Millions | MM Proposition I with taxes: $V_L = V_U + T_C D$ |
 | **$T_C$** | Corporate income tax rate (Tax Shield = $T_C \cdot D$) | Percentage ($0.21 = 21\%$) | After-tax cost of debt $r_D(1 - T_C)$ |
 | **$r_E, r_D, r_0$** | Cost of Equity, Cost of Debt, and Unlevered Cost of Capital | Annual percentage | MM Proposition II: $r_E = r_0 + (r_0 - r_D)\frac{D}{E}(1 - T_C)$ |
 | **$m$** | Compounding periods per year ($m \to \infty$ for continuous) | Integer / $\infty$ | $\text{EAR} = (1 + r/m)^m - 1 \to e^r - 1$ |
