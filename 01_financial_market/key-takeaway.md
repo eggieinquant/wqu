@@ -75,7 +75,22 @@ $$D_0 = V_0 - E_0 = 100 - 24.59 = \$75.41\text{M}$$
 
 $$\mathcal{S} = -\frac{1}{T} \ln\left( \frac{D_0}{D e^{-rT}} \right) = -\frac{1}{1} \ln\left( \frac{75.41}{76.098} \right) = -\ln(0.99096) \approx 0.908\% \quad (90.8 \text{ bps})$$
 
-#### 📊 Visual Architecture & Terminal Payoff Diagram:
+#### 📊 Visual Architecture & Terminal Payoff Functions:
+
+```mermaid
+xychart-beta
+    title "Merton Structural Option Payoffs at Debt Maturity (Barrier D = $80M)"
+    x-axis "Firm Asset Value V_T ($M)" [0, 20, 40, 60, 80, 100, 120, 140, 160]
+    y-axis "Payoff Value ($M)" 0 --> 160
+    line "Debt Payoff min(V_T, D)" [0, 20, 40, 60, 80, 80, 80, 80, 80]
+    line "Equity Payoff max(V_T - D, 0)" [0, 0, 0, 0, 0, 20, 40, 60, 80]
+```
+
+| Market State / Regime | Asset Value ($V_T$) | Equity Value ($E_T$) | Debt Value ($D_T$) | Option Status | Economic Outcome |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Default Regime** | $V_T < \$80\text{M}$ | $\$0$ | $V_T$ | Out-of-the-Money | Bankruptcy / Asset handover to lenders |
+| **Default Barrier** | $V_T = \$80\text{M}$ | $\$0$ | $\$80\text{M}$ | At-the-Money | Break-even threshold |
+| **Solvent Regime** | $V_T > \$80\text{M}$ | $V_T - \$80\text{M}$ | $\$80\text{M}$ | In-the-Money | Full debt repayment; equity gets surplus |
 
 ```mermaid
 flowchart TD
@@ -96,27 +111,6 @@ flowchart TD
     style EquityPayoff_D fill:#ffebee,stroke:#e53935,stroke-width:2px;
     style DebtPayoff_S fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
     style DebtPayoff_D fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
-```
-
-```
-                     Merton Structural Payoff Functions
-     Payoff ($M)
-        ^
-    120 |                                                /  Equity: max(V_T - 80, 0)
-        |                                               /
-    100 |                                              /
-        |                                             /
-     80 |-----------------------====================/====   Debt: min(V_T, 80)
-        |                     /
-     60 |                   /
-        |                 /
-     40 |               /
-        |             /
-     20 |           /
-        |         /
-      0 +-------+-------------------------------------------> Firm Asset Value V_T ($M)
-        0       40            80 (Debt Barrier D)    120
-           [ DEFAULT REGIME ] | [ SOLVENT REGIME ]
 ```
 
 #### 📐 Calculus Derivation & Mechanical Failure Mode (Asset Substitution)
@@ -316,6 +310,22 @@ Under Modigliani-Miller Proposition II, $r_E = r_0 + (r_0 - r_D) \frac{D}{E} (1 
 #### 📊 Visual Capital Structure & WACC Optimization Curve:
 
 ```mermaid
+xychart-beta
+    title "Trade-Off Theory: Cost of Capital vs Leverage Ratio (D/V)"
+    x-axis "Leverage Ratio D/V (%)" [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    y-axis "Cost of Capital (%)" 0 --> 30
+    line "Cost of Equity r_E" [10.0, 10.8, 11.7, 12.8, 14.2, 16.0, 18.5, 22.0, 26.5, 32.0, 40.0]
+    line "WACC (Optimal Minima at L* = 50%)" [10.0, 9.4, 8.9, 8.5, 8.3, 8.5, 9.1, 10.2, 12.0, 15.0, 20.0]
+    line "After-Tax Cost of Debt r_D(1 - T_C)" [3.95, 3.95, 3.95, 4.0, 4.2, 4.6, 5.3, 6.5, 8.2, 11.0, 15.0]
+```
+
+| Capital Structure Zone | Leverage Ratio ($D/V$) | Dominant Economic Force | Impact on WACC | Corporate Strategy |
+| :--- | :--- | :--- | :--- | :--- |
+| **Under-Levered Zone** | $0\% - 40\%$ | Debt Tax Shield Dominates ($T_C \cdot D$) | WACC decreases monotonically | Issue debt to repurchase shares & lower capital costs |
+| **Optimal Zone ($L^\star$)** | $40\% - 60\%$ | Marginal Tax Shield $=$ Marginal Distress Cost | **Minimum WACC ($\approx 8.3\%$)** | **Target Capital Structure** (Maximizes Enterprise Value $V_L$) |
+| **Over-Levered Distress Zone** | $60\% - 100\%$ | Bankruptcy & Agency Costs Dominate | WACC spikes exponentially | Financial distress risk; equity dilution / debt restructuring required |
+
+```mermaid
 flowchart TD
     subgraph TradeOff_Theory ["Trade-Off Theory of Capital Structure"]
         TaxShield["Debt Tax Shield Advantage:\nInterest is Tax-Deductible\nAfter-tax Cost of Debt = r_D × (1 - T_C)"]
@@ -328,23 +338,6 @@ flowchart TD
 
     style Optimum fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
     style NetWACC fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
-```
-
-```
-                 WACC vs Leverage Ratio (D/V)
-  Cost of Capital (%)
-     ^
-     |      / Cost of Equity r_E (Increases with financial risk)
-     |     /
-     |    /          \               /
-     |   /            \             /   Overall WACC Curve
-     |  /              \___________/ 
-     | /                     |
-     |/                      v Optimal Leverage L* (Min WACC)
-     |------------------------------------- After-Tax Cost of Debt r_D*(1-T_C)
-     +----------------------------------------------------> Leverage Ratio D/V (%)
-     0%                     50%                           100%
-      [ TAX SHIELD DOMINATES ] | [ DISTRESS COSTS DOMINATE ]
 ```
 
 ---

@@ -149,22 +149,29 @@ Holding a deep in-the-money American put option when the company goes bankrupt (
 
 #### 📊 Visual American Put Early Exercise Free Boundary:
 
+```mermaid
+xychart-beta
+    title "American Put Optimal Early Exercise Boundary S*(t) vs Time to Maturity (K = $100)"
+    x-axis "Time to Expiration (Years)" [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    y-axis "Stock Price S ($)" 0 --> 120
+    line "Strike Price K ($100)" [100, 100, 100, 100, 100, 100]
+    line "Critical Boundary S*(t) [Below = Exercise, Above = Hold]" [100, 92, 87, 83, 80, 78]
 ```
-        American Put Optimal Early Exercise Decision Map
- Stock Price S
-    ^
-  K |------------------------------------------ (Strike Price K = $100)
-    |                     /
-    |                    /   CONTINUATION REGION
-    |                   /   Hold Option: V(S, t) = Continuation Value
-    |                  /
-S*(t)| - - - - - - - -/ 
-    |               / 
-    |              /   EARLY EXERCISE REGION
-    |             /   Exercise Now: V(S, t) = K - S
-  0 +------------+------------------------------> Time t
-    0 (Today)                                 T (Maturity)
-                 <--- Backward Induction Steps
+
+| Decision Region | Condition | Option Valuation ($V_t$) | Optimal Action | Economic Rationale |
+| :--- | :--- | :--- | :--- | :--- |
+| **Early Exercise Region** | Spot Price $S_t \le S^\star(t)$ | $V_t = K - S_t$ (Intrinsic Value) | **Exercise Immediately** | Holding cash earns interest $rK$ which exceeds continuation value |
+| **Critical Free Boundary** | Spot Price $S_t = S^\star(t)$ | $V_t = K - S^\star(t) = \text{Continuation}$ | **Indifference Boundary** | Smooth pasting boundary condition: $\frac{\partial V}{\partial S}\big|_{S^\star} = -1$ |
+| **Continuation Region** | Spot Price $S_t > S^\star(t)$ | $V_t = \text{Continuation Value} > K - S_t$ | **Hold Option** | Time value and optionality convexity exceed immediate cash-out value |
+
+```mermaid
+flowchart TD
+    Node["At Time Step t with Spot Price S_t"] --> Check{"Compare Spot Price to Free Boundary S*(t)"}
+    Check -->|"S_t ≤ S*(t)  (Deep ITM)"| Exercise["EARLY EXERCISE REGION\nV(S, t) = K - S_t\nCash in principal immediately to earn risk-free interest rK"]
+    Check -->|"S_t > S*(t)"| Hold["CONTINUATION REGION\nV(S, t) = e^(-r Δt) E^Q[ V_{t+Δt} | S_t ]\nHold option for remaining convexity optionality"]
+
+    style Exercise fill:#ffebee,stroke:#c62828,stroke-width:2px;
+    style Hold fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
 ```
 
 ---
