@@ -2,7 +2,7 @@
 
 Welcome to the comprehensive quantitative finance repository for the **WorldQuant University (WQU) Master of Science in Financial Engineering (MScFE)** program.
 
-This repository organizes code implementations, Jupyter notebooks, theoretical lecture notes, empirical datasets, and Group Work Projects (GWPs) across all core disciplines of financial engineering, structured in chronological course sequence (Modules 01 through 08).
+This repository organizes code implementations, Jupyter notebooks, theoretical lecture notes, empirical datasets, and Group Work Projects (GWPs) across all core disciplines of financial engineering, structured in chronological course sequence (Modules 01 through 09).
 
 ---
 
@@ -18,7 +18,7 @@ flowchart TD
     FE --> ML["07. Machine Learning in Finance (650)\nPurged CV, Lasso, XGBoost, Stacking"]
     SM --> ML
     
-    FE --> PM["05. Portfolio Management (640)\nMarkowitz MVO, Black-Litterman, CLA, Behavioral BPT"]
+    FE --> PM["05. Portfolio Management (640)\nMarkowitz MVO, Black-Litterman, CPCV, DSR, FinRL"]
     ML --> PM
     
     ML --> DL["08. Deep Learning in Finance (690)\nLSTMs, CNN-GAF, Transformers, Deep RL"]
@@ -26,6 +26,11 @@ flowchart TD
     
     SM --> DP["06. Derivative Pricing (610)\nTrinomial Trees, Black-Scholes PDE, Monte Carlo"]
     DL --> DP
+
+    SM --> RM["09. Risk Management (660)\nSystemic Risk, Contagion, Variance Swaps, Jump VaR"]
+    DP --> RM
+    PM --> RM
+    FE --> RM
 ```
 
 ---
@@ -40,10 +45,11 @@ Below is the complete WQU MScFE module index organized in official course sequen
 | **[02_financial_data](./02_financial_data/README.md)** | MScFE 650 / 610 | Financial REST APIs, OHLCV tick resampling, SEC 10-K scraping, alternative sentiment NLP, SQL ETL pipeline. | [🎓 02 Key Takeaways](./02_financial_data/key-takeaway.md) |
 | **[03_stochastic_modelling](./03_stochastic_modelling/README.md)** | MScFE 622 | Brownian Motion, Ito Calculus, CIR, Heston/Bates option charts, HMM 3-state TAA backtest charts, Networks. | [🎓 03 Key Takeaways](./03_stochastic_modelling/key-takeaway.md) |
 | **[04_financial_econometrics](./04_financial_econometrics/README.md)** | MScFE 630 | Stationarity (ADF), Box-Jenkins ARIMA workflow, GARCH volatility, VAR, Johansen Cointegration VECM pairs trading. | [🎓 04 Key Takeaways](./04_financial_econometrics/key-takeaway.md) |
-| **[05_portfolio_management](./05_portfolio_management/README.md)** | MScFE 640 | Markowitz Frontier & CAL, Black-Litterman Bayesian flow, Prospect Theory S-curve, BPT pyramid, BMAA matrix. | [🎓 05 Key Takeaways](./05_portfolio_management/key-takeaway.md) |
+| **[05_portfolio_management](./05_portfolio_management/README.md)** | MScFE 640 | Markowitz Frontier & CAL, Black-Litterman Bayesian flow, Prospect Theory, Deflated Sharpe Ratio, CPCV, FinRL DRL. | [🎓 05 Key Takeaways](./05_portfolio_management/key-takeaway.md) |
 | **[06_derivative_pricing](./06_derivative_pricing/README.md)** | MScFE 610 | Lattice branching (Binomial vs Trinomial), Dynamic Delta Hedging loop, Black-Scholes PDE, Trinomial GWP analysis. | [🎓 06 Key Takeaways](./06_derivative_pricing/key-takeaway.md) |
 | **[07_machine_learning](./07_machine_learning/README.md)** | MScFE 650 | Purged & Embargoed K-Fold CV Gantt chart, Regularization (Lasso/Ridge), XGBoost, WoE/IV/SHAP, Stacking Ensemble. | [🎓 07 Key Takeaways](./07_machine_learning/key-takeaway.md) |
 | **[08_deep_learning](./08_deep_learning/README.md)** | MScFE 690 | MLPs, LSTMs/GRUs, 2D CNN-GAF visual image pipeline, Transformer Multi-Head Attention, Deep RL (PPO), GWPs. | [🎓 08 Key Takeaways](./08_deep_learning/key-takeaway.md) |
+| **[09_risk_management](./09_risk_management/README.md)** | MScFE 660 | Systemic risk contagion networks, PCA Absorption Ratio, Carr-Madan option spanning, Variance Swaps, Spadafora Jump VaR. | [🎓 09 Key Takeaways](./09_risk_management/key-takeaway.md) |
 
 ---
 
@@ -71,10 +77,16 @@ Below is the complete WQU MScFE module index organized in official course sequen
 - **GARCH(1,1)**: Captures empirical volatility clustering: $\sigma_t^2 = \omega + \alpha_1 \epsilon_{t-1}^2 + \beta_1 \sigma_{t-1}^2$.
 - **Cointegration & VECM**: Stationary spread $e_t = Y_t - \beta X_t \sim I(0)$ powers mean-reverting statistical arbitrage pairs trading.
 
-### 3. Machine Learning & Deep Learning Validation
-- **Purged Cross-Validation**: Standard $K$-Fold leaks future time-series information. Purging label overlaps and embargoing adjacent training samples is required to evaluate financial ML models.
+### 3. Machine Learning & Institutional Backtesting Validation
+- **Purged Cross-Validation & CPCV**: Standard $K$-Fold leaks future time-series information. Purging label overlaps and embargoing adjacent training samples is required to evaluate financial ML models. Combinatorial Purged Cross-Validation (CPCV) generates $\binom{N}{k}$ distinct test paths.
+- **Deflated Sharpe Ratio (DSR)**: Adjusts empirical strategy performance for multiple testing selection bias, return skewness, and kurtosis.
 - **Hierarchical Risk Parity (HRP)**: Uses tree clustering on return correlation distances to allocate portfolio risk without matrix inversion.
 - **Sequential Attention**: Transformer multi-head self-attention $\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$ captures long-range temporal dependencies in market data.
+
+### 4. Systemic Risk, Variance Hedging & Extreme Value Theory
+- **Systemic Contagion & Absorption Ratio**: Granger causality network connectedness and PCA Absorption Ratio $\text{AR} = \frac{\sum_{i=1}^k \lambda_i}{\sum_{j=1}^N \lambda_j}$ quantify systemic tightness and macro fragility.
+- **Carr-Madan Option Spanning & Variance Swaps**: Static model-free option strip replication of log contracts $\ln(S_T/S_0) = \frac{S_T - S_0}{S_0} - \int_0^{S_0} \frac{(K - S_T)^+}{K^2} dK - \int_{S_0}^\infty \frac{(S_T - K)^+}{K^2} dK$, yielding discrete OTM strikes weighted by $w(K)=2/K^2$.
+- **Non-Parametric Jump Filtering (Spadafora Order Statistics)**: High-frequency tail risk filtering using $k$-th order statistics beta CDF $I_{F(x)}(k, n-k+1)$ to isolate pure diffusive volatility from Poisson jump contamination in Value-at-Risk.
 
 ---
 
@@ -86,10 +98,11 @@ wqu/
 ├── 02_financial_data/          # MScFE 650/610: Ingestion, Resampling, Web Scraping, Social NLP
 ├── 03_stochastic_modelling/    # MScFE 622: Ito Calculus, SDEs, CIR, Heston, HMM Regimes (GWP2)
 ├── 04_financial_econometrics/  # MScFE 630: Stationarity, ARIMA, GARCH, VAR, Cointegration, VECM
-├── 05_portfolio_management/    # MScFE 640: Mean-Variance, Black-Litterman, CLA, Prospect Theory, BPT
+├── 05_portfolio_management/    # MScFE 640: Mean-Variance, Black-Litterman, CPCV, DSR, FinRL DRL
 ├── 06_derivative_pricing/      # MScFE 610: Binomial/Trinomial Trees, Black-Scholes, Monte Carlo
 ├── 07_machine_learning/        # MScFE 650: Supervised ML, Tree Ensembles, Purged CV, Stacking (GWP2)
 ├── 08_deep_learning/           # MScFE 690: Deep Neural Networks, CNN-GAF, Transformers, Deep RL
+├── 09_risk_management/         # MScFE 660: Systemic Risk, PCA Absorption Ratio, Variance Swaps, Carr-Madan, Jump VaR
 └── unsorted/                   # Miscellaneous notebooks and legacy code
 ```
 
@@ -98,3 +111,4 @@ wqu/
 ## 🎯 Getting Started & Usage
 
 Each directory contains standalone Jupyter notebooks (`.ipynb`), Python module scripts (`.py`), lecture documents (`.pdf`), and data files (`.csv`, `.json`). Navigate to any module folder listed above to explore specific code implementations, visual diagrams, and theoretical notes.
+
