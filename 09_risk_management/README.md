@@ -1,6 +1,6 @@
 # Risk Management & Derivatives Engineering (MScFE 660)
 
-This directory contains lecture notes, required readings, mathematical formulations, empirical Python implementations, and research papers for **Risk Management & Derivatives Engineering**. The curriculum investigates macroeconomic and structural systemic risk (non-stationarity, shadow banking disintermediation, fire sale contagion cascades, balance sheet insolvency waterfalls, Granger causality networks, degree centrality, Principal Components Analysis [PCA] Absorption Ratio, and information-theoretic causality) and quantitative variance modeling & hedging (exchange-traded vs. OTC derivatives, ISDA Master Agreement margining, variance swap pricing and Mark-to-Market mechanics, Carr-Madan / Demeterfi model-free option spanning of the log contract with constant dollar gamma $2/K^2$, jump-diffusion Levy processes vs. continuous Ito diffusions, Spadafora et al. Order Statistics [OS] jump filtering via regularized Incomplete Beta distributions, and high-frequency Jumping Value-at-Risk [Jumping VaR]).
+This directory contains lecture notes, required readings, mathematical formulations, empirical Python implementations, and research papers for **Risk Management & Derivatives Engineering**. Across **8 comprehensive modules**, the curriculum investigates macroeconomic and structural systemic risk (**M1**), quantitative variance modeling, Carr-Madan option spanning, and Spadafora Order Statistics jump filtering (**M2**), deep learning tail loss estimation with DeepVaR LSTMs and Multi-Transformers (**M3**), Extreme Value Theory (GEV Block Maxima, GPD Peaks Over Threshold, and Conditional EVT-GARCH) (**M4**), Bayesian Networks, exact Variable Elimination, and approximate MCMC/Likelihood Weighting inference (**M5**), network topology and structure learning via Chow-Liu MST, K2, and BIC/BDeu scoring (**M6**), climate-related credit risk, the Vasicek ASRF model, and the Climate Extended Risk Model (CERM) (**M7**), and Dynamic Bayesian Networks (DYNOTEARS), Gaussian Bayesian Network stress testing, and Hidden Markov Models for coherent risk management (**M8**).
 
 ---
 
@@ -8,33 +8,40 @@ This directory contains lecture notes, required readings, mathematical formulati
 
 - **Course Code**: MScFE 660
 - **Primary Focus**:
-  - **Module 1**: Systemic Risk (Macroeconomic Indicators, Non-Stationarity, Shadow Banking, Regulatory Disintermediation, Fire Sale Contagion, Balance Sheet Insolvency Waterfalls $\text{Assets} = \text{Liabilities} + \text{Equity}$, Granger Causality VAR Networks, In/Out-Degree Centrality, PCA Absorption Ratio $\text{AR}(k) = \frac{\sum_{j=1}^k \lambda_j}{\sum_{i=1}^N \lambda_i}$, Bisias et al. Systemic Risk Analytics Survey across 31 quantitative measures, Information-Theoretic Causality Transfer Entropy, and Machine Learning Sector Fragility).
-  - **Module 2**: Modeling and Hedging Variance (Exchange-Traded vs. OTC Derivatives, ISDA Master Agreements, Initial & Variation Margining, Variance Swap Mark-to-Market Valuation, Volatility vs. Variance Payoff Convexity Bonus, Carr-Madan / Demeterfi Model-Free Option Spanning of the Log Contract $\ln(S_T/S_0)$ via Static OTM Option Strips weighted by $2/K^2$, Constant Dollar Gamma $\Gamma \cdot S^2 = 2$, Dynamic Delta Hedging $1/S_t$, Jump-Diffusion Levy Processes vs. Continuous Ito Diffusions, Spadafora et al. Order Statistics [OS] Volatility Estimator, Regularized Incomplete Beta Distribution $I_{F(x)}(k, n-k+1)$, Discontinuous Jump Classification, and Basel-compliant Jumping Value at Risk [Jumping VaR]).
-- **Key Tools & Methodologies**: Vector Autoregressions (VAR), Granger causality $F$-tests, Network Graph Theory, Principal Components Analysis (PCA), Spectral Decomposition, ISDA mark-to-market discounting, Carr-Madan integral spanning, static option strip replication, continuous delta hedging, Order Statistics probability theory, Regularized Incomplete Beta functions, Poisson jump-diffusion processes, and high-frequency Jump-Adjusted Value at Risk / Expected Shortfall modeling.
+  - **Module 1**: Systemic Risk (Macroeconomic Indicators, Non-Stationarity, Shadow Banking, Fire Sale Contagion, Balance Sheet Insolvency Waterfalls, Granger Causality VAR Networks, In/Out-Degree Centrality, PCA Absorption Ratio $\text{AR}(k)$, Bisias et al. 31-Measure Survey, Transfer Entropy, and ML Sector Fragility).
+  - **Module 2**: Modeling and Hedging Variance (OTC vs. Exchange-Traded Derivatives, ISDA Master Agreements, Variance Swap Mark-to-Market & Convexity, Carr-Madan / Demeterfi Model-Free Option Spanning of the Log Contract $w(K)=2/K^2$, Spadafora et al. Order Statistics [OS] Jump Filtering via Regularized Incomplete Beta $I_{F(x)}(k, n-k+1)$, and Jumping VaR).
+  - **Module 3**: Estimating Tail Loss with Deep Learning (DeepVaR Probabilistic LSTM / DeepAR Autoregressive Likelihood, Monte Carlo Portfolio VaR Backtesting, Scaled Dot-Product Multi-Head Attention, and Bagged Multi-Transformer Volatility Forecasting).
+  - **Module 4**: Estimating Tail Loss with Extreme Value Theory (Fisher-Tippett-Gnedenko Theorem, Block Maxima & Generalized Extreme Value [GEV] Distribution, Pickands-Balkema-de Haan Theorem, Peaks Over Threshold [POT] & Generalized Pareto Distribution [GPD], and Conditional EVT with GARCH / EGARCH / GJR-GARCH / AP-ARCH).
+  - **Module 5**: Bayesian Networks for Financial Risk Management (Graph & Network Theory, DAG Factorization, Factor Graphs, Monty Hall Conditional Updating, Exact Inference via Variable Elimination, and Approximate Inference via Direct/Rejection Sampling, Likelihood Weighting, and Gibbs MCMC).
+  - **Module 6**: Network Learning for Risk Management (Degree Distributions, CCDF & Power Laws, Components & Communities, Chow-Liu Algorithm & Kruskal's Minimum Spanning Tree, K2 Algorithm [Cooper-Herskovits], Score-Based Hill Climbing [BIC/BDeu], and MLE Parameter Learning in `pgmpy`).
+  - **Module 7**: Climate Risk and the Vasicek Model (Physical vs. Transition Climate Risk, Urban Flood Disaster Prediction via Bayesian Networks [d-separation, Markov blanket, Jeffrey's rule], Achmea Bank Mortgage Climate Stress Testing, Vasicek Asymptotic Single Risk Factor [ASRF] Loss Distribution, and the Multi-Factor Climate Extended Risk Model [CERM]).
+  - **Module 8**: Dynamic Bayesian Networks and Coherent Risk Management (Coherent Asset Allocation & Causal Structure, DYNOTEARS Continuous Acyclicity Optimization $\text{tr}(e^{\mathbf{W} \circ \mathbf{W}}) - d = 0$, Gaussian Bayesian Network [GBN] Financial Stress Testing for 1-Year PD, Granger Causality / Cointegration / ADF Tests, and Hidden Markov Models [Baum-Welch] for Oil Price Prediction).
+- **Key Tools & Methodologies**: VAR & Granger Causality, PCA Absorption Ratio, Carr-Madan Option Spanning, Spadafora Order Statistics, `GluonTS` DeepAR/DeepVaR, Multi-Transformer Attention, GEV/GPD & GJR-GARCH, `pgmpy` & `pomegranate`, Chow-Liu MST, K2 & Hill Climbing, Vasicek ASRF & CERM, `CausalNex` DYNOTEARS, Gaussian Bayesian Networks, and Baum-Welch HMMs.
 
 ---
 
 > [!IMPORTANT]
 > **🎓 Master Pedagogical Architecture & Key Takeaways**:
-> Access the structured 5-pillar quantitative breakdown with worked numerical calculations, notation breakdowns, vector visualizations, and calculus derivations in **[`key-takeaway.md`](./key-takeaway.md)**:
-> - 🏢 **[Shadow Banking Interconnectedness & Fire Sale Contagion Math](./key-takeaway.md#toy-example-1-shadow-banking-interconnectedness--fire-sale-contagion)**
-> - 🕸️ **[Granger Causality Networks & PCA Absorption Ratio Fragility](./key-takeaway.md#toy-example-2-granger-causality-networks--pca-absorption-ratio-fragility)**
-> - 📈 **[Variance Swap Mark-to-Market & Volatility Convexity Calculus](./key-takeaway.md#toy-example-3-variance-swap-mark-to-market--volatility-convexity)**
-> - 📐 **[Carr-Madan Option Spanning & Log Contract Discretization](./key-takeaway.md#toy-example-4-carr-madan-option-spanning--log-contract-discretization)**
-> - ⚡ **[Spadafora Order Statistics Jump Filter vs Naive Realized Volatility](./key-takeaway.md#toy-example-5-spadafora-order-statistics-jump-filter-vs-naive-realized-volatility)**
-> - 🔬 **[Granger Causality VAR Matrix & Principal Component Absorption Ratio Derivation](./key-takeaway.md#1-granger-causality-var-matrix--principal-component-absorption-ratio-calculus-m1)**
-> - 📜 **[Carr-Madan (1999) & Demeterfi Model-Free Variance Replication Theorem](./key-takeaway.md#2-carr-madan-1999--demeterfi-et-al-model-free-variance-replication-theorem-m2)**
-> - 📊 **[Spadafora Order Statistics Density & Incomplete Beta Jump Calculus](./key-takeaway.md#3-spadafora-order-statistics-probability-density--incomplete-beta-jump-threshold-calculus-m2)**
-> - 🏆 **[Empirical Systemic Fragility & PCA Absorption Ratio Case Study](./key-takeaway.md#empirical-systemic-fragility--pca-absorption-ratio-spikes-during-the-2008-gfc)**
-> - 💰 **[Empirical S&P 500 VIX Replicating Strip & Variance Risk Premium Case Study](./key-takeaway.md#empirical-sp-500-vix-replicating-strip--variance-risk-premium-vrp-harvesting)**
-> - 🚀 **[High-Frequency Jump Detection & Jumping VaR Performance Benchmark](./key-takeaway.md#high-frequency-jump-detection--jumping-var-performance)**
-> - 📚 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
+> Access the structured 5-pillar quantitative breakdown with worked numerical calculations, notation breakdowns, vector visualizations, calculus derivations, and research reading summaries in **[`key-takeaway.md`](./key-takeaway.md)**:
+> - 🏢 **[Shadow Banking Interconnectedness & Fire Sale Contagion (M1)](./key-takeaway.md#toy-example-1-shadow-banking-interconnectedness--fire-sale-contagion)**
+> - 🕸️ **[Granger Causality Networks & PCA Absorption Ratio Fragility (M1)](./key-takeaway.md#toy-example-2-granger-causality-networks--pca-absorption-ratio-fragility)**
+> - 📈 **[Variance Swap Mark-to-Market & Volatility Convexity (M2)](./key-takeaway.md#toy-example-3-variance-swap-mark-to-market--volatility-convexity)**
+> - 📐 **[Carr-Madan Option Spanning & Log Contract Discretization (M2)](./key-takeaway.md#toy-example-4-carr-madan-option-spanning--log-contract-discretization)**
+> - ⚡ **[Spadafora Order Statistics Jump Filter vs Naive Realized Volatility (M2)](./key-takeaway.md#toy-example-5-spadafora-order-statistics-jump-filter-vs-naive-realized-volatility)**
+> - 🤖 **[DeepVaR Probabilistic LSTM & Multi-Transformer Volatility Forecasting (M3)](./key-takeaway.md#toy-example-6-deepvar-probabilistic-lstm--multi-transformer-volatility-forecasting)**
+> - 🌊 **[Extreme Value Theory: Block Maxima (GEV) vs. Peaks Over Threshold (GPD) (M4)](./key-takeaway.md#toy-example-7-extreme-value-theory--block-maxima-gev-vs-peaks-over-threshold-gpd)**
+> - 🎯 **[Bayesian Network Exact Inference vs. Approximate Sampling (M5)](./key-takeaway.md#toy-example-8-bayesian-network-exact-inference-vs-approximate-sampling)**
+> - 🌲 **[Network Structure Learning: Chow-Liu MST & K2 Scoring (M6)](./key-takeaway.md#toy-example-9-network-structure-learning--chow-liu-mst--k2-scoring)**
+> - 🌍 **[Vasicek Single-Factor Credit Loss & Climate Extended Risk Model (CERM) (M7)](./key-takeaway.md#toy-example-10-vasicek-single-factor-credit-loss--climate-extended-risk-model-cerm)**
+> - ⏱️ **[DYNOTEARS Dynamic Bayesian Networks & GBN PD Stress Testing (M8)](./key-takeaway.md#toy-example-11-dynotears-dynamic-bayesian-networks--gbn-pd-stress-testing)**
+> - 📚 **[Research Reading Summaries (Achmea Climate Credit Risk, Veneto Flood BN, CERM, UniVe GBN Stress Testing)](./key-takeaway.md#research-summary-1-climate-related-credit-risk-on-achmea-banks-mortgage-portfolio)**
+> - 🧮 **[Comprehensive Variable & Notation Glossary](./key-takeaway.md#5-comprehensive-mathematical-notation--variable-glossary)**
 
 ---
 
 ## 🏷️ Master Quantitative Notation & Variable Glossary
 
-| Variable / Notation | Mathematical / Financial Meaning | Typical Units / Range | Context & Governing Formula |
+| Symbol | Mathematical / Economic Meaning | Typical Units / Range | Context & Core Formula |
 | :--- | :--- | :--- | :--- |
 | **$A_i, L_i, E_i$** | Bank Assets, Liabilities, and Equity | USD Millions | Balance sheet fundamental identity: $A_i = L_i + E_i$ |
 | **$\text{AR}(k)$** | Principal Component Absorption Ratio for top $k$ components | Percentage $[0, 1]$ | $\text{AR}(k) = \frac{\sum_{j=1}^k \lambda_j}{\sum_{i=1}^N \lambda_i} = \frac{\sum_{j=1}^k \lambda_j}{\text{tr}(\mathbf{\Sigma})}$ |
@@ -51,8 +58,14 @@ This directory contains lecture notes, required readings, mathematical formulati
 | **$I_x(a, b)$** | Regularized Incomplete Beta Function | Probability $[0, 1]$ | $I_x(a, b) = \frac{1}{B(a, b)} \int_0^x u^{a-1} (1-u)^{b-1} du$ |
 | **$p_{\text{cutoff}}$** | Jump Classification Tolerance Probability Threshold | Probability ($0.01 - 0.05$) | Identifies return as jump if $p_k = 1 - I_{F_0(|r_{(k)}|)}(k, n-k+1) < p_{\text{cutoff}}$ |
 | **$\sigma_{\text{OS}}$** | Spadafora Order Statistics Continuous Volatility | Annualized percentage | Clean integrated volatility excluding jump outliers |
-| **$J_t, N_t$** | Jump Magnitude and Poisson Jump Counting Process | Return jump / counts | Jump-diffusion SDE: $dS_t = \mu S_t dt + \sigma S_t dW_t + J_t dN_t$ |
-| **$\text{VaR}_\alpha$** | Value at Risk at Confidence Level $\alpha$ | Percentage loss | $P(L > \text{VaR}_\alpha) = 1 - \alpha$ |
+| **$\text{VaR}_\alpha, \text{ES}_\alpha$** | Value at Risk and Expected Shortfall at Confidence $\alpha$ | Percentage loss | $P(L > \text{VaR}_\alpha) = 1 - \alpha$; $\text{ES}_\alpha = \mathbb{E}[L \mid L > \text{VaR}_\alpha]$ |
+| **$\mathbf{h}_t, \mathbf{Q}, \mathbf{K}, \mathbf{V}$** | LSTM Hidden State; Transformer Query, Key, Value Matrices | Real Vectors / Matrices | $\text{Attention}(\mathbf{Q},\mathbf{K},\mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}$ |
+| **$\xi, \beta, u$** | EVT Tail Shape Index, GPD Scale, and Threshold | Real / % Loss | $\text{VaR}_\alpha^{\text{GPD}} = u + \frac{\beta}{\xi}\left[\left(\frac{N}{N_u}(1-\alpha)\right)^{-\xi} - 1\right]$ |
+| **$\text{Pa}(X_i), I(X_i; X_j)$** | DAG Parent Set and Mutual Information | Node Set / Nats ($\ge 0$) | $P(X_1,\dots,X_n) = \prod_{i=1}^n P(X_i \mid \text{Pa}(X_i))$ |
+| **$g(i, \pi_i), \text{BIC}$** | K2 Marginal Likelihood and Bayesian Information Criterion | Log-score | $\text{BIC} = \ell(\hat{\theta}; \mathcal{D}) - \frac{k_{\text{params}}}{2}\ln N$ |
+| **$\rho, \Phi^{-1}(\text{PD})$** | Vasicek Asset Correlation and Default Threshold | $[0, 1]$ / Z-score | $L(\alpha) = \text{LGD} \cdot \Phi\left(\frac{\Phi^{-1}(\text{PD}) + \sqrt{\rho}\,\Phi^{-1}(\alpha)}{\sqrt{1-\rho}}\right)$ |
+| **$\zeta_t, \alpha_{g,i,t,j}, R_{g,i,t}$** | CERM Macro-Correlation, Micro-Correlation, Systematic Variance | Real / $[0, 1]$ | $R_{g,i,t} = \sum_{j=1}^{R+2} (\alpha_{g,i,t,j}\zeta_{t,j})^2$ |
+| **$\mathbf{W}, \mathbf{A}_k, h(\mathbf{W})$** | DYNOTEARS Intra-Slice, Lag-$k$ Matrices, Acyclicity Penalty | $\mathbb{R}^{d \times d}$ / Scalar | $h(\mathbf{W}) = \text{tr}(e^{\mathbf{W} \circ \mathbf{W}}) - d = 0$ |
 
 ---
 
@@ -165,6 +178,62 @@ flowchart TD
     end
 ```
 
+### 6. Deep Learning & Extreme Value Theory Tail Loss Architecture (Modules 3 & 4)
+
+```mermaid
+flowchart LR
+    subgraph DeepLearning ["Module 3: DeepVaR & Multi-Transformer"]
+        RetHist["Asset Return & Volatility History"] --> LSTM["DeepVaR LSTM (GluonTS DeepAR)"]
+        RetHist --> Attn["Bagged Multi-Head Attention\n(Multi-Transformer)"]
+        LSTM --> MC_VaR["Monte Carlo Portfolio VaR_α"]
+        Attn --> VolFcst["Forward Volatility Forecast σ_{t+1|t}"]
+    end
+
+    subgraph EVT_Engine ["Module 4: Extreme Value Theory (EVT)"]
+        GARCH["GARCH / GJR-GARCH / EGARCH\nPre-Whitened Residuals z_t"] --> BMM["Block Maxima: GEV (μ, σ, ξ)"]
+        GARCH --> POT["Peaks Over Threshold: GPD (β, ξ)"]
+        BMM & POT --> TailQuant["Dynamic Conditional VaR_α & ES_α"]
+    end
+```
+
+### 7. Bayesian Network Inference, Structure Learning & Climate Credit Risk (Modules 5–7)
+
+```mermaid
+flowchart TD
+    subgraph StructureLearn ["Module 6: Structure & Parameter Learning"]
+        Data["Empirical Risk Data"] --> ChowLiu["Chow-Liu MST\n(Mutual Information I(X_i; X_j))"]
+        Data --> K2_HC["K2 / Hill Climbing\n(BIC / BDeu Score) + MLE"]
+    end
+
+    subgraph Inference ["Module 5 & 7: Exact & Approximate Inference"]
+        ChowLiu & K2_HC --> DAG["Directed Acyclic Graph (DAG)\nFlood / Credit / Macro Nodes"]
+        DAG --> Exact["Exact: Variable Elimination"]
+        DAG --> Approx["Approximate: Rejection, Likelihood Weighting, Gibbs MCMC"]
+    end
+
+    subgraph ClimateCredit ["Module 7: Vasicek ASRF & CERM"]
+        NGFS["NGFS / KNMI '14 Scenarios\n(Physical + Transition Shocks)"] --> CERM["CERM Multi-Factor Merton\nMacro ζ_t & Micro α_{g,i,t,j}"]
+        CERM --> LossDist["Conditional Portfolio Loss Distribution L(α)"]
+    end
+```
+
+### 8. Dynamic Bayesian Networks (DYNOTEARS) & Financial Stress Testing (Module 8)
+
+```mermaid
+flowchart LR
+    subgraph TimeSeriesDBN ["Module 8: DYNOTEARS Dynamic BN"]
+        PanelTS["Multivariate Financial Time Series X_t"] --> Opt["L1-Regularized Augmented Lagrangian\nh(W) = tr(e^{W ∘ W}) - d = 0"]
+        Opt --> Intra["Intra-Slice DAG W\n(Contemporaneous Causality)"]
+        Opt --> Inter["Inter-Slice Edges A_k\n(Lagged Causality)"]
+    end
+
+    subgraph StressTest ["Module 8: GBN Stress Testing & HMM Regimes"]
+        MacroFirm["Macro & Bank KPIs\n(GDP, Oil, CET1, LR, NPL)"] --> GBN["Gaussian Bayesian Network\n(Granger + Hill Climbing + MLE)"]
+        GBN --> PD_Fcst["1-Year Implied PD Forecast\n(Baseline vs. Crisis Stress)"]
+        OilTS["Crude Oil Series"] --> HMM["Hidden Markov Model (Baum-Welch)\nRegime-Switching Forecast"]
+    end
+```
+
 ---
 
 ## 📖 Sub-Module & Detailed File Breakdown
@@ -223,6 +292,87 @@ flowchart TD
 
 ---
 
+### [Module 3: Estimating Tail Loss with Deep Learning](./M3)
+- **Lessons, Notes & Required Readings**:
+  - [`M3/L1-note.pdf`](./M3/L1-note.pdf) & [`M3/L1-reading.pdf`](./M3/L1-reading.pdf) (*Fatouros et al., 2022*): **DeepVaR: Value at Risk Meets Long-Short Term Memory**.
+    - Probabilistic autoregressive forecasting of portfolio return distributions using LSTM networks (DeepAR), replacing static historical windows with dynamic Monte Carlo VaR estimation and Kupiec/Christoffersen backtesting.
+  - [`M3/L2-note.pdf`](./M3/L2-note.pdf) & [`M3/L2-reading.pdf`](./M3/L2-reading.pdf) (*Fatouros GitHub*): **DeepVaR: The Python Implementation**.
+    - Implementing DeepAR in `GluonTS` with Maximum Likelihood Estimation (MLE) of conditional mean $\mu_t$ and scale $\sigma_t$ for multi-asset portfolios.
+  - [`M3/L3-note.pdf`](./M3/L3-note.pdf) & [`M3/L3-reading.pdf`](./M3/L3-reading.pdf) (*Ramos-Perez et al., 2021*): **Forecasting Volatility with Transformers**.
+    - Encoder-decoder Transformer architecture and Scaled Dot-Product Self-Attention ($\text{softmax}(\mathbf{Q}\mathbf{K}^T/\sqrt{d_k})\mathbf{V}$) for capturing long-range volatility clustering compared to GARCH.
+  - [`M3/L4-note.pdf`](./M3/L4-note.pdf) & [`M3/L4-reading.pdf`](./M3/L4-reading.pdf) (*Ramos-Perez GitHub*): **Multi-Transformer in Action**.
+    - Bagged ensemble of Multi-Head Attention layers combined with feed-forward networks to stabilize S&P 500 realized volatility forecasts.
+
+---
+
+### [Module 4: Estimating Tail Loss with Extreme Value Theory](./M4)
+- **Lessons, Notes & Required Readings**:
+  - [`M4/L1-note.pdf`](./M4/L1-note.pdf) & [`M4/L1-reading.pdf`](./M4/L1-reading.pdf) (*Hansen, 2020*): **Risk Modeling with Extreme Value Theory**.
+    - Contrasting **Block Maxima Method (BMM)** modeled via the Generalized Extreme Value (GEV) distribution against **Peaks Over Threshold (POT)** modeled via the Generalized Pareto Distribution (GPD).
+  - [`M4/L2-note.pdf`](./M4/L2-note.pdf), [`M4/L2-reading.pdf`](./M4/L2-reading.pdf) & [`M4/Pratiwi_2019_J._Phys.__Conf._Ser._1217_012090.pdf`](./M4/Pratiwi_2019_J._Phys.__Conf._Ser._1217_012090.pdf) (*Pratiwi et al., 2019*): **Block Maxima: Indonesian Gold**.
+    - Empirical GEV fitting for Value at Risk analysis on gold price returns.
+  - [`M4/L3-note.pdf`](./M4/L3-note.pdf) & [`M4/L3-reading.pdf`](./M4/L3-reading.pdf) (*Nortey et al., 2015*): **The Theorem and Politics of Extreme Values**.
+    - **Fisher-Tippett-Gnedenko Theorem** (Fréchet $\xi > 0$, Gumbel $\xi = 0$, Weibull $\xi < 0$ Maximum Domains of Attraction) and extreme value modeling of the Ghana Stock Exchange Index.
+  - [`M4/L4-note.pdf`](./M4/L4-note.pdf) & [`M4/L4-reading.pdf`](./M4/L4-reading.pdf) (*Omari et al., 2017*): **Extreme Innovations in Value at Risk Modeling**.
+    - Conditional EVT combining asymmetric volatility filters (**EGARCH**, **GJR-GARCH**, **AP-ARCH**) with GPD tail estimation on standardized residuals for daily currency exchange rates.
+
+---
+
+### [Module 5: Bayesian Networks for Financial Risk Management](./M5)
+- **Lessons, Notes & Required Readings**:
+  - [`M5/L1-note.pdf`](./M5/L1-note.pdf) & [`M5/L1-reading.pdf`](./M5/L1-reading.pdf) (*Kochenderfer et al., 2022 [Ch. 2]*; *Coscia, 2021*): **Reintroduction to Graphs and Networks**.
+    - Directed Acyclic Graphs (DAGs), conditional independence, and joint distribution factorization $P(X_1, \dots, X_n) = \prod_i P(X_i \mid \text{Pa}(X_i))$.
+  - [`M5/L2-note.pdf`](./M5/L2-note.pdf) & [`M5/L2-reading.pdf`](./M5/L2-reading.pdf) (*Meyer*; *Schreiber [`pomegranate`]*): **The Monty Hall Problem**.
+    - Factor graphs and Bayesian belief updating under new evidence implemented in `pomegranate`.
+  - [`M5/L3-note.pdf`](./M5/L3-note.pdf) & [`M5/L3-reading.pdf`](./M5/L3-reading.pdf) (*Kochenderfer et al., 2022 [Ch. 3]*): **Sampling and Inference**.
+    - Exact inference (**Variable Elimination**, Belief Propagation) vs. approximate inference (**Direct/Rejection Sampling**, **Likelihood Weighting**, **Gibbs Sampling / MCMC**).
+  - [`M5/L4-code.ipynb`](./M5/L4-code.ipynb) & [`M5/L4-reading.pdf`](./M5/L4-reading.pdf): **Inference and Sampling in Practice**.
+    - Hands-on Python implementation of exact and approximate Bayesian Network inference.
+
+---
+
+### [Module 6: Network Learning for Risk Management](./M6)
+- **Lessons, Notes & Required Readings**:
+  - [`M6/L1-note.pdf`](./M6/L1-note.pdf) & [`M6/L1-reading.pdf`](./M6/L1-reading.pdf) (*Coscia, 2021 [Ch. 6, 7, 9]*): **Going Deeper with Bayesian Nets**.
+    - Network topology metrics: degree distributions, Complement of Cumulative Distribution Function (CCDF), power laws, connected components, and community/cluster detection.
+  - [`M6/L2-note.pdf`](./M6/L2-note.pdf) & [`M6/L2-reading.pdf`](./M6/L2-reading.pdf) (*Schreiber*; *Kochenderfer et al.*): **How to Learn the Structure of a Network**.
+    - **Chow-Liu Algorithm** using pairwise Mutual Information $I(X_i; X_j)$ and Kruskal's Minimum Spanning Tree (MST).
+  - [`M6/L3-note.pdf`](./M6/L3-note.pdf) & [`M6/L3-reading.pdf`](./M6/L3-reading.pdf) (*Cooper & Herskovits, 1992*): **K2: Learning Bayesian Network Structure**.
+    - Greedy score-based structure search maximizing the K2 marginal likelihood $g(i, \pi_i)$ given a topological ordering.
+  - [`M6/L4-code.ipynb`](./M6/L4-code.ipynb) & [`M6/L4-reading.pdf`](./M6/L4-reading.pdf) (*`pgmpy`*): **Learning Bayesian Network Structure and Parameters from Data**.
+    - Score-based Hill Climbing (BIC / BDeu) and Maximum Likelihood / Bayesian parameter estimation in `pgmpy`.
+
+---
+
+### [Module 7: Climate Risk and the Vasicek Model](./M7)
+- **Lessons, Notes & Required Readings**:
+  - [`M7/L1-note.pdf`](./M7/L1-note.pdf) & [`M7/L1-reading.pdf`](./M7/L1-reading.pdf) (*Wu et al., 2019*; *Wouters Thesis*): **Climate Change as Financial Risk**.
+    - Taxonomy of **Physical Risk** (acute floods/wildfires, chronic subsidence/heat stress) and **Transition Risk** (carbon tax policy shocks, renewable technology shifts).
+    - *Reading Summary — Achmea Bank Mortgage Climate Credit Risk*: Evaluates 8 physical drivers (KNMI '14: €10M – €100M damage per driver) and 6 NGFS transition scenarios (up to €1B NPV impact, $\le 10\%$ Merton MVL) on an €8.5B mortgage portfolio, integrating into IFRS 9 / A-IRB via macro adjustments and LTV/energy-label shocks ([full synthesis](./key-takeaway.md#research-summary-1-climate-related-credit-risk-on-achmea-banks-mortgage-portfolio)).
+  - [`M7/L2-note.pdf`](./M7/L2-note.pdf) & [`M7/L2-reading.pdf`](./M7/L2-reading.pdf) (*Riccardo Spolaor*): **Predicting Disaster with Python**.
+    - **d-separation**, **Markov blankets**, hard/soft/virtual/negative evidence, and **Jeffrey's rule**.
+    - *Reading Summary — Veneto Flood Disaster Prediction*: 9-node `pgmpy` Bayesian Network across Veneto municipalities; exact `VariableElimination` ($P(\text{Flood})=0.0785$ baseline; $0.1608$ worst-case) outperforms Rejection Sampling and small-$N$ MCMC under evidence, identifying slope and population density as key spatial drivers ([full synthesis](./key-takeaway.md#research-summary-2-flood-disaster-prediction-via-bayesian-networks-in-veneto-italy)).
+  - [`M7/L3-reading.pdf`](./M7/L3-reading.pdf) (*Garnier et al., 2022 [arXiv:2103.03275]*): **The Climate Extended Risk Model (CERM)**.
+    - *Reading Summary — CERM*: Multi-factor Merton model with Gaussian copula extending Basel ASRF to $R+2$ systematic factors (economic, transition, $R$ regional physical) via macro-correlations $\zeta_t$ and micro-correlations $\alpha_{g,i,t,j}$ across NGFS *Orderly*, *Delayed*, and *Hot House World* scenarios ([full synthesis](./key-takeaway.md#research-summary-3-the-climate-extended-risk-model-cerm)).
+  - [`M7/L4-code.ipynb`](./M7/L4-code.ipynb) & [`M7/L4-reading.pdf`](./M7/L4-reading.pdf) (*quantpie*): **Credit and Climate Risk in Python**.
+    - Implementing the Vasicek single-factor portfolio loss distribution and multi-factor CERM Monte Carlo simulations in Python.
+
+---
+
+### [Module 8: Dynamic Bayesian Networks and Coherent Risk Management](./M8)
+- **Lessons, Notes & Required Readings**:
+  - [`M8/L1-note.pdf`](./M8/L1-note.pdf) & [`M8/L1-reading.pdf`](./M8/L1-reading.pdf) (*Rebonato & Denev, 2011*): **Coherent Asset Allocation and Causal Structure**.
+    - Incorporating causal stress-event networks into portfolio allocation beyond naive Markowitz correlation matrices.
+  - [`M8/L2-code.ipynb`](./M8/L2-code.ipynb), [`M8/L2-reading.pdf`](./M8/L2-reading.pdf) & [`M8/SnP100.csv`](./M8/SnP100.csv) (*CausalNex*): **Systemic Risk and Bayesian Networks for Time Series (DYNOTEARS)**.
+    - Learning intra-slice ($\mathbf{W}$) and inter-slice ($\mathbf{A}_k$) dynamic causal graphs on S&P 100 equities via the smooth acyclicity constraint $h(\mathbf{W}) = \text{tr}(e^{\mathbf{W} \circ \mathbf{W}}) - d = 0$.
+  - [`M8/L3-note.pdf`](./M8/L3-note.pdf) & [`M8/L3-reading.pdf`](./M8/L3-reading.pdf) (*Carraro, 2018 [UniVe Thesis]*): **Estimating Probability of Default with Bayesian Networks**.
+    - Stationarity, **Augmented Dickey-Fuller (ADF)** tests, cointegration, and Granger causality.
+    - *Reading Summary — Financial Stress Testing with GBNs*: Combines VAR Granger causality, Hill Climbing (BGe/BIC), and MLE on 6 macro and 9 firm-specific series (34 spline-interpolated monthly points) with IRB-implied PD ($\text{LGD}=0.45, M=2.50$), finding CET1, LR, and GDP drive PD while highlighting NPL omission vs. expert networks ([full synthesis](./key-takeaway.md#research-summary-4-financial-stress-testing-with-gaussian-bayesian-networks)).
+  - [`M8/L4-note.pdf`](./M8/L4-note.pdf) & [`M8/L4-reading.pdf`](./M8/L4-reading.pdf) (*Alvi, 2018 [arXiv:1804.10869]*): **Bayesian Networks at Work: Oil Price Prediction**.
+    - Regime-switching **Hidden Markov Models (HMMs)**, emission distributions, and **Baum-Welch** expectation-maximization for crude oil forecasting.
+
+---
+
 ## 🔑 Key Takeaways & Quantitative Insights
 
 1. **Macroprudential vs. Microprudential Paradox**: Ensuring the safety of each individual bank in isolation (microprudential regulation) does not guarantee system-wide stability. When all banks hold similar assets and respond to shocks by selling simultaneously, mark-to-market fire sale deleveraging creates endogenous systemic crashes.
@@ -233,9 +383,12 @@ flowchart TD
 6. **Variance Swap Quadratic Convexity Bonus**: Unlike linear volatility swaps ($N_{\text{vega}}(\sigma - K_{\text{vol}})$), variance swaps pay proportional to squared realized volatility ($N_{\text{var}}(\sigma^2 - K_{\text{var}})$), providing an explosive quadratic convexity payout bonus during black-swan turbulence events.
 7. **Carr-Madan Model-Free Option Spanning**: By integrating a continuous strip of out-of-the-money European calls and puts weighted inversely by squared strike ($w(K) = 2/K^2$), financial engineers synthesize a static log contract $\ln(S_T/S_0)$ with constant dollar gamma ($\Gamma \cdot S^2 = 2$), replicating variance swaps with zero model assumptions.
 8. **Variance Risk Premium (VRP) Structural Carry**: Across equity index markets, model-free implied variance systematically trades at a premium over subsequent realized variance ($K_{\text{var}} > \mathbb{E}[\sigma_{\text{realized}}^2]$), generating positive carry for short variance sellers and creating institutional demand for tail-risk variance buyers.
-9. **Ito vs. Levy Jump-Diffusion Reality**: Standard financial models assume continuous Brownian motion paths. In live trading, asset prices exhibit discontinuous Levy jumps ($J_t dN_t$) that contaminate standard sample variance estimators, causing severe misestimation of baseline diffusive volatility.
-10. **Spadafora Order Statistics Jump Filter**: By testing sorted sample return magnitudes $|r_{(k)}|$ against the exact Incomplete Beta CDF of order statistics ($I_{F_0(x)}(k, n-k+1)$), the Spadafora estimator separates discrete jumps from continuous diffusion without subjective threshold tuning.
-11. **Jumping VaR Basel Compliance**: Standard Gaussian VaR underestimates tail risk by $>40\%$ during jump regimes, triggering Basel Red Zone penalty multipliers. Spadafora Jumping VaR isolates jumps to maintain strict $99\%$ coverage within the green compliance zone.
+9. **Ito vs. Levy Jump-Diffusion & Spadafora OS Jumping VaR**: Discontinuous Levy jumps ($J_t dN_t$) contaminate naive sample variance. Testing sorted absolute returns $|r_{(k)}|$ against the Incomplete Beta CDF $I_{F_0(x)}(k, n-k+1)$ isolates jumps without subjective tuning, keeping $99\%$ Jumping VaR in the Basel Green Zone.
+10. **Deep Learning Tail Loss (DeepVaR & Multi-Transformer)**: Autoregressive LSTMs output dynamic parametric return distributions ($\mu_t, \sigma_t$) for Monte Carlo VaR, while bagged Multi-Head Attention Transformers capture long-range volatility clustering across crisis regimes.
+11. **Extreme Value Theory (GEV & Conditional GPD-GARCH)**: By discarding calm interior returns via Block Maxima (GEV) or Peaks Over Threshold (GPD) on GJR-GARCH/EGARCH standardized residuals, EVT accurately models heavy-tailed ($\xi > 0$) VaR and Expected Shortfall.
+12. **Bayesian Networks, Structure Learning & Rare-Evidence Inference**: Exact Variable Elimination provides ground-truth posteriors, while Likelihood Weighting and Gibbs MCMC scale to large DAGs (with Rejection Sampling failing under rare evidence). Chow-Liu MSTs, K2, and BIC/BDeu Hill Climbing learn causal topologies directly from data.
+13. **Climate Credit Risk (Vasicek ASRF & CERM)**: Physical hazards (uncorrelated, localized, high-severity) and transition shocks (gradual, portfolio-wide, carbon-tax driven) monotonically increase PD, LGD, ECL, and TREA; CERM extends Basel ASRF with macro-correlations $\zeta_t$ and micro-correlations $\alpha_{g,i,t,j}$ to quantify long-term climate unsustainability.
+14. **Dynamic Bayesian Networks (DYNOTEARS) & GBN Stress Testing**: DYNOTEARS learns both contemporaneous ($\mathbf{W}$) and lagged ($\mathbf{A}_k$) causal structures via smooth acyclicity constraints, while Gaussian Bayesian Networks and Baum-Welch HMMs propagate macroeconomic shocks (GDP, Oil) to bank capital (CET1, LR) and 1-year PD.
 
 ---
 
